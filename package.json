@@ -1,0 +1,17 @@
+{
+  "name": "mirayoki-bot",
+  "version": "1.0.0",
+  "description": "Next-Gen Management Bot for your Discord server.",
+  "main": "Mirayoki.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Camargo",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^12.5.1",
+    "dotenv": "^8.2.0",
+    "fs": "0.0.1-security",
+    "ms": "^2.1.3"
+  }
+}
