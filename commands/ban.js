@@ -1,7 +1,8 @@
 module.exports = {
     name: 'ban',
+    aliases: ['b'],
     description: "the big hammer",
-    execute(client, message, args, Discord) {
+    execute(message, args, cmd, client, Discord) {
 
         const errorBan = new Discord.MessageEmbed()
 

@@ -1,8 +1,9 @@
 const ms = require('ms');
 module.exports = {
     name: 'mute',
+    aliases: ['m'],
     description: "just mute",
-    execute(client, message, args, Discord) {
+    execute(message, args, cmd, client, Discord) {
         const noPerms = new Discord.MessageEmbed()
 
             .setColor('#FF5733')

@@ -9,16 +9,17 @@
 
 module.exports = {
   name: 'image',
+  aliases: ['img'],
   description: "Searches any Google Image and returns the best one to the chat",
-  async execute(client, message, args, Discord) {
+  async execute(message, args, cmd, client, Discord) {
 
    const sorry = new Discord.MessageEmbed()
 
     .setColor('#FF5733')
     .setTitle('Image Scraper is under maintenance')
     .setAuthor(`For ${message.author.username}`)
-    .setDescription('My dev is having some trouble with the Image Search module, please hang on while he can fix it!')
-    .setFooter('Images Provided by Google™ Images')   
+    .setDescription('Currently I\'m having some trouble with the Image Search module, this isn\'t your fault, it\'s mine')
+    .setFooter('Use -ihelp to learn more about this issue')   
 
     message.channel.send(sorry)
 

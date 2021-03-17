@@ -1,7 +1,7 @@
 module.exports = {
     name: 'embed',
     description: "Embed test",
-    execute(client, message, args, Discord) {
+    execute(message, args, cmd, client, Discord) {
 
     const newEmbed = new Discord.MessageEmbed()
     

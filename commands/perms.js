@@ -1,7 +1,7 @@
 module.exports = {
     name: 'perms',
     description: "Display current permissions",
-    execute(client, message, args, Discord) {
+    execute(message, args, cmd, client, Discord) {
 
         const adminAlert = new Discord.MessageEmbed()
 

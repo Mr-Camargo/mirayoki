@@ -1,7 +1,7 @@
 module.exports = {
     name: 'mod',
     description: "adds someone to the mod role",
-    execute(client, message, args, Discord) {
+    execute(message, args, cmd, client, Discord) {
 
         const alreadyRole = new Discord.MessageEmbed()
 

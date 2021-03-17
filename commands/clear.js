@@ -1,7 +1,9 @@
 module.exports = {
     name: 'clear',
+    aliases: ['c'],
+    cooldown: 10,
     description: "clear last {amount} of messages",
-    async execute(client, message, args, Discord) {
+    async execute(message, args, cmd, client, Discord) {
 
         const noArgs = new Discord.MessageEmbed()
 
@@ -41,7 +43,7 @@ module.exports = {
         const noPerms = new Discord.MessageEmbed()
 
         .setColor('#FF5733')
-        .setTitle('Error')
+        .setTitle('Access denied')
         .setAuthor(`For ${message.author.username}`)
         .setDescription('You don\'t have the permission to run this command.')
 

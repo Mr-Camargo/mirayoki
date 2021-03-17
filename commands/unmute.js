@@ -1,7 +1,8 @@
 module.exports = {
     name: 'unmute',
+    aliases: ['um'],
     description: "unmutes",
-    execute(client, message, args, Discord) {
+    execute(message, args, cmd, client, Discord) {
 
         const noPerms = new Discord.MessageEmbed()
 
