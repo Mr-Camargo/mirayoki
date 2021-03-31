@@ -17,7 +17,7 @@ module.exports = {
 
     .setColor('#FF5733')
     .setTitle('Image Scraper is under maintenance')
-    .setAuthor(`For ${message.author.username}`)
+    .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
     .setDescription('Currently I\'m having some trouble with the Image Search module, this isn\'t your fault, it\'s mine')
     .setFooter('Use -ihelp to learn more about this issue')   
 
@@ -27,7 +27,7 @@ module.exports = {
 
     //  .setColor('#FF5733')
     //  .setTitle('Error')
-    //  .setAuthor(`For ${message.author.username}`)
+    //  .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
     //  .setDescription('Cool image, here\'s what I found: (*nothing*)')
     //  .setFooter('Images Provided by Google™ Images')
 
@@ -37,14 +37,14 @@ module.exports = {
     //  const searchingImage = new Discord.MessageEmbed()
     //  .setColor('#55C2FF')
     //  .setTitle(`Searching for **` + (imageQuery) + `** :mag:`)
-    //  .setAuthor(`For ${message.author.username}`)
+    //  .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
     //  .setFooter('Images Provided by Google™ Images')
     //  message.channel.send(searchingImage);
     //  const imageResult = await google.scrape(imageQuery, 1);
     //  const finalImage = new Discord.MessageEmbed()
     //  .setColor('#55C2FF')
     //  .setTitle(`Here\'s what I found for **` + (imageQuery) + `** :mag:`)
-    //  .setAuthor(`For ${message.author.username}`)
+    //  .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
     //  .setFooter('Images Provided by Google™ Images')
     //  message.channel.send(finalImage)
     //  message.channel.send(imageResult[0].url)

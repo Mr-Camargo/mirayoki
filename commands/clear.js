@@ -9,42 +9,42 @@ module.exports = {
 
         .setColor('#FF5733')
         .setTitle('Error')
-        .setAuthor(`For ${message.author.username}`)
+        .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
         .setDescription('Please specify the amount of messages you want to clear!')
 
         const numbersOnly = new Discord.MessageEmbed()
 
         .setColor('#FF5733')
         .setTitle('Error')
-        .setAuthor(`For ${message.author.username}`)
+        .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
         .setDescription('Numbers only please. e.g. -clear 50')
 
         const manyMessages = new Discord.MessageEmbed()
 
         .setColor('#FF5733')
         .setTitle('Error')
-        .setAuthor(`For ${message.author.username}`)
+        .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
         .setDescription('I can only delete 100 messsages at a time.')
 
         const noClear = new Discord.MessageEmbed()
 
         .setColor('#FF5733')
         .setTitle('Error')
-        .setAuthor(`For ${message.author.username}`)
+        .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
         .setDescription('So... I delete nothing?')
 
         const yesClear = new Discord.MessageEmbed()
 
         .setColor('#55C2FF')
         .setTitle('Cleared succesfully!')
-        .setAuthor(`For ${message.author.username}`)
+        .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
         .setFooter('Delete me if you want')
 
         const noPerms = new Discord.MessageEmbed()
 
         .setColor('#FF5733')
         .setTitle('Access denied')
-        .setAuthor(`For ${message.author.username}`)
+        .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
         .setDescription('You don\'t have the permission to run this command.')
 
         

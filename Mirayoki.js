@@ -4,6 +4,8 @@ require('dotenv').config();
 
 const client = new Discord.Client({ partials: ["MESSAGE", "CHANNEL", "REACTION"] });
 
+const mongoose = require("mongoose");
+
 // IMPORTANT: If you want to change globally the prefix, go to .env file
 
 const fs = require('fs');
@@ -16,6 +18,16 @@ client.events = new Discord.Collection();
 ['command_handler', 'event_handler'].forEach(handler => {
     require(`./handlers/${handler}`)(client, Discord);
 })
+
+mongoose.connect(process.env.MONGO_SRV, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+}).then(()=>[
+    console.log('Connected succesfully to MongoDB')
+]).catch((err) =>{
+    console.log(err);
+});
 
 client.once('ready', () => {
     console.log('Mirayoki has been deployed succesfully.');

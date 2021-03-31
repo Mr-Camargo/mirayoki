@@ -8,14 +8,14 @@ module.exports = {
 
             .setColor('#FF5733')
             .setTitle('Access denied')
-            .setAuthor(`For ${message.author.username}`)
+            .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
             .setDescription('Are you really trying to mute someone?')
 
         const errorMute = new Discord.MessageEmbed()
 
             .setColor('#FF5733')
             .setTitle('Error')
-            .setAuthor(`For ${message.author.username}`)
+            .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
             .setDescription('There was an error while muting this member. (Did you mention it?)')
 
         if (message.member.roles.cache.has('796083018937794591')) {
@@ -27,7 +27,7 @@ module.exports = {
 
                         .setColor('#55C2FF')
                         .setTitle('Muted succesfully')
-                        .setAuthor(`For ${message.author.username}`)
+                        .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
                         .setDescription(`<@${memberTarget.user.id}> has been muted.`)
                     memberTarget.roles.remove('796931063120920636');
                     memberTarget.roles.add('796927664475865148');
@@ -38,7 +38,7 @@ module.exports = {
 
                     .setColor('#55C2FF')
                     .setTitle('Muted succesfully')
-                    .setAuthor(`For ${message.author.username}`)
+                    .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
                     .setDescription(`<@${memberTarget.user.id}> has been muted for ${ms(ms(args[1]))}`)
                 memberTarget.roles.remove('796931063120920636');
                 memberTarget.roles.add('796927664475865148');

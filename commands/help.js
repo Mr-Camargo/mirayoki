@@ -10,7 +10,7 @@ module.exports = {
             .setTitle('Need help huh?')
             .setDescription('__My prefix is "-"__')
             // .setURL('url') to add a link to the title
-            .setAuthor(`For ${message.author.username}`)
+            .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
             // .setThumbnail('img url') to add small image next to title
             .addFields(
                 { name: 'Commands', value: 'Useful basic features to help you in your Discord tasks.' },
@@ -18,6 +18,7 @@ module.exports = {
                 { name: '-status', value: 'Tells you current status of the bot', inline: true },
                 { name: 'Useful Commands', value: 'Commands made to enhance your Discord Experience.' },
                 { name: '-image, -img', value: 'Searches an Image Online and returns it to you.', inline: true },
+                { name: '-suggest, -suggestion', value: 'Suggest anything, and place it on the #suggestions channel.', inline: true },
                 { name: 'Other Commands', value: 'Commands that are on Mirayoki because he can do it, and for fun, too.' },
                 { name: '-perms', value: '*~flex with your permissions~* (and know them too)', inline: true },
                 { name: '-bruh', value: 'bruh bruh bruh', inline: true },

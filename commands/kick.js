@@ -9,14 +9,14 @@ module.exports = {
 
             .setColor('#FF5733')
             .setTitle('Access denied')
-            .setAuthor(`For ${message.author.username}`)
+            .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
             .setDescription('Are you really trying to kick someone?')
 
         const errorKick = new Discord.MessageEmbed()
 
             .setColor('#FF5733')
             .setTitle('Error')
-            .setAuthor(`For ${message.author.username}`)
+            .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
             .setDescription('There was an error while kicking this member. (Did you mention it?)')
 
         const member = message.mentions.users.first();
@@ -27,7 +27,7 @@ module.exports = {
 
                     .setColor('#55C2FF')
                     .setTitle('Kicked succesfully')
-                    .setAuthor(`For ${message.author.username}`)
+                    .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
                     .setDescription(`@${memberTarget.user.id} has been kicked.`)
                 memberTarget.kick();
                 message.channel.send(kickOK);

@@ -7,7 +7,7 @@ module.exports = {
 
             .setColor('#55C2FF')
             .setTitle('Bring the power of Mirayoki to your Server.')
-            .setAuthor(`For ${message.author.username}`)
+            .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
             .setDescription('With powerful moderation, timed mutes, management and more, for free.')
             .setThumbnail('https://i.postimg.cc/xCbhVM7N/discord-avatar-512-2.png')
             .addFields(

@@ -10,7 +10,7 @@ module.exports = {
             .setTitle('Help for mods/admins.')
             .setDescription('__My prefix is "-"__')
             // .setURL('url') to add a link to the title
-            .setAuthor(`For ${message.author.username}`)
+            .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
             // .setThumbnail('img url') to add small image next to title
             .addFields(
                 { name: 'Punishments', value: 'Useful commands to punish the bad guys.' },

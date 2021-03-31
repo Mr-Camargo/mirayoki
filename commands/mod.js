@@ -7,14 +7,14 @@ module.exports = {
 
             .setColor('#FF5733')
             .setTitle('Error')
-            .setAuthor(`For ${message.author.username}`)
+            .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
             .setDescription('You already have the **Mod** role!')
 
         const addedRole = new Discord.MessageEmbed()
 
             .setColor('#55C2FF')
             .setTitle('Gave you the role!')
-            .setAuthor(`For ${message.author.username}`)
+            .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
             .setDescription('You now have the **Mod** role!')
 
         if (message.member.roles.cache.has('796083018937794591')) {

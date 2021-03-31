@@ -8,14 +8,14 @@ module.exports = {
 
             .setColor('#FF5733')
             .setTitle('Access denied')
-            .setAuthor(`For ${message.author.username}`)
+            .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
             .setDescription('Are you really trying to unmute someone?')
 
         const errorUnmute = new Discord.MessageEmbed()
 
             .setColor('#FF5733')
             .setTitle('Error')
-            .setAuthor(`For ${message.author.username}`)
+            .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
             .setDescription('There was an error while unmuting this member. (Did you mention it?)')
 
         if (message.member.roles.cache.has('796083018937794591')) {
@@ -26,7 +26,7 @@ module.exports = {
 
                     .setColor('#55C2FF')
                     .setTitle('Unmuted succesfully')
-                    .setAuthor(`For ${message.author.username}`)
+                    .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
                     .setDescription(`<@${memberTarget.user.id}> has been unmuted.`)
 
                 memberTarget.roles.add('796931063120920636');

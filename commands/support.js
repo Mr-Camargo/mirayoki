@@ -6,7 +6,7 @@ module.exports = {
 
             .setColor('#55C2FF')
             .setTitle('Need more help?')
-            .setAuthor(`For ${message.author.username}`)
+            .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
             .setDescription('Our community is a welcoming and a great place to ask for help')
             .setThumbnail('https://i.postimg.cc/CLWRJf9Q/Aperture-Logo.png')
             .addFields(

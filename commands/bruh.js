@@ -6,7 +6,7 @@ module.exports = {
 
             .setColor('#55C2FF')
             .setTitle('bruh')
-            .setAuthor(`For ${message.author.username}`)
+            .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
 
         message.channel.send(bruh);
     }

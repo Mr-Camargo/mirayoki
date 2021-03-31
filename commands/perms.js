@@ -7,7 +7,7 @@ module.exports = {
 
             .setColor('#55C2FF')
             .setTitle('**Unlimited Power!**')
-            .setAuthor(`For ${message.author.username}`)
+            .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
             .setDescription('You are an **Administrator** of this server so you have all permissions!')
             .setFooter(`@everyone bow to the great ${message.author.username}`)
 

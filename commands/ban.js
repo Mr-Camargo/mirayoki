@@ -8,14 +8,14 @@ module.exports = {
 
             .setColor('#FF5733')
             .setTitle('Error')
-            .setAuthor(`For ${message.author.username}`)
+            .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
             .setDescription('There was an error while banning this member. (Did you mention it?)')
 
         const noPerms = new Discord.MessageEmbed()
 
             .setColor('#FF5733')
             .setTitle('Access denied')
-            .setAuthor(`For ${message.author.username}`)
+            .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
             .setDescription('Are you really trying to ban someone?')
 
         const member = message.mentions.users.first();
@@ -26,7 +26,7 @@ module.exports = {
 
                     .setColor('#55C2FF')
                     .setTitle('Banned succesfully')
-                    .setAuthor(`For ${message.author.username}`)
+                    .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
                     .setDescription(`@${memberTarget.user.id} has been banned.`)
                 memberTarget.ban();
                 message.channel.send(banOK);
