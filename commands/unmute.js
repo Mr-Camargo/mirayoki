@@ -9,7 +9,7 @@ module.exports = {
             .setColor('#FF5733')
             .setTitle('Access denied')
             .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
-            .setDescription('Are you really trying to unmute someone?')
+            .setDescription('You don\'t have the **Kick Members** permission to mute someone!')
 
         const errorUnmute = new Discord.MessageEmbed()
 
@@ -18,9 +18,17 @@ module.exports = {
             .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
             .setDescription('There was an error while unmuting this member. (Did you mention it?)')
 
-        if (message.member.roles.cache.has('796083018937794591')) {
+        const noImNot = new Discord.MessageEmbed()
+
+            .setColor('#FF5733')
+            .setTitle('Error')
+            .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
+            .setDescription('You can\'t unmute yourself.')
+
+        if (message.member.permissions.has("KICK_MEMBERS")) {
             const target = message.mentions.users.first();
             if (target) {
+                if (target == message.author.id) return message.channel.send(noImNot);
                 let memberTarget = message.guild.members.cache.get(target.id);
                 const unmuteOK = new Discord.MessageEmbed()
 
@@ -32,6 +40,7 @@ module.exports = {
                 memberTarget.roles.add('796931063120920636');
                 memberTarget.roles.remove('796927664475865148');
                 message.channel.send(unmuteOK);
+                message.delete();
             } else {
                 message.channel.send(errorUnmute);
             }

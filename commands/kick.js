@@ -10,7 +10,7 @@ module.exports = {
             .setColor('#FF5733')
             .setTitle('Access denied')
             .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
-            .setDescription('Are you really trying to kick someone?')
+            .setDescription('You don\'t have the **Kick Members** permission to kick someone!')
 
         const errorKick = new Discord.MessageEmbed()
 
@@ -19,9 +19,17 @@ module.exports = {
             .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
             .setDescription('There was an error while kicking this member. (Did you mention it?)')
 
+        const noImNot = new Discord.MessageEmbed()
+
+            .setColor('#FF5733')
+            .setTitle('Error')
+            .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
+            .setDescription('There is a button to leave the server, so no need to kick yourself')
+        
         const member = message.mentions.users.first();
-        if (message.member.roles.cache.has('796083018937794591')) {
+        if (message.member.permissions.has("KICK_MEMBERS")) {
             if (member) {
+                if (member == message.author.id) return message.channel.send(noImNot);
                 const memberTarget = message.guild.members.cache.get(member.id);
                 const kickOK = new Discord.MessageEmbed()
 
@@ -31,6 +39,7 @@ module.exports = {
                     .setDescription(`@${memberTarget.user.id} has been kicked.`)
                 memberTarget.kick();
                 message.channel.send(kickOK);
+                message.delete();
             } else {
                 message.channel.send(errorKick)
             }

@@ -13,7 +13,7 @@ module.exports = {
                 { name: 'Support Server', value: 'Community gathers here to share their ideas, suggestions and questions, and we always want new faces around!' },
                 { name: 'Join Support Server', value: 'http://discord.gg/ys8rW23' }
             )
-            .setFooter('Mirayoki Bot is a project of the Nonprfit Organization Aperture, Inc.')
+            .setFooter('Mirayoki Bot is a project of the Nonprfit Aperture Studio.')
             message.channel.send(iHelp)
     }
 }

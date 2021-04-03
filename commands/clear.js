@@ -45,10 +45,10 @@ module.exports = {
         .setColor('#FF5733')
         .setTitle('Access denied')
         .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
-        .setDescription('You don\'t have the permission to run this command.')
+        .setDescription('You don\'t have the **Manage Messages** permission to run this command.')
 
         
-        if(message.member.roles.cache.has('796083018937794591')){
+        if (message.member.permissions.has("MANAGE_MESSAGES")) {
             if(!args[0]) return message.channel.send(noArgs);
             if(isNaN(args[0])) return message.channel.send(numbersOnly);
             if(args[0] > 100) return message.channel.send(manyMessages);

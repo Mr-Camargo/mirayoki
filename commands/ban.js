@@ -4,6 +4,8 @@ module.exports = {
     description: "the big hammer",
     execute(message, args, cmd, client, Discord) {
 
+        const member = message.mentions.users.first();
+
         const errorBan = new Discord.MessageEmbed()
 
             .setColor('#FF5733')
@@ -16,11 +18,18 @@ module.exports = {
             .setColor('#FF5733')
             .setTitle('Access denied')
             .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
-            .setDescription('Are you really trying to ban someone?')
+            .setDescription('You don\'t have the **Ban Members** permission to ban someone!')
 
-        const member = message.mentions.users.first();
-        if (message.member.roles.cache.has('796083018937794591')) {
+        const noImNot = new Discord.MessageEmbed()
+
+            .setColor('#FF5733')
+            .setTitle('Error')
+            .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
+            .setDescription('There is a button to leave the server, so no need to ban yourself, you just leave and don\'t come back.')
+
+        if (message.member.permissions.has("BAN_MEMBERS")) {
             if (member) {
+                if (member == message.author.id) return message.channel.send(noImNot);
                 const memberTarget = message.guild.members.cache.get(member.id);
                 const banOK = new Discord.MessageEmbed()
 
@@ -30,12 +39,12 @@ module.exports = {
                     .setDescription(`@${memberTarget.user.id} has been banned.`)
                 memberTarget.ban();
                 message.channel.send(banOK);
+                message.delete();
             } else {
                 message.channel.send(errorBan)
             }
         } else {
             message.channel.send(noPerms);
-            //message.channel.send('Are you really trying to ban someone?');
         }
     }
 }

@@ -14,6 +14,7 @@ module.exports = {
                 { name: 'Commands', value: 'Online :white_check_mark:' },
                 { name: 'General Management', value: 'Online :white_check_mark:' },
                 { name: 'Role Management', value: 'Online :white_check_mark:' },
+                { name: 'Economic System', value: 'Online :white_check_mark:' },
                 { name: 'Google Images Scraper', value: 'Disabled (Use -ihelp for more details) :no_entry:' }
             )
             .setFooter('Type -help for more information about this bot!')
