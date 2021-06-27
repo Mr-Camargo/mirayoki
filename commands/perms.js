@@ -2,7 +2,7 @@ module.exports = {
     name: 'perms',
     description: "Display current permissions",
     execute(message, args, cmd, client, Discord) {
-
+        //Still testing this
         const adminAlert = new Discord.MessageEmbed()
 
             .setColor('#55C2FF')

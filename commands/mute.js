@@ -2,7 +2,7 @@ const ms = require('ms');
 module.exports = {
     name: 'mute',
     aliases: ['m'],
-    description: "just mute",
+    description: "mutes someone, and dont let them read or write any messages (Think of it as a soft ban)",
     execute(message, args, cmd, client, Discord) {
         const noPerms = new Discord.MessageEmbed()
 
@@ -25,11 +25,20 @@ module.exports = {
             .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
             .setDescription('You can\'t mute yourself.')
 
+        const niceTry = new Discord.MessageEmbed()
+
+            .setColor('#FF5733')
+            .setTitle('Nice try')
+            .setDescription(`ROBOTS ARE BETTER THAN YOU.`)
+            .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
+            .setFooter('')
+
         if (message.member.permissions.has("KICK_MEMBERS")) {
             const target = message.mentions.users.first();
             if (target) {
                 if (target == message.author.id) return message.channel.send(noImNot);
                 let memberTarget = message.guild.members.cache.get(target.id);
+                if (memberTarget == 795480018469781505 || 834492523295801355) return message.channel.send(niceTry);
                 if (!args[1]) {
                     const muteOK = new Discord.MessageEmbed()
 

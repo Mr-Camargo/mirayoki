@@ -1,7 +1,7 @@
 module.exports = {
     name: 'invite',
     aliases: ['inv'],
-    description: "invite the bot",
+    description: "invite the bot to your server and enjoy the power of Mirayoki.",
     execute(message, args, cmd, client, Discord) {
         const inviteMe = new Discord.MessageEmbed()
 
@@ -14,7 +14,7 @@ module.exports = {
                 { name: 'Invite now:', value: 'https://tiny.one/invite' },
             )
             .setFooter('Type -help for more information about this bot!')
-            
-            message.channel.send(inviteMe);
+
+        message.channel.send(inviteMe);
     }
 }

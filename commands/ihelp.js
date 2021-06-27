@@ -10,18 +10,18 @@ module.exports = {
             .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
             .setDescription('Due to code limitation and networking issues Image Search is temporally disabled.')
             .setFooter('Again, sorry, use -support to get updates about this issue!')
-            message.channel.send(sorry)
+        message.channel.send(sorry)
 
         //const iHelp = new Discord.MessageEmbed()
 
-            //.setColor('#25c720')
-            //.setTitle('Help for the Image Search module.')
-            //.setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
-            //.setDescription('Images are searched by the bot via Google™ Images in order to return the most interesting image for you.')
-            //.addFields(
-            //    { name: '**Important**', value: 'Remember that many people use this bot, and Mirayoki may have problems loading the picture, if a picture Mirayoki sent didn\'t load, please click on the image, and then click "Open Original"' },
-            //)
-            //.setFooter('')
-            //message.channel.send(iHelp)
+        //.setColor('#25c720')
+        //.setTitle('Help for the Image Search module.')
+        //.setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
+        //.setDescription('Images are searched by the bot via Google™ Images in order to return the most interesting image for you.')
+        //.addFields(
+        //    { name: '**Important**', value: 'Remember that many people use this bot, and Mirayoki may have problems loading the picture, if a picture Mirayoki sent didn\'t load, please click on the image, and then click "Open Original"' },
+        //)
+        //.setFooter('')
+        //message.channel.send(iHelp)
     }
 }

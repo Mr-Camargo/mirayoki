@@ -3,7 +3,7 @@ const profileModel = require('../models/profileSchema');
 module.exports = {
     name: 'deposit',
     aliases: ['dep'],
-    description: "deposit quickly as you can deposit in your binance account lol",
+    description: "deposit quickly in your bank account (yeah without making line, how awesome is that?)",
     async execute(message, args, cmd, client, Discord, profileData) {
 
         const amount = args[0];

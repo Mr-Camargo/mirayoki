@@ -6,8 +6,6 @@ const client = new Discord.Client({ partials: ["MESSAGE", "CHANNEL", "REACTION"]
 
 const mongoose = require("mongoose");
 
-// IMPORTANT: If you want to change globally the prefix, go to .env file
-
 const fs = require('fs');
 
 const memberCounter = require('./counters/member-counter')
@@ -32,8 +30,8 @@ mongoose.connect(process.env.MONGO_SRV, {
 client.once('ready', () => {
     console.log('Mirayoki has been deployed succesfully.');
     memberCounter(client);
-    client.user.setActivity('K-Pop', { type: "LISTENING" })
-        .then(presence => console.log(`Rich Prescence Deployed succesfully as "${presence.activities[0].type} ${presence.activities[0].name}"`))
+    client.user.setActivity('IZ*ONE', { type: "LISTENING" })
+        .then(presence => console.log(`RP Deployed succesfully as "${presence.activities[0].type} ${presence.activities[0].name}"`))
         .catch(console.error);
 });
 

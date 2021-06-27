@@ -1,7 +1,7 @@
 module.exports = {
     name: 'balance',
     aliases: ['bal'],
-    description: "look mom im poor",
+    description: "Gives you your current balance",
     execute(message, args, cmd, client, Discord, profileData) {
         const urBalance = new Discord.MessageEmbed()
 

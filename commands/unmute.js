@@ -1,7 +1,7 @@
 module.exports = {
     name: 'unmute',
     aliases: ['um'],
-    description: "unmutes",
+    description: "unmutes someone that has been previously muted",
     execute(message, args, cmd, client, Discord) {
 
         const noPerms = new Discord.MessageEmbed()
@@ -25,11 +25,21 @@ module.exports = {
             .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
             .setDescription('You can\'t unmute yourself.')
 
+        const niceTry = new Discord.MessageEmbed()
+
+            .setColor('#FF5733')
+            .setTitle('Nice try')
+            .setDescription(`I was never muted. And will never be.`)
+            .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
+            .setFooter('')
+
+
         if (message.member.permissions.has("KICK_MEMBERS")) {
             const target = message.mentions.users.first();
             if (target) {
                 if (target == message.author.id) return message.channel.send(noImNot);
                 let memberTarget = message.guild.members.cache.get(target.id);
+                if (memberTarget == 795480018469781505 || 834492523295801355) return message.channel.send(niceTry);
                 const unmuteOK = new Discord.MessageEmbed()
 
                     .setColor('#55C2FF')

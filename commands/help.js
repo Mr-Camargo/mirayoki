@@ -11,6 +11,7 @@ module.exports = {
             .setDescription('__My prefix is "-"__')
             .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
             .addFields(
+                { name: 'Version', value: `${message.guild.name}, is running ${process.env.VERSION}` },
                 { name: 'Commands', value: 'Useful basic features to help you in your Discord tasks.' },
                 { name: '-ping, -p', value: 'Replies to you with your actual ping', inline: true },
                 { name: '-status', value: 'Tells you current status of the bot', inline: true },

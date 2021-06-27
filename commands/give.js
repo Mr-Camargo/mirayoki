@@ -2,7 +2,7 @@ const profileModel = require('../models/profileSchema');
 
 module.exports = {
     name: 'give',
-    description: "give some money to someone",
+    description: "give some money to someone, while removing yours.",
     async execute(message, args, cmd, client, Discord, profileData) {
         const amount = args[1];
 

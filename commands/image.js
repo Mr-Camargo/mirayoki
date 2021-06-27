@@ -13,13 +13,13 @@ module.exports = {
   description: "Searches any Google Image and returns the best one to the chat",
   async execute(message, args, cmd, client, Discord) {
 
-   const sorry = new Discord.MessageEmbed()
+    const sorry = new Discord.MessageEmbed()
 
-    .setColor('#FF5733')
-    .setTitle('Image Scraper is under maintenance')
-    .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
-    .setDescription('Currently I\'m having some trouble with the Image Search module, this isn\'t your fault, it\'s mine')
-    .setFooter('Use -ihelp to learn more about this issue')   
+      .setColor('#FF5733')
+      .setTitle('Image Scraper is under maintenance')
+      .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
+      .setDescription('Currently I\'m having some trouble with the Image Search module, this isn\'t your fault, it\'s mine')
+      .setFooter('Use -ihelp to learn more about this issue')
 
     message.channel.send(sorry)
 
