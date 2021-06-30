@@ -3,7 +3,7 @@ module.exports = {
     aliases: ['bal'],
     description: "Gives you your current balance",
     execute(message, args, cmd, client, Discord, profileData) {
-        const urBalance = new Discord.MessageEmbed()
+        const balanceEN = new Discord.MessageEmbed()
 
             .setColor('#55C2FF')
             .setTitle('Balance')
@@ -12,6 +12,20 @@ module.exports = {
             .setThumbnail(message.author.displayAvatarURL({ dynamic: true }))
             .setFooter('Make it rain!')
 
-        message.channel.send(urBalance);
+        const balanceES = new Discord.MessageEmbed()
+
+            .setColor('#55C2FF')
+            .setTitle('Saldo')
+            .setDescription(`Billetera: ${profileData.coins} monedas \n \n Banco: ${profileData.bank} monedas \n`)
+            .setAuthor(message.author.tag)
+            .setThumbnail(message.author.displayAvatarURL({ dynamic: true }))
+            .setFooter('Hazlo llover!')
+
+
+        if (profileData.language == 'en') {
+            return message.channel.send(balanceEN);
+        } else if (profileData.language == 'es') {
+            return message.channel.send(balanceES);
+        }
     }
 }

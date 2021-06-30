@@ -2,9 +2,9 @@ module.exports = {
     name: 'adminhelp',
     aliases: ['ahelp', 'modhelp'],
     description: "Gives you information about the management of the bot.",
-    execute(message, args, cmd, client, Discord) {
+    execute(message, args, cmd, client, Discord, profileData) {
 
-        const modhelp = new Discord.MessageEmbed()
+        const modhelpEN = new Discord.MessageEmbed()
 
             .setColor('#25c720')
             .setTitle('Help for mods/admins.')
@@ -18,7 +18,27 @@ module.exports = {
                 { name: 'Channel management', value: 'Commands to keep your channels clean and tidy.' },
                 { name: '-clear, -c', value: 'Clears recent messages from a channel, ex: -clear 50', inline: true },
             )
-            .setFooter('Ur greeeat mod did I told ya?')
-        message.channel.send(modhelp);
+            .setFooter('Moderate with love.')
+
+        const modhelpES = new Discord.MessageEmbed()
+
+            .setColor('#25c720')
+            .setTitle('Ayuda para mods/admins.')
+            .setDescription('__Mi prefijo es "-"__')
+            .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
+            .addFields(
+                { name: 'Castigos', value: 'Comandos útiles para castigar a los tipos malos.' },
+                { name: '-mute, -m', value: 'Silencia a alguien, ej: -mute @Mr_Camargo o -m @Lic_Copiloto 5m para silenciar por tiempo. (**Silencio por tiempo hasta 24 días**)', inline: true },
+                { name: '-kick, -k', value: 'Explusa a alguien, ej: -kick @OlmedoOrla', inline: true },
+                { name: '-ban, -b', value: 'Banea a alguien, ej: -ban @HackerPro, para desbanear a alguien por favor comúnicate con tu admin.', inline: true },
+                { name: 'Administración de canales', value: 'Comandos para mantener tus canales limpios y relucientes.' },
+                { name: '-clear, -c', value: 'Borra mensajes recientes de un canal, ej: -clear 50', inline: true },
+            )
+            .setFooter('Modera con amor.')
+        if (profileData.language == 'en') {
+            return message.channel.send(modhelpEN);
+        } else if (profileData.language == 'es') {
+            return message.channel.send(modhelpES);
+        }
     }
 }

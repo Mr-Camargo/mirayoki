@@ -2,7 +2,7 @@ module.exports = {
     name: 'suggestions',
     aliases: ['suggest', 'suggestion'],
     description: "Suggest something in a server's channel",
-    execute(message, args, cmd, client, Discord) {
+    execute(message, args, cmd, client, Discord, profileData) {
 
         const noChannel = new Discord.MessageEmbed()
 

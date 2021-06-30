@@ -1,7 +1,7 @@
 module.exports = {
     name: 'status',
     description: "Displays current status of the bot",
-    execute(message, args, cmd, client, Discord) {
+    execute(message, args, cmd, client, Discord, profileData) {
 
         const currentStatus = new Discord.MessageEmbed()
 

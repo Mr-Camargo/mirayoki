@@ -2,7 +2,7 @@ module.exports = {
     name: 'unmute',
     aliases: ['um'],
     description: "unmutes someone that has been previously muted",
-    execute(message, args, cmd, client, Discord) {
+    execute(message, args, cmd, client, Discord, profileData) {
 
         const noPerms = new Discord.MessageEmbed()
 

@@ -3,7 +3,7 @@ module.exports = {
     name: 'mute',
     aliases: ['m'],
     description: "mutes someone, and dont let them read or write any messages (Think of it as a soft ban)",
-    execute(message, args, cmd, client, Discord) {
+    execute(message, args, cmd, client, Discord, profileData) {
         const noPerms = new Discord.MessageEmbed()
 
             .setColor('#FF5733')

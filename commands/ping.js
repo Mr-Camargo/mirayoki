@@ -2,7 +2,7 @@ module.exports = {
     name: 'ping',
     aliases: ['p'],
     description: "This is a ping command",
-    execute(message, args, cmd, client, Discord) {
+    execute(message, args, cmd, client, Discord, profileData) {
         const pingMs = new Discord.MessageEmbed()
 
             .setColor('#55C2FF')

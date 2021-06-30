@@ -2,7 +2,7 @@ module.exports = {
     name: 'ban',
     aliases: ['b'],
     description: "the big hammer",
-    execute(message, args, cmd, client, Discord) {
+    execute(message, args, cmd, client, Discord, profileData) {
 
         const member = message.mentions.users.first();
 

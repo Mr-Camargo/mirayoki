@@ -1,7 +1,7 @@
 module.exports = {
     name: 'bruh',
     description: "bruh lol",
-    execute(message, args, cmd, client, Discord) {
+    execute(message, args, cmd, client, Discord, profileData) {
         const bruh = new Discord.MessageEmbed()
 
             .setColor('#55C2FF')

@@ -2,7 +2,7 @@ module.exports = {
     name: 'invite',
     aliases: ['inv'],
     description: "invite the bot to your server and enjoy the power of Mirayoki.",
-    execute(message, args, cmd, client, Discord) {
+    execute(message, args, cmd, client, Discord, profileData) {
         const inviteMe = new Discord.MessageEmbed()
 
             .setColor('#55C2FF')

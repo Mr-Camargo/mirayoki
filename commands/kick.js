@@ -4,7 +4,7 @@ module.exports = {
     name: 'kick',
     aliases: ['k'],
     description: "Kicks someone",
-    execute(message, args, cmd, client, Discord) {
+    execute(message, args, cmd, client, Discord, profileData) {
         const noPerms = new Discord.MessageEmbed()
 
             .setColor('#FF5733')

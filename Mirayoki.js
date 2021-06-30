@@ -21,9 +21,9 @@ mongoose.connect(process.env.MONGO_SRV, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,
-}).then(()=>[
+}).then(() => [
     console.log('Connected succesfully to MongoDB')
-]).catch((err) =>{
+]).catch((err) => {
     console.log(err);
 });
 
@@ -35,11 +35,17 @@ client.once('ready', () => {
         .catch(console.error);
 });
 
-client.on('guildMemberAdd', guildMember =>{
+client.on('guildMemberAdd', guildMember => {
     let welcomeRole = guildMember.guild.roles.cache.find(role => role.name === 'Member');
+    let welcomeChannel = guildMember.guild.channels.cache.find(c => c.name === 'welcome');
+    if (welcomeRole) {
+        guildMember.roles.add(welcomeRole);
+        if (welcomeChannel) {
+            guildMember.guild.channels.cache.get('795664960423329793').send(`Welcome <@${guildMember.user.id}>, have a good time!`)
+        }
+    } else {
 
-    guildMember.roles.add(welcomeRole);
-    guildMember.guild.channels.cache.get('795664960423329793').send(`Welcome <@${guildMember.user.id}>, have a good time!`)
+    }
 });
 
 client.login(process.env.SECRET_TOKEN);

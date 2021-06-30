@@ -12,6 +12,8 @@ module.exports = async (Discord, client, message) => {
             let profile = await profileModel.create({
                 userID: message.author.id,
                 serverID: message.guild.id,
+                language: 'en',
+                premiumTier: 'free',
                 coins: 100,
                 bank: 0
             });
@@ -29,5 +31,5 @@ module.exports = async (Discord, client, message) => {
     const command = client.commands.get(cmd) ||
         client.commands.find(a => a.aliases && a.aliases.includes(cmd));
 
-    if (command) command.execute(message, args, cmd, client, Discord, profileData);
+    if (command) command.execute(message, args, cmd, client, Discord, profileData, profileData);
 }

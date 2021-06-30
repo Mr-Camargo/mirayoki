@@ -11,7 +11,7 @@ module.exports = {
   name: 'image',
   aliases: ['img'],
   description: "Searches any Google Image and returns the best one to the chat",
-  async execute(message, args, cmd, client, Discord) {
+  async execute(message, args, cmd, client, Discord, profileData) {
 
     const sorry = new Discord.MessageEmbed()
 
