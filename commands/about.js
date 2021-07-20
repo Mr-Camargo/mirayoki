@@ -17,7 +17,7 @@ module.exports = {
             .setDescription('The handsome, charming and powerful bot.')
             .setThumbnail('https://i.postimg.cc/rF4pL3YQ/miralogo.png')
             .addFields(
-                { name: 'Version', value: `${message.guild.name} is running ${process.env.VERSION}` },
+                { name: 'Version', value: `${message.guild.name} is running **${process.env.VERSION}**` },
                 { name: 'Uptime', value: `${days}d ${hours}h ${minutes}m ${seconds}s` },
                 { name: 'Server ID', value: `${message.guild.id} (${message.guild.name})` },
                 { name: 'User ID', value: `${message.author.id} (${message.author.tag})` },
@@ -32,7 +32,7 @@ module.exports = {
             .setDescription('El guapísimo, brillante y poderoso bot.')
             .setThumbnail('https://i.postimg.cc/rF4pL3YQ/miralogo.png')
             .addFields(
-                { name: 'Versión', value: `${message.guild.name} esta corriendo ${process.env.VERSION}` },
+                { name: 'Versión', value: `${message.guild.name} esta corriendo **${process.env.VERSION}**` },
                 { name: 'Tiempo en servicio', value: `${days}d ${hours}h ${minutes}m ${seconds}s` },
                 { name: 'ID de Servidor', value: `${message.guild.id} (${message.guild.name})` },
                 { name: 'ID de Usuario', value: `${message.author.id} (${message.author.tag})` },

@@ -19,7 +19,7 @@ module.exports = {
                 { name: 'Support Server', value: 'Community gathers here to share their ideas, suggestions and questions, and we always want new faces around!' },
                 { name: 'Join Support Server', value: 'https://discord.gg/sbxGVCxdTQ' },
                 { name: 'Debug Information', value: 'Our support community may ask for the following information in order to help you more efficently, this doesn\'t include any private data and it **should only** be used for support purposes.' },
-                { name: 'Version', value: `${message.guild.name} is running ${process.env.VERSION}` },
+                { name: 'Version', value: `${message.guild.name} is running **${process.env.VERSION}**` },
                 { name: 'Uptime', value: `${days}d ${hours}h ${minutes}m ${seconds}s` },
                 { name: 'Server ID', value: `${message.guild.id} (${message.guild.name})` },
                 { name: 'User ID', value: `${message.author.id} (${message.author.tag})` },
