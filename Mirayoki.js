@@ -10,6 +10,10 @@ const fs = require('fs');
 
 const memberCounter = require('./counters/member-counter')
 
+const date = new Date();
+
+console.log(`Started a deploy at ${date}`);
+
 client.commands = new Discord.Collection();
 client.events = new Discord.Collection();
 
@@ -28,7 +32,7 @@ mongoose.connect(process.env.MONGO_SRV, {
 });
 
 client.once('ready', () => {
-    console.log('Mirayoki has been deployed succesfully.');
+    console.log(`Mirayoki has been deployed succesfully at ${date}`);
     memberCounter(client);
     client.user.setActivity('IZ*ONE', { type: "LISTENING" })
         .then(presence => console.log(`RP Deployed succesfully as "${presence.activities[0].type} ${presence.activities[0].name}"`))

@@ -15,7 +15,10 @@ module.exports = async (Discord, client, message) => {
                 language: 'en',
                 premiumTier: 'free',
                 coins: 100,
-                bank: 0
+                bank: 0,
+                clearanceLvl: 'none',
+                staffUnit: 'none',
+                gitHubClearance: 'none',
             });
             profile.save();
         }
