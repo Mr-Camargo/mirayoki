@@ -12,9 +12,10 @@ module.exports = async(client, Discord, member) =>{
                 premiumTier: 'free',
                 coins: 100,
                 bank: 0,
-                clearanceLvl: 'none',
-                staffUnit: 'none',
-                gitHubClearance: 'none',
+                clearanceLvl: 'None',
+                staffUnit: 'None',
+                gitHubClearance: 'None',
+                staffPfp: 'None'
             });
             profile.save();
         }

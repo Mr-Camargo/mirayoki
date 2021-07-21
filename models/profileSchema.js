@@ -5,6 +5,7 @@ const profileSchema = new mongoose.Schema({
     clearanceLvl: { type: String, require: true},
     staffUnit: { type: String, require: true},
     gitHubClearance: { type: String, require: true},
+    staffPfp: {type: String, require: true},
     language: { type: String, require: true},
     premiumTier: { type: String, require: true},
     serverID: { type: String, require: true},

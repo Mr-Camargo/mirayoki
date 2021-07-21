@@ -2,7 +2,9 @@ module.exports = {
     name: 'dev',
     description: "Includes advanced tools for Slash staff to troubleshoot more easily",
     async execute(message, args, cmd, client, Discord, profileData) {
-        let isStaff = message.author.id == '431531456372670484';
+        const isStaff = message.author.id ==
+            '431531456372670484' // Sebastián Camargo, CEO, Organization Owner
+            ;
         const date = new Date();
 
         let clearanceLvl = 'None'
@@ -24,6 +26,7 @@ module.exports = {
             .setColor('#55C2FF')
             .setTitle('*beep beep*')
             .setDescription(`Welcome back, ${message.author}`)
+            .setThumbnail(profileData.staffPfp)
             .addFields(
                 { name: 'Logged in as:', value: message.author.tag },
                 { name: 'Clearance Level', value: clearanceLvl },
@@ -31,13 +34,20 @@ module.exports = {
                 { name: 'GitHub Clearance', value: profileData.gitHubClearance },
             )
 
+        const boopboop = new Discord.MessageEmbed()
+
+            .setColor('#FF5733')
+            .setTitle('Access Denied')
+            .setDescription(`You, ${message.author}, don't have any clearance level over Mirayoki, be a Staff Member or GitHub contributor.`)
+            .setFooter(`You tried to operate Mirayoki as ${message.author.tag}`)
+
         const help = new Discord.MessageEmbed()
 
             .setColor('#55C2FF')
             .setTitle('Need Help?')
             .setDescription(`Remember your clearance level is **${profileData.clearanceLvl}**`)
             .addFields(
-                { name: 'Clearance **X**', value: 'Usually the CEO, it can do anything.'},
+                { name: 'Clearance **X**', value: 'Usually the CEO, it can do anything.' },
                 { name: '-reboot', value: 'Reboots the bot, stops service for a few seconds.', inline: true },
             )
         const rebooting = new Discord.MessageEmbed()
@@ -56,7 +66,7 @@ module.exports = {
             .setDescription(`Ping is ${Date.now() - message.createdTimestamp}ms.`)
             .setFooter(`Logged in as ${message.author.tag}`)
 
-        if (!isStaff) return message.channel.send('No ur bad');
+        if (!isStaff) return message.channel.send(boopboop);
         if (args[0] === 'reboot') {
             message.channel.send(rebooting).then(m => {
                 console.log(`${message.author.tag} started a reboot at ${date}`)
