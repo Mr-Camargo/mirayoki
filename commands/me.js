@@ -2,7 +2,7 @@ const { guildMember } = require("discord.js");
 
 module.exports = {
     name: 'me',
-    description: 'Gives you information about your Discord account.',
+    description: 'Gives you information about your Discord status.',
     async execute(message, args, cmd, client, Discord, profileData) {
         
         if (!args[0]) {
@@ -50,7 +50,6 @@ module.exports = {
             .setTitle(`This is you.`)
             .setDescription(`And you are **${user.username}**.`)
             .setThumbnail(user.avatarURL({ dynamic: true }))
-            .setTimestamp()
             .addFields(
                 { name: 'Username', value: user.tag },
                 { name: 'Server Nickname', value: member.displayName },
@@ -59,6 +58,7 @@ module.exports = {
                 { name: 'Joined Discord:', value: user.createdAt },
                 { name: `Roles on ${message.guild.name}`, value: '' + member.roles.cache.map(r => r).join(' | ') + '' },
             )
+            .setFooter('You are beautiful!')
 
         return message.channel.send(meEN)
     }

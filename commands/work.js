@@ -2,8 +2,7 @@ const profileModel = require('../models/profileSchema');
 
 module.exports = {
     name: 'work',
-    aliases: [],
-    description: "work work work",
+    description: "Gives you a random amout of coins as a reward of trading your time...",
     async execute(message, args, cmd, client, Discord, profileData) {
 
         const randomNumber = Math.floor(Math.random() * 250) + 1;

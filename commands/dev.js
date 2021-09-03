@@ -2,23 +2,26 @@ module.exports = {
     name: 'dev',
     description: "Includes advanced tools for Slash staff to troubleshoot more easily",
     async execute(message, args, cmd, client, Discord, profileData) {
-        const isStaff = message.author.id ==
-            '431531456372670484' // Sebastián Camargo, CEO, Organization Owner
-            ;
-        const date = new Date();
 
         let clearanceLvl = 'None'
+        let isStaff = false
+
         if (profileData.clearanceLvl == 'X') {
             clearanceLvl = "**X** | Full access"
+            isStaff = true
         } else if (profileData.clearanceLvl == 'IV') {
             clearanceLvl = "**IV** | DB Access, Inspection and Suspension"
+            isStaff = true
         } else if (profileData.clearanceLvl == 'III') {
             clearanceLvl = "**III** | Logs and Inspection"
+            isStaff = true
         } else if (profileData.clearanceLvl == 'II') {
             clearanceLvl = "**II** | Logs and Restricted DB"
+            isStaff = true
         } else if (profileData.clearanceLvl == 'I') {
             clearanceLvl = "**I** | Logs"
-        } else if (profileData.clearanceLvl == 'none') {
+            isStaff = true
+        } else if (profileData.clearanceLvl == 'none' || null) {
             clearanceLvl = "No Clearance"
         }
         const beepbeep = new Discord.MessageEmbed()

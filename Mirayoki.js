@@ -34,11 +34,12 @@ mongoose.connect(process.env.MONGO_SRV, {
 client.once('ready', () => {
     console.log(`Mirayoki has been deployed succesfully at ${date}`);
     memberCounter(client);
-    client.user.setActivity('IZ*ONE', { type: "LISTENING" })
+    client.user.setActivity('Kwon Eun Bi\'s "Open"', { type: "LISTENING" })
         .then(presence => console.log(`Rich Presence Deployed succesfully as "${presence.activities[0].type} ${presence.activities[0].name}" at ${date}`))
         .catch(console.error);
 });
 
+/* Not ready yet!
 client.on('guildMemberAdd', guildMember => {
     let welcomeRole = guildMember.guild.roles.cache.find(role => role.name === 'Member');
     let welcomeChannel = guildMember.guild.channels.cache.find(c => c.name === 'welcome');
@@ -50,6 +51,7 @@ client.on('guildMemberAdd', guildMember => {
     } else {
 
     }
-});
+}); 
+*/
 
 client.login(process.env.SECRET_TOKEN);
