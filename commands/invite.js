@@ -13,7 +13,7 @@ module.exports = {
             .addFields(
                 { name: 'Invite now:', value: 'https://tiny.one/invite' },
             )
-            .setFooter('Type -about for more information about this bot!')
+            .setFooter('Type -about for more information about Mirayoki!')
 
         const inviteES = new Discord.MessageEmbed()
 
@@ -25,7 +25,7 @@ module.exports = {
             .addFields(
                 { name: 'Invita ahora:', value: 'https://tiny.one/invite' },
             )
-            .setFooter('Usa -about para más informacion acerca de este bot!')
+            .setFooter('Usa -about para más información acerca de Mirayoki!')
 
             if (profileData.language == 'en') {
                 return message.channel.send(inviteEN);
