@@ -3,7 +3,7 @@ module.exports = {
     description: "Includes advanced tools for Slash staff to troubleshoot more easily",
     async execute(message, args, cmd, client, Discord, profileData) {
 
-        let clearanceLvl = 'None'
+        let clearanceLvl = null
         let isStaff = false
 
         if (profileData.clearanceLvl == 'X') {
@@ -24,6 +24,7 @@ module.exports = {
         } else if (profileData.clearanceLvl == 'none' || null) {
             clearanceLvl = "No Clearance"
         }
+        
         const beepbeep = new Discord.MessageEmbed()
 
             .setColor('#55C2FF')
