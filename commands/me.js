@@ -243,7 +243,41 @@ module.exports = {
                 )
                 .setFooter('Tu y ellos son grandes personas!')
 
-            if (profileData.language == 'en') {
+                const thatsMeEN = new Discord.MessageEmbed()
+                .setColor('#55C2FF')
+                .setTitle(`This is **me**.`)
+                .setThumbnail(user.avatarURL({ dynamic: true }))
+                .addFields(
+                    { name: 'Username', value: 'Mirayoki#9244' },
+                    { name: 'Server Nickname', value: member.displayName },
+                    { name: 'Bot ID', value: '795480018469781505' },
+                    { name: `Status`, value: userStatus + '\n' + activities },
+                    { name: 'I was created:', value: 'An afternoon of July 4, 2021, at 02:33:35 UTC' },
+                    { name: `Roles en ${message.guild.name}`, value: '' + member.roles.cache.map(r => r).join(' | ') + '' },
+                )
+                .setFooter('Thank you for your interenst of knowing me :)')
+
+                const thatsMeES = new Discord.MessageEmbed()
+                .setColor('#55C2FF')
+                .setTitle(`Este soy **yo**.`)
+                .setThumbnail(user.avatarURL({ dynamic: true }))
+                .addFields(
+                    { name: 'Nombre de usuario', value: 'Mirayoki#9244' },
+                    { name: 'Apodo en el servidor', value: member.displayName },
+                    { name: 'ID de Bot', value: '795480018469781505' },
+                    { name: `Estado`, value: userStatus + '\n' + activities },
+                    { name: 'Fui creado:', value: 'Una tarde de Junio 4, 2021, a las 02:33:35 UTC' },
+                    { name: `Roles en ${message.guild.name}`, value: '' + member.roles.cache.map(r => r).join(' | ') + '' },
+                )
+                .setFooter('Gracias por querer conocerme :)')
+
+            if (user.id === '795480018469781505') {
+                if (profileData.language == 'en') {
+                return message.channel.send(thatsMeEN)
+            } else if (profileData.language == 'es') {
+                return message.channel.send(thatsMeES)
+            }
+            } else if (profileData.language == 'en') {
                 return message.channel.send(themEN)
             } else if (profileData.language == 'es') {
                 return message.channel.send(themES)
@@ -312,11 +346,11 @@ module.exports = {
                 .setDescription(`Algo malo pasó al tratar de obtener información acerca de este usuario!`)
                 .setFooter('Si aún tienes problemas, asegúrate de usar el commando -support para asistencia!')
 
-                if (profileData.language == 'en') {
-                    return message.channel.send(errorEN)
-                } else if (profileData.language == 'es') {
-                    return message.channel.send(errorES)
-                }
+            if (profileData.language == 'en') {
+                return message.channel.send(errorEN)
+            } else if (profileData.language == 'es') {
+                return message.channel.send(errorES)
+            }
         }
     }
 }
