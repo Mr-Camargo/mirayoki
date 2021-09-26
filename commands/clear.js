@@ -83,7 +83,7 @@ module.exports = {
             .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
             .setDescription('You don\'t have the **Manage Messages** permission to run this command.')
 
-            const noPermsES = new Discord.MessageEmbed()
+        const noPermsES = new Discord.MessageEmbed()
 
             .setColor('#FF5733')
             .setTitle('Acceso denegado')
@@ -98,22 +98,19 @@ module.exports = {
                 } else if (profileData.language == 'es') {
                     return message.channel.send(noArgsES);
                 }
-            }
-            if (isNaN(args[0])) {
+            } else if (isNaN(args[0])) {
                 if (profileData.language == 'en') {
                     return message.channel.send(numbersOnlyEN);
                 } else if (profileData.language == 'es') {
                     return message.channel.send(numbersOnlyES);
                 }
-            }
-            if (args[0] > 100) {
+            } else if (args[0] > 100) {
                 if (profileData.language == 'en') {
                     return message.channel.send(manyMessagesEN);
                 } else if (profileData.language == 'es') {
                     return message.channel.send(manyMessagesES);
                 }
-            }
-            if (args[0] < 1) {
+            } else if (args[0] < 1) {
                 if (profileData.language == 'en') {
                     return message.channel.send(noClearEN);
                 } else if (profileData.language == 'es') {
