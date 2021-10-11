@@ -36,8 +36,8 @@ mongoose.connect(process.env.MONGO_SRV, {
 client.once('ready', () => {
     console.log(`Mirayoki has been deployed succesfully at ${date}`);
     // This tells you the exact time Mirayoki have reached Discord's servers.
-    // memberCounter(client);
-    client.user.setActivity('Kwon Eun Bi', { type: "LISTENING" })
+    // memberCounter(client); (Refer to line 46)
+    client.user.setActivity('Jo Yuri', { type: "LISTENING" })
         .then(presence => console.log(`Rich Presence Deployed succesfully as "${presence.activities[0].type} ${presence.activities[0].name}" at ${date}`))
         // This will just print the Rich Presence that you have chosen for Mirayoki.
         .catch(console.error);
