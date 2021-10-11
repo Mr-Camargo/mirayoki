@@ -13,6 +13,7 @@ const memberCounter = require('./counters/member-counter')
 const date = new Date();
 
 console.log(`Started a deploy at ${date}`);
+// Once you start running Mirayoki, this timestamp will be displayed on the console.
 
 client.commands = new Discord.Collection();
 client.events = new Discord.Collection();
@@ -27,19 +28,22 @@ mongoose.connect(process.env.MONGO_SRV, {
     useFindAndModify: false,
 }).then(() => [
     console.log(`Connected succesfully to MongoDB at ${date}`)
+    // You will see the exact time that Mirayoki have reached the database.
 ]).catch((err) => {
     console.log(err);
 });
 
 client.once('ready', () => {
     console.log(`Mirayoki has been deployed succesfully at ${date}`);
-    memberCounter(client);
+    // This tells you the exact time Mirayoki have reached Discord's servers.
+    // memberCounter(client);
     client.user.setActivity('Kwon Eun Bi', { type: "LISTENING" })
         .then(presence => console.log(`Rich Presence Deployed succesfully as "${presence.activities[0].type} ${presence.activities[0].name}" at ${date}`))
+        // This will just print the Rich Presence that you have chosen for Mirayoki.
         .catch(console.error);
 });
 
-/* Not ready yet!
+/* Not ready yet! (But is going to be a welcoming message :D)
 client.on('guildMemberAdd', guildMember => {
     let welcomeRole = guildMember.guild.roles.cache.find(role => role.name === 'Member');
     let welcomeChannel = guildMember.guild.channels.cache.find(c => c.name === 'welcome');
@@ -55,3 +59,4 @@ client.on('guildMemberAdd', guildMember => {
 */
 
 client.login(process.env.SECRET_TOKEN);
+// This finally logs in Mirayoki into Discord's servers.
