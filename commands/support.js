@@ -7,6 +7,7 @@ module.exports = {
         let hours = Math.floor(client.uptime / 3600000) % 24;
         let minutes = Math.floor(client.uptime / 60000) % 60;
         let seconds = Math.floor(client.uptime / 1000) % 60;
+        // This variables will be used to calculate uptime
 
         const supportEN = new Discord.MessageEmbed()
 
@@ -24,7 +25,7 @@ module.exports = {
                 { name: 'Server ID', value: `${message.guild.id} (${message.guild.name})` },
                 { name: 'User ID', value: `${message.author.id} (${message.author.tag})` },
             )
-            .setFooter('Mirayoki is a project of Slash Studio.')
+            .setFooter('Mirayoki is an open source project of Slash Studio.')
 
             const supportES = new Discord.MessageEmbed()
 
@@ -42,12 +43,12 @@ module.exports = {
                 { name: 'ID de Servidor', value: `${message.guild.id} (${message.guild.name})` },
                 { name: 'ID de Usuario', value: `${message.author.id} (${message.author.tag})` },
             )
-            .setFooter('Mirayoki es un proyecto de Slash Studio.')
+            .setFooter('Mirayoki es un proyecto de código abierto de Slash Studio.')
             
             if (profileData.language == 'en') {
                 return message.channel.send(supportEN);
             } else if (profileData.language == 'es') {
                 return message.channel.send(supportES);
-            }
+            } // Returns an informative message with support info
     }
 }

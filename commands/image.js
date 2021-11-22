@@ -1,11 +1,13 @@
-//const { Channel } = require('discord.js');
-//var Scraper = require('images-scraper');
+// This is part of the code that doesn't work yet.
 
-//const google = new Scraper({
-//  puppeteer: {
-//    headless: true,
-//  },
-//});
+/* const { Channel } = require('discord.js');
+var Scraper = require('images-scraper');
+
+const google = new Scraper({
+puppeteer: {
+      headless: true,
+},
+}); */
 
 module.exports = {
   name: 'image',
@@ -21,7 +23,7 @@ module.exports = {
       .setDescription('Currently I\'m having some trouble with the Image Search module.')
       .setFooter('Use -ihelp to learn more about this issue')
 
-      const sorryES = new Discord.MessageEmbed()
+    const sorryES = new Discord.MessageEmbed()
 
       .setColor('#FF5733')
       .setTitle('El buscador de imagenes esta bajo mantenimiento.')
@@ -29,37 +31,39 @@ module.exports = {
       .setDescription('Actualmente estoy teniendo problemas para buscar imagenes.')
       .setFooter('Usa -ihelp para saber más acerca de este problema')
 
-  if (profileData.language == 'en') {
-          return message.channel.send(sorryEN);
-  } else if (profileData.language == 'es') {
-          return message.channel.send(sorryES);
-  }
+    if (profileData.language == 'en') {
+      return message.channel.send(sorryEN);
+    } else if (profileData.language == 'es') {
+      return message.channel.send(sorryES);
+    } // Returns an error message with an explanation
 
-    //const noArgs = new Discord.MessageEmbed()
+    // This is code that doesn't work yet.
 
-    //  .setColor('#FF5733')
-    //  .setTitle('Error')
-    //  .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
-    //  .setDescription('Cool image, here\'s what I found: (*nothing*)')
-    //  .setFooter('Images Provided by Google™ Images')
+    /* const noArgs = new Discord.MessageEmbed()
 
-    //const imageQuery = args.join(' ');
-    //if (!imageQuery) return message.channel.send(noArgs);
-    //if (imageQuery) {
-    //  const searchingImage = new Discord.MessageEmbed()
-    //  .setColor('#55C2FF')
-    //  .setTitle(`Searching for **` + (imageQuery) + `** :mag:`)
-    //  .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
-    //  .setFooter('Images Provided by Google™ Images')
-    //  message.channel.send(searchingImage);
-    //  const imageResult = await google.scrape(imageQuery, 1);
-    //  const finalImage = new Discord.MessageEmbed()
-    //  .setColor('#55C2FF')
-    //  .setTitle(`Here\'s what I found for **` + (imageQuery) + `** :mag:`)
-    //  .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
-    //  .setFooter('Images Provided by Google™ Images')
-    //  message.channel.send(finalImage)
-    //  message.channel.send(imageResult[0].url)
-    //}
+      .setColor('#FF5733')
+      .setTitle('Error')
+      .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
+      .setDescription('Cool image, here\'s what I found: (*nothing*)')
+      .setFooter('Images Provided by Google™ Images')
+
+    const imageQuery = args.join(' ');
+    if (!imageQuery) return message.channel.send(noArgs);
+    if (imageQuery) {
+      const searchingImage = new Discord.MessageEmbed()
+      .setColor('#55C2FF')
+      .setTitle(`Searching for **` + (imageQuery) + `** :mag:`)
+      .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
+      .setFooter('Images Provided by Google™ Images')
+      message.channel.send(searchingImage);
+      const imageResult = await google.scrape(imageQuery, 1);
+      const finalImage = new Discord.MessageEmbed()
+      .setColor('#55C2FF')
+      .setTitle(`Here\'s what I found for **` + (imageQuery) + `** :mag:`)
+      .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
+      .setFooter('Images Provided by Google™ Images')
+      message.channel.send(finalImage)
+      message.channel.send(imageResult[0].url)
+    } */
   }
 }

@@ -5,10 +5,13 @@ module.exports = {
     async execute(message, args, cmd, client, Discord, profileData) {
 
         let minNumber = undefined
+        // This variable will be used as the minimum number to generate the random number from
 
         let maxNumber = undefined
+        // This variable will be used as the maximum number to generate the random number from
 
         if (args[0] === 'help') {
+            // If the first argument is 'help'
 
             const rngHelpEN = new Discord.MessageEmbed()
 
@@ -42,9 +45,10 @@ module.exports = {
                 return message.channel.send(rngHelpEN);
             } else if (profileData.language == 'es') {
                 return message.channel.send(rngHelpES);
-            }
+            } // Returns an informative message with help
 
         } else if (!args[0]) {
+            // If no arguments are made
 
             const rngExplanationEN = new Discord.MessageEmbed()
 
@@ -64,22 +68,32 @@ module.exports = {
                 return message.channel.send(rngExplanationEN);
             } else if (profileData.language == 'es') {
                 return message.channel.send(rngExplanationES);
-            }
+            } // Returns an informative message
 
         } else if (args[0] && args[1]) {
+            // If there are two arguments
 
             minNumber = args[0]
+            // Treat first argument as minimum number
 
             maxNumber = args[1]
+            // And treat second argument as maximum number
             
         } else if (args[0]) {
+            // If there is only one argument
 
             minNumber = 1
+            /* As there is no argument to define the minimum number, 
+            the Bot will generate by default a random number using 1
+            as a minimum number*/
 
             maxNumber = args[0]
+            // Treat first argument as maximum number
         }
 
         if (maxNumber > 50000 || minNumber == 0 || maxNumber == 0 || maxNumber < 0 || minNumber < 0 || maxNumber < minNumber) {
+            /* If the number the user wants to generate is more than 50,000, the minimum number bigger than the maximum,
+            the set of numbers are negative numbers, and if the set is also zeros*/
 
             const invalidNumberRngEN = new Discord.MessageEmbed()
 
@@ -101,10 +115,12 @@ module.exports = {
                 return message.channel.send(invalidNumberRngEN);
             } else if (profileData.language == 'es') {
                 return message.channel.send(invalidNumberRngES);
-            }
+            } // Returns an error message
         } else {
+            // If the checks above have passed ...
 
             const randomNumber =  Math.floor((Math.random() * maxNumber) + minNumber);
+            // Generate a random number using the specified set
 
             const rngEN = new Discord.MessageEmbed()
 
@@ -126,7 +142,7 @@ module.exports = {
                 return message.channel.send(rngEN);
             } else if (profileData.language == 'es') {
                 return message.channel.send(rngES);
-            }
+            } // Return a success message with the result
         }
     }
 }

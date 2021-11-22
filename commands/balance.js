@@ -21,11 +21,10 @@ module.exports = {
             .setThumbnail(message.author.displayAvatarURL({ dynamic: true }))
             .setFooter('Hazlo llover!')
 
-
         if (profileData.language == 'en') {
             return message.channel.send(balanceEN);
         } else if (profileData.language == 'es') {
             return message.channel.send(balanceES);
-        }
+        } // Returns an informative message with the user's balance
     }
 }

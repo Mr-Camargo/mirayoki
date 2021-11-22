@@ -11,8 +11,8 @@ module.exports = {
         const date = new Date();
 
         const [month, day, year] = [date.getMonth(), date.getDate(), date.getFullYear()];
-        /* This will give the current day, month and year so it can then be 
-        displayed on the quote*/
+        /* This will give the current day, month, and year
+        so it can then be displayed on the quote embed*/
 
         const noChannelEN = new Discord.MessageEmbed()
 
@@ -66,24 +66,24 @@ module.exports = {
 
         const channel = message.guild.channels.cache.find(c => c.name === 'quotes');
         if (!channel) {
-            // If there is no #quotes channel, it returns an error message.
+            // If there is no 'quotes' channel ...
             if (profileData.language == 'en') {
                 return message.channel.send(noChannelEN);
             } else if (profileData.language == 'es') {
                 return message.channel.send(noChannelES);
-            }
+            } // Returns an error message.
         } else if (!args[0]) {
-            // If the user quoted nothing, it returns an error message.
+            // If the user quoted nothing ...
             if (profileData.language == 'en') {
                 return message.channel.send(noQuoteEN);
             } else if (profileData.language == 'es') {
                 return message.channel.send(noQuoteES);
-            }
+            } // Returns an error message.
         }
 
         // However, if the user provided a valid quote...
         channel.send(finalQuote).then(() => {
-            // ... it is sent ...
+            // ... it is sent to the 'quotes' channel ...
             message.delete();
             // ... the original message deleted ...
             if (profileData.language == 'en') {
@@ -94,6 +94,8 @@ module.exports = {
             // ... and returns a success message.
         }).catch((err) => {
             throw err;
+             /* In case something goes internally wrong, an error 
+            will be logged into the console for developers to see and solve. */
         });
     }
 }

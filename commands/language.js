@@ -6,14 +6,18 @@ module.exports = {
     description: "Set up your preferred language for Mirayoki.",
     async execute(message, args, cmd, client, Discord, profileData) {
         let language = null
+        // This variable will be used when viewing the settings
 
         const languageChoice = args[0]
+        /* This variable will be set with the first argument
+        when the user wants to change their language settings */
 
         if (profileData.language == 'en') {
             language = 'English'
         } else if (profileData.language == 'es') {
             language = 'Español'
-        }
+        } /* This will check the language of the user
+        on the database and will set the langauge the menu is viewed */
 
         const menuEN = new Discord.MessageEmbed()
 
@@ -86,35 +90,45 @@ module.exports = {
 
 
         if (languageChoice == 'en') {
+            // If the user choose English for their new language ... 
             await profileModel.findOneAndUpdate({
                 userID: message.author.id
+                // ... it locates the user ...
             }, {
                 $set: {
                     language: languageChoice,
+                    // ... and sets the new language.
                 }
             });
             message.channel.send(languageSetEN);
+            // When it's done, returns a success message.
         } else if (languageChoice == 'es') {
+            // If the user choose Spanish for their new language ... 
             await profileModel.findOneAndUpdate({
                 userID: message.author.id
+                // ... it locates the user ...
             }, {
                 $set: {
                     language: languageChoice,
+                    // ... and sets the new language.
                 }
             });
             message.channel.send(languageSetES);
+            // When it's done, returns a success message.
         } else if (!languageChoice) {
+            // If there is no language choice on the message ...
             if (profileData.language == 'en') {
                 return message.channel.send(menuEN);
             } else if (profileData.language == 'es') {
                 return message.channel.send(menuES);
-            }
+            } // ... Returns an informative message containing the menu
         } else if (languageChoice !== 'en' || 'es') {
+            // If the language choice on the message is not supported yet ...
             if (profileData.language == 'en') {
                 return message.channel.send(invalidEN);
             } else if (profileData.language == 'es') {
                 return message.channel.send(invalidES);
-            }
+            } // ... returns an error message containing the menu
         }
     }
 }

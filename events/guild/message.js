@@ -1,3 +1,6 @@
+/* This event will trigger when someone runs a command, and create an entry 
+on the database if the user has never been seen before. */
+
 require('dotenv').config();
 
 const profileModel = require('../../models/profileSchema');

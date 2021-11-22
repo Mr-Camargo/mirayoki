@@ -1,3 +1,5 @@
+// This file handles all the command queries, and redirects it to the specific command file
+
 const fs = require('fs');
 
 module.exports = (client, Discord) =>{

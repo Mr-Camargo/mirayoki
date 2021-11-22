@@ -7,6 +7,7 @@ module.exports = {
     async execute(message, args, cmd, client, Discord, profileData) {
 
         const amount = args[0];
+        // This specifies the amount of bank coins that a user wants to remove from their bank
 
         const negativeOrNoCoins = new Discord.MessageEmbed()
 
@@ -33,20 +34,29 @@ module.exports = {
             .setFooter('Be careful out there!')
 
         if (amount % 1 != 0 || amount <= 0) return message.channel.send(negativeOrNoCoins);
+        // If the user wants to withdraw zero or less coins, returns an error message.
         try {
             if (amount > profileData.bank) return message.channel.send(notEnoughCoins);
+            /* If the amount of coins the user desires to withdraw 
+            is not available on their bank, returns an error message */
             await profileModel.findOneAndUpdate({
                 userID: message.author.id
+                // It locates the user on the database...
             }, {
                 $inc: {
                     coins: amount,
+                    // ... adds the specified amount of coins to their wallet ...
                     bank: -amount,
+                    // ... and removes those coins from their bank.
                 }
             });
 
             return message.channel.send(withdrawed)
+            // Finally, it returns a success message.
         } catch (err) {
             console.log(err)
+            /* In case something goes internally wrong, an error 
+            will be logged into the console for developers to see and solve. */
         }
     }
 }

@@ -5,19 +5,25 @@ module.exports = {
     async execute(message, args, cmd, client, Discord, profileData) {
 
         var coin = null
+        // This variable will be used to represent the side on which the coin fell
 
         const randomConstant = Math.floor(Math.random() * 2) + 1;
+        // This is the random constant, that decides which side the coin will fall
 
-        if (randomConstant > 1) {
+        if (randomConstant === 1) {
+            // If the random number is 1, then the coin is set to fall on the Heads side.
             coin = 'Heads'
-        } else if (randomConstant < 2) {
+        } else if (randomConstant === 2) {
+            // But if the random number is 2, then it is set to fall on the Tails side.
             coin = 'Tails'
         }
 
+        /* This translates the string that contains
+         the name of face where the coin fell */
         if (profileData.language == 'es') {
-            if (coin == 'Heads') {
+            if (coin === 'Heads') {
                 coin = 'Cara'
-            } else if (coin == 'Tails') {
+            } else if (coin === 'Tails') {
                 coin = 'Cruz'
             }
         }
@@ -40,6 +46,6 @@ module.exports = {
             return message.channel.send(flippedCoinEN);
         } else if (profileData.language == 'es') {
             return message.channel.send(flippedCoinES);
-        }
+        } // Returns a success message with the result
     }
 }

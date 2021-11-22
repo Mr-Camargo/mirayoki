@@ -1,6 +1,6 @@
 {
   "name": "mirayoki",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "World's most efficient and powerful Discord bot.",
   "main": "Mirayoki.js",
   "scripts": {

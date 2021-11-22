@@ -1,3 +1,5 @@
+// This file handles all the events
+
 const fs = require('fs');
 
 module.exports = (client, Discord) =>{

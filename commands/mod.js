@@ -1,4 +1,6 @@
-module.exports = {
+// This dummy command was made so that I don't forget how to give a role in Discord.js
+
+/* module.exports = {
     name: 'mod',
     description: "adds someone to the mod role",
     execute(message, args, cmd, client, Discord, profileData) {
@@ -25,3 +27,4 @@ module.exports = {
         }
     }
 }
+*/

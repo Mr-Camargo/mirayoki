@@ -27,10 +27,10 @@ module.exports = {
             )
             .setFooter('Usa -about para más información acerca de Mirayoki!')
 
-            if (profileData.language == 'en') {
-                return message.channel.send(inviteEN);
+        if (profileData.language == 'en') {
+            return message.channel.send(inviteEN);
         } else if (profileData.language == 'es') {
-                return message.channel.send(inviteES);
-        }
+            return message.channel.send(inviteES);
+        } // Returns an informative message with an invite link
     }
 }

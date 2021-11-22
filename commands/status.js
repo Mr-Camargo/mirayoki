@@ -8,6 +8,7 @@ module.exports = {
         let hours = Math.floor(client.uptime / 3600000) % 24;
         let minutes = Math.floor(client.uptime / 60000) % 60;
         let seconds = Math.floor(client.uptime / 1000) % 60;
+        // This variables will be used to calculate uptime
 
         const currentStatusEN = new Discord.MessageEmbed()
 
@@ -49,6 +50,6 @@ module.exports = {
             return message.channel.send(currentStatusEN);
         } else if (profileData.language == 'es') {
             return message.channel.send(currentStatusES);
-        }
+        } // Returns an informative message with status info
     }
 }

@@ -4,6 +4,7 @@ module.exports = {
     description: 'Throws a die, and returns the result on chat',
     async execute(message, args, cmd, client, Discord, profileData) {
         if (args[0] === 'help') {
+            // If the first argument is 'help'
 
             const dieHelpEN = new Discord.MessageEmbed()
 
@@ -23,7 +24,7 @@ module.exports = {
                 .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
                 .setFooter('May the luck be with you!')
 
-                const dieHelpES = new Discord.MessageEmbed()
+            const dieHelpES = new Discord.MessageEmbed()
 
                 .setColor('#55C2FF')
                 .setTitle('Como tirar un dado')
@@ -41,11 +42,11 @@ module.exports = {
                 .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
                 .setFooter('Que la suerte esté contigo!')
 
-                if (profileData.language == 'en') {
-                    return message.channel.send(dieHelpEN);
-                } else if (profileData.language == 'es') {
-                    return message.channel.send(dieHelpES);
-                }
+            if (profileData.language == 'en') {
+                return message.channel.send(dieHelpEN);
+            } else if (profileData.language == 'es') {
+                return message.channel.send(dieHelpES);
+            } // Returns an informative message with help
 
         } else {
 
@@ -53,32 +54,38 @@ module.exports = {
 
             if (!args[0]) {
                 numberFaces = 6
+                /* If there are no arguments for a desired die size,
+                 a standard six-faced will be rolled */
             } else if (args[0] > 120 || args[0] < 3) {
+                /* If the user wants to roll a die with more than 120 faces, 
+                or a die with less than 3 faces*/
 
                 const InvalidDieEN = new Discord.MessageEmbed()
 
-                .setColor('#FF5733')
-                .setTitle('You can\'t throw that die.')
-                .setDescription(`You can only throw dice with up to **120** faces and with at least **3** faces.`)
-                .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
-                .setFooter('For help, use -die help!')
+                    .setColor('#FF5733')
+                    .setTitle('You can\'t throw that die.')
+                    .setDescription(`You can only throw dice with up to **120** faces and with at least **3** faces.`)
+                    .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
+                    .setFooter('For help, use -die help!')
 
                 const InvalidDieES = new Discord.MessageEmbed()
 
-                .setColor('#FF5733')
-                .setTitle('No puedes tirar ese dado.')
-                .setDescription(`Solo puedes tirar dados con hasta **120** caras y por lo menos con **3** caras.`)
-                .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
-                .setFooter('Para ayuda, usa -die help!')
+                    .setColor('#FF5733')
+                    .setTitle('No puedes tirar ese dado.')
+                    .setDescription(`Solo puedes tirar dados con hasta **120** caras y por lo menos con **3** caras.`)
+                    .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
+                    .setFooter('Para ayuda, usa -die help!')
 
                 if (profileData.language == 'en') {
                     return message.channel.send(InvalidDieEN);
                 } else if (profileData.language == 'es') {
                     return message.channel.send(InvalidDieES);
-                }
+                } // Returns an error message
             }
 
             const DieResult = Math.floor(Math.random() * numberFaces) + 1;
+            /* This uses the specified faces (6 for default) and 
+            rolls the dice generating a random number between numberFaces and 1 */
 
             const DieEN = new Discord.MessageEmbed()
 
@@ -100,7 +107,7 @@ module.exports = {
                 return message.channel.send(DieEN);
             } else if (profileData.language == 'es') {
                 return message.channel.send(DieES);
-            }
+            } // Returns a success message with the result
         }
     }
 }

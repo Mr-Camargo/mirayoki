@@ -35,10 +35,11 @@ module.exports = {
                 { name: '-clear, -c', value: 'Borra mensajes recientes de un canal, ej: -clear 50', inline: true },
             )
             .setFooter('Modera con amor.')
+
         if (profileData.language == 'en') {
             return message.channel.send(modhelpEN);
         } else if (profileData.language == 'es') {
             return message.channel.send(modhelpES);
-        }
+        } // Returns an informative message
     }
 }

@@ -23,19 +23,19 @@ module.exports = {
                 return message.channel.send(sorryEN);
         } else if (profileData.language == 'es') {
                 return message.channel.send(sorryES);
-        }
+        } // Returns an error message with the explanation of this problem
 
 
-        //const iHelp = new Discord.MessageEmbed()
+        /* const iHelp = new Discord.MessageEmbed()
 
-        //.setColor('#25c720')
-        //.setTitle('Help for the Image Search module.')
-        //.setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
-        //.setDescription('Images are searched by the bot via Google™ Images in order to return the most interesting image for you.')
-        //.addFields(
-        //    { name: '**Important**', value: 'Remember that many people use this bot, and Mirayoki may have problems loading the picture, if a picture Mirayoki sent didn\'t load, please click on the image, and then click "Open Original"' },
-        //)
-        //.setFooter('')
-        //message.channel.send(iHelp)
+        .setColor('#25c720')
+        .setTitle('Help for the Image Search module.')
+        .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
+        .setDescription('Images are searched by the bot via Google™ Images in order to return the most interesting image for you.')
+        .addFields(
+            { name: '**Important**', value: 'Remember that many people use this bot, and Mirayoki may have problems loading the picture, if a picture Mirayoki sent didn\'t load, please click on the image, and then click "Open Original"' },
+        )
+        .setFooter('')
+        message.channel.send(iHelp) */
     }
 }

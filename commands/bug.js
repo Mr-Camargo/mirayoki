@@ -3,6 +3,7 @@ module.exports = {
     aliases: ['error', 'report', 'reportar'],
     description: "Few simple steps to report any errors to Slash devs.",
     execute(message, args, cmd, client, Discord, profileData) {
+
         const instructionsEN = new Discord.MessageEmbed()
 
             .setColor('#FF5733')
@@ -25,12 +26,12 @@ module.exports = {
                 { name: 'Cómo reportar:', value: 'Únete a nuestro servidor de soporte (https://discord.gg/sbxGVCxdTQ) y abre un ticket, estaremos contigo a la de ayer.' },
                 { name: 'Desarrollador?', value: 'Ve directo a nuestro GitHub (https://github.com/Slashy-Studio/mirayoki) y crea un Issue, nuestros ingenieros lo recibirán y le darán seguimiento.' },
             )
-            .setFooter('Usa -about para más informacion acerca de este bot!')
+            .setFooter('Gracias por tu apoyo!')
 
-            if (profileData.language == 'en') {
-                return message.channel.send(instructionsEN);
+        if (profileData.language == 'en') {
+            return message.channel.send(instructionsEN);
         } else if (profileData.language == 'es') {
-                return message.channel.send(instructionsES);
-        }
+            return message.channel.send(instructionsES);
+        } // Returns an informative message
     }
 }

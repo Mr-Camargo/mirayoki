@@ -2,7 +2,7 @@ module.exports = {
     name: 'clear',
     aliases: ['c'],
     cooldown: 10,
-    description: "clear last {amount} of messages",
+    description: "Clears the last ${amount} of messages",
     async execute(message, args, cmd, client, Discord, profileData) {
 
         const noArgsEN = new Discord.MessageEmbed()
@@ -92,41 +92,51 @@ module.exports = {
 
 
         if (message.member.permissions.has("MANAGE_MESSAGES")) {
+            // This will check if the user has the Manage Messages permission on their server
             if (!args[0]) {
+                // If the user doesn't give any input, it returns an error message.
                 if (profileData.language == 'en') {
                     return message.channel.send(noArgsEN);
                 } else if (profileData.language == 'es') {
                     return message.channel.send(noArgsES);
                 }
             } else if (isNaN(args[0])) {
+                // If the user gives an input that is not a number, it returns an error message.
                 if (profileData.language == 'en') {
                     return message.channel.send(numbersOnlyEN);
                 } else if (profileData.language == 'es') {
                     return message.channel.send(numbersOnlyES);
                 }
             } else if (args[0] > 100) {
+                /* If the user wants to clear more than 100 messages
+                 at once, it returns an error message. */
                 if (profileData.language == 'en') {
                     return message.channel.send(manyMessagesEN);
                 } else if (profileData.language == 'es') {
                     return message.channel.send(manyMessagesES);
                 }
             } else if (args[0] < 1) {
+                // If the user gives an input below 1, it returns an error message.
                 if (profileData.language == 'en') {
                     return message.channel.send(noClearEN);
                 } else if (profileData.language == 'es') {
                     return message.channel.send(noClearES);
                 }
             }
+            // If it is a valid number ...
             await message.channel.messages.fetch({ limit: args[0] }).then(messages => {
                 message.channel.bulkDelete(messages);
+                // ... it deletes the messages that the user specified ...
                 if (profileData.language == 'en') {
                     return message.channel.send(yesClearEN);
                 } else if (profileData.language == 'es') {
                     return message.channel.send(yesClearES);
                 }
+                // ... and returns a success message.
             });
 
         } else {
+            // In case the user doesn't have the Manage Messages permission, an error message will appear.
             if (profileData.language == 'en') {
                 return message.channel.send(noPermsEN);
             } else if (profileData.language == 'es') {

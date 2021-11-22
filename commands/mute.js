@@ -1,4 +1,5 @@
 const ms = require('ms');
+// Timed mutes require the ms module
 module.exports = {
     name: 'mute',
     aliases: ['m'],
@@ -34,11 +35,17 @@ module.exports = {
             .setFooter('')
 
         if (message.member.permissions.has("KICK_MEMBERS")) {
+            // This will check if the user has the Kick Members permission on their server
             const target = message.mentions.users.first();
             if (target) {
                 if (target == message.author.id) return message.channel.send(noImNot);
+                // This is a security measure, so no one can mute themselves
                 let memberTarget = message.guild.members.cache.get(target.id);
+                /* Once the Bot has checked that the user that was specified is 
+               NOT the author of that message, then the target gets noted for a soon-to-be mute */
                 if (memberTarget == 795480018469781505 || 834492523295801355) return message.channel.send(niceTry);
+                /* This checks that the user doesn't want to mute Mirayoki
+                using a command from itself, as it would break the bot.*/
                 if (!args[1]) {
                     const muteOK = new Discord.MessageEmbed()
 
@@ -48,7 +55,10 @@ module.exports = {
                         .setDescription(`<@${memberTarget.user.id}> has been muted.`)
                     memberTarget.roles.remove('796931063120920636');
                     memberTarget.roles.add('796927664475865148');
+                    /* Once all those checks have passed, 
+                    the specified member is muted using roles */
                     message.channel.send(muteOK);
+                    // ... and returns a success message.
                     message.delete();
                     return
                 }
@@ -63,15 +73,21 @@ module.exports = {
                 message.channel.send(timedMuteOK);
                 message.delete();
 
+                /* Once all those checks have passed, 
+                the specified member is muted using roles... */
                 setTimeout(function () {
                     memberTarget.roles.remove('796927664475865148');
                     memberTarget.roles.add('796931063120920636');
                 }, ms(args[1]))
+                // and the specified time
             } else {
                 message.channel.send(errorMute);
+                /* If the user doesn't mention someone when muting, or if the specified user has 
+                left the server already, an error message appears. */
             }
         } else {
             message.channel.send(noPerms);
+            // In case the user doesn't have the Kick Members permission, an error message will appear.
         }
     }
 }

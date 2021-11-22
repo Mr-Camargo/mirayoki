@@ -1,4 +1,6 @@
-module.exports = {
+// I did this dummy command so I can get a 'blueprint' on how to do embeds, in case I forget.
+
+/* module.exports = {
     name: 'embed',
     description: "Embed test",
     execute(message, args, cmd, client, Discord, profileData) {
@@ -21,4 +23,4 @@ module.exports = {
 
         message.channel.send(newEmbed);
     }
-}
+} */

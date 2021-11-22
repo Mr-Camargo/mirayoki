@@ -56,12 +56,14 @@ module.exports = {
             .setFooter(`@everyone inclinense al gran ${message.author.username}`)
 
         if (message.member.permissions.has("ADMINISTRATOR")) {
+            // If the user has the Administration permission on their server
             if (profileData.language == 'en') {
                 message.channel.send(adminAlertEN);
             } else if (profileData.language == 'es') {
                 message.channel.send(adminAlertES);
-            }
+            } // Skips all checks, and returns an informative message indicating that the user has all permissions
         } else if (profileData.language == 'en') {
+            // Will begin with permission checks 
             if (message.member.permissions.has("CREATE_INSTANT_INVITE")) {
                 CREATE_INSTANT_INVITE = 'You can create invites.'
             }
@@ -172,6 +174,7 @@ module.exports = {
                 )
 
             return message.channel.send(permsEN)
+            // And returns an informative message with the user's permisisons listed nicely
         }
     }
 }

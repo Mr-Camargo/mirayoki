@@ -3,9 +3,13 @@ module.exports = {
     description: "Includes advanced tools for Slash staff to troubleshoot more easily",
     async execute(message, args, cmd, client, Discord, profileData) {
 
+        // This variables will help with authentication of staff members
         let clearanceLvl = null
         let isStaff = false
 
+        /* All these flags are assigned manually by higher Staff Members,
+        and a clearance level is assigned to every new employee/contributor 
+        depending their position */
         if (profileData.clearanceLvl == 'X') {
             clearanceLvl = "**X** | Full access"
             isStaff = true
@@ -24,7 +28,7 @@ module.exports = {
         } else if (profileData.clearanceLvl == 'none' || null) {
             clearanceLvl = "No Clearance"
         }
-        
+
         const beepbeep = new Discord.MessageEmbed()
 
             .setColor('#55C2FF')
@@ -71,19 +75,33 @@ module.exports = {
             .setFooter(`Logged in as ${message.author.tag}`)
 
         if (!isStaff) return message.channel.send(boopboop);
-        if (args[0] === 'reboot') {
-            message.channel.send(rebooting).then(m => {
-                console.log(`${message.author.tag} started a reboot at ${date}`)
-                client.destroy(); {
-                    client.login(process.env.SECRET_TOKEN);
-                    console.log(`${message.author.tag} rebooted Mirayoki at ${date}`)
-                    message.channel.send(rebooted)
-                };
-            });
-        } else if (args[0] === 'help') {
-            message.channel.send(help)
-        } else if (!args[0]) {
-            message.channel.send(beepbeep)
+        // If the user is not on the database as a staff member, returns an error message.
+        else if (isStaff) {
+            if (args[0] === 'reboot') {
+                // If the first argument is 'reboot'
+                message.channel.send(rebooting).then(m => {
+                    // Will inform the staff member about the reboot attempt
+                    console.log(`${message.author.tag} started a reboot at ${date}`)
+                    // Mirayoki will log that a reboot attempt was started by the staff member
+                    client.destroy(); {
+                        // The Mirayoki process will end ...
+                        client.login(process.env.SECRET_TOKEN);
+                        // ... and will boot up again
+                        console.log(`${message.author.tag} rebooted Mirayoki at ${date}`)
+                        // Mirayoki will log that a succesful reboot was done by the staff member 
+                        message.channel.send(rebooted)
+                        // Will inform the staff member about the succesful reboot
+                    };
+                });
+            } else if (args[0] === 'help') {
+                // If the first argument is 'help'
+                return message.channel.send(help)
+                // Returns an informative message with help
+            } else if (!args[0]) {
+                // If there are no arguments
+                return message.channel.send(beepbeep)
+                // Returns an informative message with the staff member's information
+            }
         }
     }
 }

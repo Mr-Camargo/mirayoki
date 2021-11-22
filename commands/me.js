@@ -6,37 +6,57 @@ module.exports = {
     async execute(message, args, cmd, client, Discord, profileData) {
 
         let user = null
+        /* This will be set with the user ID of the user that requests 
+        their information or the user whose information is being requested. */
 
         let checkingOtherUser = null
+        /* This will be set if the user who wants to know 
+        their information is not the sender of the message. */
 
         if (!args[0]) {
+            // If no other arguments are made on the command ...
             user = message.author;
             checkingOtherUser = false
+            // ... the Bot supposes the user wants to know their own info.
         } else if (args[0]) {
+            // If there is an argument made on the command ...
             if (message.mentions.members.first()) {
+                // It looks if there is a mention on the command ...
                 user = message.mentions.users.first()
+                // ... and sets the mentioned user to use for the command.
                 if (user == message.author) {
+                    // If the mentioned user is the sender of the message ...
                     checkingOtherUser = false
+                    // ... the Bot realizes there is no other user to check than the sender itself.
                 } else if (user) {
+                    // However, if there is a mention of someone that is not the sender of the message ...
                     checkingOtherUser = true
+                    // ... the Bot then will be looking for info of someone else that is not the sender.
                 }
             } else {
                 if (args[0] == 'help') {
+                    // If the first argument is 'help'
                     user = undefined
                     checkingOtherUser = undefined
+                    // The Bot will then proceed to provide a help message, and leaving empty the query.
                 } else {
+                    // If no arguments are made
                     user = message.author
                     checkingOtherUser = false
+                    /* The Bot will fill the query with the sender of the message and 
+                    will treat this as a personal query */
                 }
             }
         }
 
         if (user && !checkingOtherUser) {
+            // If the user is the sender of the command, and it is not checking any other user
 
             const member = message.guild.member(user);
 
             const activities = [];
 
+            // This will fill a variable with the user's activity
             for (const activity of user.presence.activities.values()) {
                 switch (activity.type) {
                     case 'PLAYING':
@@ -79,6 +99,7 @@ module.exports = {
 
             let userStatus = null
 
+            // This will fill a variable with the user's online status
             if (user.presence.status == "online") {
                 if (profileData.language == 'en') {
                     userStatus = ":green_circle: Online"
@@ -139,14 +160,16 @@ module.exports = {
                 return message.channel.send(meEN)
             } else if (profileData.language == 'es') {
                 return message.channel.send(meES)
-            }
+            } // Returns an informative message with the user's information
 
         } else if (user && checkingOtherUser) {
+            // If the user is not the sender of the command, and it is checking other user
 
             const member = message.guild.member(user);
 
             const activities = [];
 
+            // This will fill a variable with the user's activity
             for (const activity of user.presence.activities.values()) {
                 switch (activity.type) {
                     case 'PLAYING':
@@ -189,6 +212,7 @@ module.exports = {
 
             let userStatus = null
 
+            // This will fill a variable with the user's online status
             if (user.presence.status == "online") {
                 if (profileData.language == 'en') {
                     userStatus = ":green_circle: Online"
@@ -243,7 +267,7 @@ module.exports = {
                 )
                 .setFooter('Tu y ellos son grandes personas!')
 
-                const thatsMeEN = new Discord.MessageEmbed()
+            const thatsMeEN = new Discord.MessageEmbed()
                 .setColor('#55C2FF')
                 .setTitle(`This is **me**.`)
                 .setThumbnail(user.avatarURL({ dynamic: true }))
@@ -253,11 +277,11 @@ module.exports = {
                     { name: 'Bot ID', value: '795480018469781505' },
                     { name: `Status`, value: userStatus + '\n' + activities },
                     { name: 'I was created:', value: 'An afternoon of July 4, 2021, at 02:33:35 UTC' },
-                    { name: `Roles en ${message.guild.name}`, value: '' + member.roles.cache.map(r => r).join(' | ') + '' },
+                    { name: `Roles in ${message.guild.name}`, value: '' + member.roles.cache.map(r => r).join(' | ') + '' },
                 )
                 .setFooter('Thank you for your interenst of knowing me :)')
 
-                const thatsMeES = new Discord.MessageEmbed()
+            const thatsMeES = new Discord.MessageEmbed()
                 .setColor('#55C2FF')
                 .setTitle(`Este soy **yo**.`)
                 .setThumbnail(user.avatarURL({ dynamic: true }))
@@ -272,18 +296,20 @@ module.exports = {
                 .setFooter('Gracias por querer conocerme :)')
 
             if (user.id === '795480018469781505') {
+                // If the sender of the message wants to get information about Mirayoki
                 if (profileData.language == 'en') {
-                return message.channel.send(thatsMeEN)
-            } else if (profileData.language == 'es') {
-                return message.channel.send(thatsMeES)
-            }
+                    return message.channel.send(thatsMeEN)
+                } else if (profileData.language == 'es') {
+                    return message.channel.send(thatsMeES)
+                } // Returns an informative message with Mirayoki's information
             } else if (profileData.language == 'en') {
                 return message.channel.send(themEN)
             } else if (profileData.language == 'es') {
                 return message.channel.send(themES)
-            }
+            } // Returns an informative message with the requested user's information
 
         } else if (user == undefined && checkingOtherUser == undefined) {
+            // If the user requested help, making the Bot leave the query empty
 
             const helpEN = new Discord.MessageEmbed()
 
@@ -327,9 +353,10 @@ module.exports = {
                 return message.channel.send(helpEN)
             } else if (profileData.language == 'es') {
                 return message.channel.send(helpES)
-            }
+            } // Returns an informative message with help
 
         } else {
+            // If there is an error that doesn't let Mirayoki get information about the requested user
             const errorEN = new Discord.MessageEmbed()
 
                 .setColor('#FF5733')
@@ -350,7 +377,7 @@ module.exports = {
                 return message.channel.send(errorEN)
             } else if (profileData.language == 'es') {
                 return message.channel.send(errorES)
-            }
+            } // Returns an error message
         }
     }
 }

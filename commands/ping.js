@@ -21,6 +21,7 @@ module.exports = {
             return message.channel.send(pingEN);
         } else if (profileData.language == 'es') {
             return message.channel.send(pingES);
-        }
+        } /* Returns an informative message with the ping, which is calculated
+        with the time the Bot took to read and reply to the message. */
     }
 }

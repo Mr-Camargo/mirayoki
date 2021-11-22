@@ -1,6 +1,9 @@
+/* This event will trigger when someone joins the server, and create an entry on 
+the database if the user has never been seen before. */
+
 const profileModel = require('../../models/profileSchema');
 
-module.exports = async(client, Discord, member) =>{
+module.exports = async (client, Discord, member) => {
     let profileData;
     try {
         profileData = await profileModel.findOne({ userID: member.id })

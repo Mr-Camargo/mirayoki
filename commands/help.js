@@ -62,6 +62,6 @@ module.exports = {
             return message.channel.send(helpMenuEN);
         } else if (profileData.language == 'es') {
             return message.channel.send(helpMenuES);
-        }
+        } // Returns an informative message with help
     }
 }
