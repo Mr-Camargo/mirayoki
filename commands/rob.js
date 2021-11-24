@@ -69,7 +69,7 @@ module.exports = {
         // If no target is mentioned, returns an error message.
         if (target == message.author.id) return message.channel.send(cantMugYourself);
         // If the target is the same person as the thief, returns an error message.
-        if (target == 795480018469781505) return message.channel.send(niceTry);
+        if (target == process.env.BOT_ID) return message.channel.send(niceTry);
         // If the target is Mirayoki, returns an error message.
         if (!target) return message.channel.send(deadTarget);
         // If the target is not available on the server, returns an error message.

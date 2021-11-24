@@ -81,7 +81,7 @@ module.exports = {
             // If no arguments are placed, returns an error message.
             if (!target) return message.channel.send(deadTarget);
             // If the target for the coins is not on the server anymore, returns an error message.
-            if (target == 795480018469781505) return message.channel.send(noThanks);
+            if (target == process.env.BOT_ID) return message.channel.send(noThanks);
             // If the target is Mirayoki, returns an error message.
             if (amount % 1 != 0 || amount <= 0) return message.channel.send(negativeOrNoCoins);
             // If the amount of coins to give is zero or negative, returns an error message.

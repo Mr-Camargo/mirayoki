@@ -43,7 +43,7 @@ module.exports = {
                 let memberTarget = message.guild.members.cache.get(target.id);
                 /* Once the Bot has checked that the user that was specified is 
                NOT the author of that message, then the target gets noted for a soon-to-be mute */
-                if (memberTarget == 795480018469781505 || 834492523295801355) return message.channel.send(niceTry);
+                if (memberTarget == process.env.BOT_ID) return message.channel.send(niceTry);
                 /* This checks that the user doesn't want to mute Mirayoki
                 using a command from itself, as it would break the bot.*/
                 if (!args[1]) {

@@ -76,7 +76,7 @@ module.exports = {
             // This will check if the admin/mod has not specified a target, and returns an error message.
             if (!target) return message.channel.send(deadTarget);
             // If the target is not on the server anymore, returns an error message.
-            if (target == 795480018469781505) return message.channel.send(niceTry);
+            if (target == process.env.BOT_ID) return message.channel.send(niceTry);
             // If the admin/mod wants to remove wallet coins from Mirayoki, returns an error message
             if (amount % 1 != 0 || amount <= 0) return message.channel.send(negativeOrNoCoins);
             // If the admin/mod chooses a number that is below one, returns an error message.
