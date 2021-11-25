@@ -7,6 +7,8 @@ module.exports = {
         let clearanceLvl = null
         let isStaff = false
 
+        const date = new Date();
+
         /* All these flags are assigned manually by higher Staff Members,
         and a clearance level is assigned to every new employee/contributor 
         depending their position */
@@ -91,6 +93,10 @@ module.exports = {
                         // Mirayoki will log that a succesful reboot was done by the staff member 
                         message.channel.send(rebooted)
                         // Will inform the staff member about the succesful reboot
+                        client.user.setActivity(process.env.ACTIVITY, { type: process.env.ACTIVITY_TYPE })
+                            .then(presence => console.log(`Rich Presence rebooted succesfully as "${presence.activities[0].type} ${presence.activities[0].name}" at ${date}`))
+                            // This will just print the Rich Presence that you have chosen for Mirayoki.
+                            .catch(console.error);
                     };
                 });
             } else if (args[0] === 'help') {

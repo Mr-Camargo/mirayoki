@@ -37,7 +37,7 @@ client.once('ready', () => {
     console.log(`Mirayoki has been deployed succesfully at ${date}`);
     // This tells you the exact time Mirayoki have reached Discord's servers.
     // memberCounter(client); (Refer to line 46)
-    client.user.setActivity('Jo Yuri', { type: "LISTENING" })
+    client.user.setActivity(process.env.ACTIVITY, { type: process.env.ACTIVITY_TYPE })
         .then(presence => console.log(`Rich Presence Deployed succesfully as "${presence.activities[0].type} ${presence.activities[0].name}" at ${date}`))
         // This will just print the Rich Presence that you have chosen for Mirayoki.
         .catch(console.error);
