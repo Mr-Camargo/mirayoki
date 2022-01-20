@@ -10,9 +10,15 @@ module.exports = {
 
         const date = new Date();
 
-        const [month, day, year] = [date.getMonth(), date.getDate(), date.getFullYear()];
+        const [month, day, year] = [calculateMonth(), date.getDate(), date.getFullYear()];
         /* This will give the current day, month, and year
         so it can then be displayed on the quote embed*/
+
+        function calculateMonth() {
+           let fakeMonth = date.getMonth();
+           let realMonth = fakeMonth + 1;
+           return realMonth;
+        };
 
         const noChannelEN = new Discord.MessageEmbed()
 
@@ -94,8 +100,8 @@ module.exports = {
             // ... and returns a success message.
         }).catch((err) => {
             throw err;
-             /* In case something goes internally wrong, an error 
-            will be logged into the console for developers to see and solve. */
+            /* In case something goes internally wrong, an error 
+           will be logged into the console for developers to see and solve. */
         });
     }
 }
