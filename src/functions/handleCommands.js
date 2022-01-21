@@ -1,6 +1,7 @@
 const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
 const fs = require('fs');
+const date = new Date();
 
 const clientId = process.env.BOT_ID;
 const guildId = '834499596968656897';
@@ -23,7 +24,7 @@ module.exports = (client) => {
 
         (async () => {
             try {
-                console.log('Started refreshing application (/) commands.');
+                console.log(`Started updating application commands at ${date}`);
 
                 await rest.put(
                     Routes.applicationGuildCommands(clientId, guildId),
@@ -35,7 +36,7 @@ module.exports = (client) => {
                     { body: client.commandArray },
                 );                
 
-                console.log('Successfully reloaded application (/) commands.');
+                console.log(`Updated application commands at ${date}`);
             } catch (error) {
                 console.error(error);
             }

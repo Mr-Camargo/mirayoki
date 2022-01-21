@@ -4,7 +4,8 @@
   "description": "World's most efficient and powerful Discord bot.",
   "main": "src/Mirayoki.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ."
   },
   "author": "Sebastián Camargo <camargo@tutamail.com> (https://github.com/Mr-Camargo)",
   "bugs": "https://github.com/Slashy-Studio/mirayoki/issues",
@@ -18,7 +19,7 @@
     "discord.js": "^13.6.0",
     "dotenv": "^8.2.0",
     "fs": "0.0.1-security",
-    "mongoose": "^5.12.2",
+    "mongoose": "^6.1.7",
     "ms": "^2.1.3"
   }
 }
