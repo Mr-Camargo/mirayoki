@@ -53,6 +53,19 @@ module.exports = {
             )
             .setFooter('This setting will sync across servers, and will only have effect on you.')
 
+        const alreadyUsingEN = new Discord.MessageEmbed()
+
+            .setColor('#FF5733')
+            .setTitle(`You are already using Mirayoki in **${language}**.`)
+            .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
+            .setDescription(`You are using Mirayoki in **${language}**.`)
+            .addFields(
+                { name: 'Change Language', value: `In order to change your language, please run the following commands:` },
+                { name: 'English 🇬🇧', value: `-lang en`, inline: true },
+                { name: 'Español 🇪🇸', value: `-lang es`, inline: true },
+            )
+            .setFooter('This setting will sync across servers, and will only have effect on you.')
+
 
         const menuES = new Discord.MessageEmbed()
 
@@ -88,32 +101,54 @@ module.exports = {
             )
             .setFooter('Este ajuste se sincronizará entre tus servidores y solo afectará tu experiencia.')
 
+        const alreadyUsingES = new Discord.MessageEmbed()
+
+            .setColor('#FF5733')
+            .setTitle(`Ya estás usando Mirayoki en **${language}**.`)
+            .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
+            .setDescription(`Estas usando Mirayoki en **${language}**.`)
+            .addFields(
+                { name: 'Cambiar Idioma', value: `Para poder cambiar el Idioma, por favor escribe el comando de tu idioma preferido:` },
+                { name: 'English 🇬🇧', value: `-lang en`, inline: true },
+                { name: 'Español 🇪🇸', value: `-lang es`, inline: true },
+            )
+            .setFooter('Este ajuste se sincronizará entre tus servidores y solo afectará tu experiencia.')
 
         if (languageChoice == 'en') {
-            // If the user choose English for their new language ... 
-            await profileModel.findOneAndUpdate({
-                userID: message.author.id
-                // ... it locates the user ...
-            }, {
-                $set: {
-                    language: languageChoice,
-                    // ... and sets the new language.
-                }
-            });
-            message.channel.send(languageSetEN);
-            // When it's done, returns a success message.
+            if (profileData.language === 'en') {
+                // This check will run to see if the user wants to set a language that is already using
+                return message.channel.send(alreadyUsingEN);
+            } else {
+                // If the user choose English for their new language ... 
+                await profileModel.findOneAndUpdate({
+                    userID: message.author.id
+                    // ... it locates the user ...
+                }, {
+                    $set: {
+                        language: languageChoice,
+                        // ... and sets the new language.
+                    }
+                });
+                message.channel.send(languageSetEN);
+                // When it's done, returns a success message.
+            };
         } else if (languageChoice == 'es') {
-            // If the user choose Spanish for their new language ... 
-            await profileModel.findOneAndUpdate({
-                userID: message.author.id
-                // ... it locates the user ...
-            }, {
-                $set: {
-                    language: languageChoice,
-                    // ... and sets the new language.
-                }
-            });
-            message.channel.send(languageSetES);
+            if (profileData.language === 'es') {
+                // This check will run to see if the user wants to set a language that is already using
+                return message.channel.send(alreadyUsingES);
+            } else {
+                // If the user choose Spanish for their new language ... 
+                await profileModel.findOneAndUpdate({
+                    userID: message.author.id
+                    // ... it locates the user ...
+                }, {
+                    $set: {
+                        language: languageChoice,
+                        // ... and sets the new language.
+                    }
+                });
+                message.channel.send(languageSetES);
+            };
             // When it's done, returns a success message.
         } else if (!languageChoice) {
             // If there is no language choice on the message ...
