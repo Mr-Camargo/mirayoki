@@ -1,1 +1,1 @@
-Worker: node src/Mirayoki.js
+Worker: node .
