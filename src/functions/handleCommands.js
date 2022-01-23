@@ -5,6 +5,7 @@ const date = new Date();
 
 const clientId = process.env.BOT_ID;
 const guildId = '834499596968656897';
+// This Guild ID is from the development server
 
 module.exports = (client) => {
     client.handleCommands = async (commandFolders, path) => {
@@ -21,6 +22,7 @@ module.exports = (client) => {
         }
 
         const rest = new REST({ version: '9' }).setToken(process.env.SECRET_TOKEN);
+        // This will be Discord's API that will be used to register application commands
 
         (async () => {
             try {
@@ -30,15 +32,19 @@ module.exports = (client) => {
                     Routes.applicationGuildCommands(clientId, guildId),
                     { body: client.commandArray },
                 );
+                /* This will update the application commands for 
+                the development server, making them available instantly. */
 
                 await rest.put(
                     Routes.applicationCommands(clientId),
                     { body: client.commandArray },
-                );                
+                );
+                /* This will update the application commands for all servers,
+                which may take up to one hour to be available on all of them. */             
 
                 console.log(`Updated application commands at ${date}`);
-            } catch (error) {
-                console.error(error);
+            } catch (err) {
+                console.error(err);
             }
         })();
 
