@@ -4,7 +4,7 @@ const fs = require('fs');
 const date = new Date();
 
 const clientId = process.env.BOT_ID;
-const guildId = '834499596968656897';
+const guildId = process.env.TESTING_SERVER_ID;
 // This Guild ID is from the development server
 
 module.exports = (client) => {
