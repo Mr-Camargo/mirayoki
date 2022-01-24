@@ -7,6 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ."
   },
+  "engines": {
+    "node": "16.x"
+  },
   "author": "Sebastián Camargo <camargo@tutamail.com> (https://github.com/Mr-Camargo)",
   "bugs": "https://github.com/Slashy-Studio/mirayoki/issues",
   "homepage": "https://github.com/Slashy-Studio/mirayoki",
@@ -21,8 +24,5 @@
     "fs": "0.0.1-security",
     "mongoose": "^6.1.7",
     "ms": "^2.1.3"
-  },
-  "engines": {
-  "node": "16.x",
-  },
+  }
 }

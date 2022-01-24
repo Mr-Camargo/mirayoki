@@ -27,11 +27,14 @@ module.exports = (client) => {
         (async () => {
             try {
                 console.log(`Started updating application commands at ${date}`);
-
-                await rest.put(
-                    Routes.applicationGuildCommands(clientId, guildId),
-                    { body: client.commandArray },
-                );
+                try {
+                    await rest.put(
+                        Routes.applicationGuildCommands(clientId, guildId),
+                        { body: client.commandArray },
+                    );
+                } catch (err) {
+                    console.error(`Application commands were not updated in testing server: ${err}`);
+                };
                 /* This will update the application commands for 
                 the development server, making them available instantly. */
 
