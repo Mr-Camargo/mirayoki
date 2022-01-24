@@ -79,6 +79,11 @@ module.exports = {
         const channel = client.channels.cache.get(channelOption.id);
         // These variables will hold the channel that was chosen on the option and its ID
 
+        const dontQuoteMe = new MessageEmbed()
+            .setColor('#FF5733')
+            .setTitle('Error')
+            .setDescription(`You cannot make Mirayoki the author of a quote.`)
+
         const sentQuote = new MessageEmbed()
             .setColor('#55C2FF')
             .setTitle('Quote sent')
@@ -92,30 +97,37 @@ module.exports = {
             .setFooter({ text: `${month} ${day}, ${year}` });
 
         if (channelOption.isText()) {
-            // However, if the user provided a valid quote...
-            channel.send({ embeds: [finalQuote] }).then(() => {
-                // ... it is sent to the 'quotes' channel ...
-                return interaction.reply({ embeds: [sentQuote] })
-                // ... and returns a success message.
-            }).catch((err) => {
-                throw err;
-                /* In case something goes internally wrong, an error 
-               will be logged into the console for developers to see and solve. */
-            });
+            // If the channel the used specified is a text one ...
+            if (user.id === process.env.BOT_ID) {
+                // If the author of the quote is Mirayoki ...
+                return interaction.reply({ embeds: [dontQuoteMe], ephemeral: true })
+                // ... returns an error message.
+            } else {
+                // However, if the user provided a valid quote...
+                channel.send({ embeds: [finalQuote] }).then(() => {
+                    // ... it is sent to the 'quotes' channel ...
+                    return interaction.reply({ embeds: [sentQuote] })
+                    // ... and returns a success message.
+                }).catch((err) => {
+                    throw err;
+                    /* In case something goes internally wrong, an error 
+                   will be logged into the console for developers to see and solve. */
+                });
+            };
         } else if (channelOption.isVoice()) {
             // If the channel the user mentioned is not a text channel but a voice channel ...
             const thatsAVoiceChannel = new MessageEmbed()
-            .setColor('#FF5733')
-            .setTitle('Error')
-            .setDescription(`Looks like <#${channel.id}> is a voice channel.`)
+                .setColor('#FF5733')
+                .setTitle('Error')
+                .setDescription(`Looks like <#${channel.id}> is a voice channel.`)
             return interaction.reply({ embeds: [thatsAVoiceChannel], ephemeral: true })
             // ... returns an error message.
-        } else if (!channelOption.isText() && !channelOption.isVoice()){
+        } else if (!channelOption.isText() && !channelOption.isVoice()) {
             // If the channel the user mentioned is not a text channel neither a voice one ...
             const invalidChannel = new MessageEmbed()
-            .setColor('#FF5733')
-            .setTitle('Error')
-            .setDescription(`Looks like the channel you mentioned is not a text channel.`)
+                .setColor('#FF5733')
+                .setTitle('Error')
+                .setDescription(`Looks like the channel you mentioned is not a text channel.`)
             return interaction.reply({ embeds: [invalidChannel], ephemeral: true })
             // ... returns an error message.
         };
