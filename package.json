@@ -1,6 +1,6 @@
 {
   "name": "mirayoki",
-  "version": "0.2.5",
+  "version": "0.3.2",
   "description": "World's most efficient and powerful Discord bot.",
   "main": "src/Mirayoki.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "start": "node ."
   },
   "engines": {
-    "node": "16.x"
+    "node": ">=16.6"
   },
   "author": "Sebastián Camargo <camargo@tutamail.com> (https://github.com/Mr-Camargo)",
   "bugs": "https://github.com/Slashy-Studio/mirayoki/issues",
@@ -23,6 +23,7 @@
     "dotenv": "^8.2.0",
     "fs": "0.0.1-security",
     "mongoose": "^6.1.7",
-    "ms": "^2.1.3"
+    "ms": "^2.1.3",
+    "node-fetch": "^2.6.7"
   }
 }
