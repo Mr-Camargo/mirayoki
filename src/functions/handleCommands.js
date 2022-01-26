@@ -27,6 +27,9 @@ module.exports = (client) => {
         (async () => {
             try {
                 console.log(`Started updating application commands at ${date}`);
+                module.exports = function () {
+                    return 'Passed checks'
+                }
                 try {
                     await rest.put(
                         Routes.applicationGuildCommands(clientId, guildId),

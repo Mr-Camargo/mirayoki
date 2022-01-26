@@ -28,4 +28,7 @@ console.log(`Started a deploy at ${date}`);
     // This will login Mirayoki to the MongoDB
     client.login(process.env.SECRET_TOKEN);
     // This finally logs in Mirayoki into Discord's servers.
+    module.exports = function () {
+        return 'Passed checks'
+    }
 })();
