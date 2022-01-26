@@ -2,6 +2,12 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "command": "npm test",
+            "name": "Run Tests",
+            "request": "launch",
+            "type": "node-terminal"
+        },
+        {
             "type": "pwa-node",
             "request": "launch",
             "name": "Test Mirayoki",
