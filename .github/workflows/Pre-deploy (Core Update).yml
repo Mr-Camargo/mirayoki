@@ -1,0 +1,86 @@
+name: Pre-deploy (Core)
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+    - 'models/**'
+    - 'node_modules/**'
+    - 'src/**'
+    - 'test/**'
+
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+        
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    - name: Reinstall packages
+      run: npm ci
+    - name: Initialize Mirayoki
+      run: npm test
+      env:
+        SECRET_TOKEN: ${{ secrets.SECRET_TOKEN }}
+        MONGO_SRV: ${{ secrets.MONGO_SRV }}
+        VERSION: Pre-Deploy CI Build
+        BOT_ID: ${{ secrets.BOT_ID }}
+        ACTIVITY_TYPE: PLAYING
+        ACTIVITY: with CI builds
+        TESTING_SERVER_ID: ${{ secrets.TESTING_SERVER_ID }}
+  Analyze:
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [ 'javascript' ]
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v1
+      with:
+        languages: ${{ matrix.language }}
+
+    - name: Autobuild
+      uses: github/codeql-action/autobuild@v1
+      
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v1
+
+  Tweet:
+      needs: [Build, Analyze]
+      runs-on: ubuntu-latest
+      steps:
+      - uses: lazy-actions/tweet-action@main
+        with:
+          data: |
+                {
+                  "title": "${{ github.sha }}",
+                  "url": "https://github.com/${{ github.repository }}/commit/${{ github.sha }}"
+                }
+          template: |
+            Deploying soon! 🚀 
+            
+            The latest commit to Mirayoki (<%- title %>) is being rolled out to all users right now. 🛠
+            
+            👀 Check out what's new: <%- url %>'
+          oauth_consumer_key: ${{ secrets.TWITTER_CONSUMER_KEY }}
+          oauth_consumer_secret: ${{ secrets.TWITTER_CONSUMER_KEY_SECRET }}
+          oauth_token: ${{ secrets.TWITTER_USER_TOKEN }}
+          oauth_token_secret: ${{ secrets.TWITTER_USER_TOKEN_SECRET }}

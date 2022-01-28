@@ -1,0 +1,59 @@
+name: PR Check
+
+on:
+  pull_request:
+    branches: [ main ]
+    
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+        
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    - name: Reinstall packages
+      run: npm ci
+    - name: Initialize Mirayoki
+      run: npm test
+      env:
+        SECRET_TOKEN: ${{ secrets.SECRET_TOKEN }}
+        MONGO_SRV: ${{ secrets.MONGO_SRV }}
+        VERSION: Pre-Deploy CI Build
+        BOT_ID: ${{ secrets.BOT_ID }}
+        ACTIVITY_TYPE: PLAYING
+        ACTIVITY: with CI builds
+        TESTING_SERVER_ID: ${{ secrets.TESTING_SERVER_ID }}
+  Analyze:
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [ 'javascript' ]
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v1
+      with:
+        languages: ${{ matrix.language }}
+
+    - name: Autobuild
+      uses: github/codeql-action/autobuild@v1
+      
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v1

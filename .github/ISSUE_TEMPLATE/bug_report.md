@@ -26,7 +26,8 @@ If you can, add screenshots so we can analyze your problem better.
 **Desktop or Web Client (please complete the following information):**
  - OS: [e.g. macOS]
  - Browser: [e.g. Chrome, Safari, Firefox]
- - Version: [You can usually find it on the help menu of your browser.]
+   - Browser Version: [You can usually find it on the help menu of your browser.]
+ - Discord Version: [e.g Canary Build 69420]
 
 **Smartphone Client (please complete the following information):**
  - Device: [e.g. iPhone 12]

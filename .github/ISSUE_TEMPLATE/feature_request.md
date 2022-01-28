@@ -1,6 +1,6 @@
 ---
 name: Feature request
-about: Suggest a feature or idea for Mirayoki.
+about: Suggest a feature, idea or command for Mirayoki.
 title: "[FEATURE]"
 labels: enhancement
 assignees: Mr-Camargo
