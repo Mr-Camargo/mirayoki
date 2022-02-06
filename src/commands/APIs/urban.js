@@ -8,7 +8,7 @@ const trim = (str, max) => ((str.length > max) ? `${str.slice(0, max - 3)}...` :
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('urban')
-        .setDescription(`Look for a word in the Urban Dictionary`)
+        .setDescription(`Look up a word in Urban Dictionary`)
         .addStringOption(option => option.setName('word').setDescription('The word/phrase you want to lookup').setRequired(true)),
 
     async execute(interaction, client) {
@@ -25,7 +25,7 @@ module.exports = {
                 .setTitle('Error')
                 .setDescription(`No definition was found for **${term}**`);
 
-            return interaction.editReply({ embeds: [noDefinition] });
+            return await interaction.editReply({ embeds: [noDefinition] });
         }
 
         const [answer] = list;
@@ -40,8 +40,8 @@ module.exports = {
                 { name: 'Author', value: `${answer.author}`, inline: true },
                 { name: 'Rating', value: `${answer.thumbs_up} 👍 ${answer.thumbs_down} 👎`, inline: true }
             )
-            .setFooter({ text: 'From urbandictionary.com' });
+            .setFooter({ text: 'Data from urbandictionary.com' });
 
-        return interaction.editReply({ embeds: [definition] });
+        return await interaction.editReply({ embeds: [definition] });
     }
 };
