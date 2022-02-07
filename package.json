@@ -1,14 +1,14 @@
 {
   "name": "mirayoki",
-  "version": "0.3.3",
+  "version": "0.0.0",
   "description": "World's most efficient and powerful Discord bot.",
   "main": "src/Mirayoki.js",
   "scripts": {
     "test": "mocha",
-    "start": "node ."
+    "start": "node src/Mirayoki.js"
   },
   "engines": {
-    "node": ">=16.6"
+    "node": ">=16.9"
   },
   "author": "Sebastián Camargo <camargo@tutamail.com> (https://github.com/Mr-Camargo)",
   "bugs": "https://github.com/Slashy-Studio/mirayoki/issues",

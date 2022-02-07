@@ -17,13 +17,13 @@ Thank you again!
 
 ## What's being changed:
 
-<!-- Share artifacts of the changes, be they code snippets, GIFs or screenshots; whatever let us see the most context. -->
+<!-- Share artifacts of the changes, be they code snippets, GIFs, or screenshots; whatever let us see the most context. -->
 
 ### Extra information:
 
 <!-- Please check off the following information if it applies -->
 
-- [ ] This contribution affects settings/action/profiles of the database
+- [ ] This contribution affects settings/actions/profiles of the database
 
 - [ ] This contribution includes translations to languages other than English
 

@@ -3,14 +3,14 @@
     "configurations": [
         {
             "command": "npm test",
-            "name": "Run Tests",
+            "name": "Initialization Checks",
             "request": "launch",
             "type": "node-terminal"
         },
         {
             "type": "pwa-node",
             "request": "launch",
-            "name": "Test Mirayoki",
+            "name": "Deploy Mirayoki as Notaro",
             "skipFiles": [
                 "<node_internals>/**"
             ],

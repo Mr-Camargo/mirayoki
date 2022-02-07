@@ -1,12 +1,16 @@
 # Contributing to Mirayoki
 
-First of all, if you are reading this and you have the interest of proposing a change in Mirayoki's code, thank you for taking the time to make Mirayoki better! 🎉
+First of all, if you are reading this and you are interested in proposing a change in Mirayoki's code, thank you for taking the time to make Mirayoki better! 🎉
 
-Below there are some things you should have on mind before making your first pull request/issue:
+Below there are some things you should have in mind before making your first pull request/issue:
 
 ## Wait, I just have a question!
 
-For any questions or doubts you have about Mirayoki, feel free to [join our Discord Server](https://discord.gg/sbxGVCxdTQ).
+For any questions or doubts you have, feel free to [join our Discord Server](https://discord.gg/sbxGVCxdTQ).
+
+## **Important**
+
+If you found a security vulnerability and want to help fix it, **DO NOT** open any pull requests or issues, but check out [how can you report a security vulnerability](SECURITY.md).
 
 ---
 
@@ -20,13 +24,13 @@ To start, please [fork Mirayoki's repository](https://docs.github.com/en/get-sta
 
 Following contributions may be accepted:
 
-- Grammatical errors or typos inside the code or to content displayed to the end user
+- Grammatical errors or typos inside the code or to content displayed to the end-user
 - More precise translations for supported languages
 - Fixes that may make code stronger
-- New functions/commands that are useful to the end user or to the developers
+- New functions/commands that are useful to the end-user or to the developers
 - Improvements on existing code
 
-Any other kind of contributions may be discussed with proyect mantainers, which have the final say.
+Any other kind of contributions may be discussed with project maintainers, which have the final say.
 
 ### Making a pull request
 
@@ -37,13 +41,13 @@ On your pull request be sure to include:
 - Why are you making the change
   - If there is an existing issue that mentions the change you are making, link it.
 - What are you changing
-  - Give a brief explanation on how the changes you made work.
+  - Give a brief explanation of how the changes you made work.
 - Extra information
-  - Other information which may help us understand your changes better.
+  - Other information that may help us understand your changes better.
 
 > Please, make sure **your code works correctly.**
 
-Once you have submitted your PR, we will return to you in less than 48 hours.
+Once you have submitted your PR, we will reply to you in less than 48 hours.
 
 ---
 
@@ -51,6 +55,6 @@ Once you have submitted your PR, we will return to you in less than 48 hours.
 
 If you don't want to open a Pull Request, you can contribute by opening an issue too!
 
-Creating an issue let us see your idea/problem and let us fix it, so you do not have to write a single line of code.
+Creating an issue lets us see your idea/problem and let us fix it, so you do not have to write a single line of code.
 
 To start, [create a new issue](https://github.com/Slashy-Studio/mirayoki/issues/new/choose), and follow the instructions to use an issue template.

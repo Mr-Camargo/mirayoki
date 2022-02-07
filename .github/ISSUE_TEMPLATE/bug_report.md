@@ -8,7 +8,7 @@ assignees: ''
 ---
 
 **Define 'Bug'**
-Tell us what's wrong, how the bug looks and affects your experience.
+Tell us what's wrong, how the bug looks, and affects your experience.
 
 **Reproducing the bug**
 Tell us what happened before you found the bug, please consider that we can't reproduce bugs that involve command spamming or database abuse:
@@ -32,7 +32,7 @@ If you can, add screenshots so we can analyze your problem better.
 **Smartphone Client (please complete the following information):**
  - Device: [e.g. iPhone 12]
  - OS: [e.g. iOS 15 Closed Developer Beta]
- - Version of Discord client [Find it on the settings section.]
+ - The version of Discord client [Find it on the settings section.]
 
 **Additional information**
-Add any other information that could help us solving the bug here.
+Add any other information that could help us solve the bug here.
