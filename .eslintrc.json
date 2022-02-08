@@ -3,6 +3,7 @@
         "node": true,
         "es2021": true
     },
+    "ignorePatterns": ["src/Mirayoki.js", "node_modules/*"],
     "extends": "eslint:recommended",
     "parserOptions": {
         "ecmaVersion": "latest"
