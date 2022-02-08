@@ -26,8 +26,10 @@ jobs:
         cache: 'npm'
     - name: Reinstall packages
       run: npm ci
+    - name: Run eslint
+      run: npm run lint
     - name: Initialize Mirayoki
-      run: npm test
+      run: npm run test
       env:
         SECRET_TOKEN: ${{ secrets.SECRET_TOKEN }}
         MONGO_SRV: ${{ secrets.MONGO_SRV }}
@@ -71,13 +73,13 @@ jobs:
         with:
           data: |
                 {
-                  "title": "${{ github.sha }}",
+                  "commit": "${{ github.sha }}",
                   "url": "https://github.com/${{ github.repository }}/commit/${{ github.sha }}"
                 }
           template: |
             Deploying soon! 🚀 
             
-            The latest commit to Mirayoki (<%- title %>) is being rolled out to all users right now. 🛠
+            The latest commit to Mirayoki (<%- commit %>) is being rolled out to all users right now. 🛠
             
             👀 Check out what's new: <%- url %>'
           oauth_consumer_key: ${{ secrets.TWITTER_CONSUMER_KEY }}

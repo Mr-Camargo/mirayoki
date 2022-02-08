@@ -26,8 +26,10 @@ jobs:
         cache: 'npm'
     - name: Reinstall packages
       run: npm ci
+    - name: Run eslint
+      run: npm run lint
     - name: Initialize Mirayoki
-      run: npm test
+      run: npm run test
       env:
         SECRET_TOKEN: ${{ secrets.SECRET_TOKEN }}
         MONGO_SRV: ${{ secrets.MONGO_SRV }}

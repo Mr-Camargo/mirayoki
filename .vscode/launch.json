@@ -2,6 +2,18 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "command": "npm run lint",
+            "name": "Run eslint checks",
+            "request": "launch",
+            "type": "node-terminal"
+        },
+        {
+            "command": "npm run lintFix",
+            "name": "Fix eslint errors",
+            "request": "launch",
+            "type": "node-terminal"
+        },
+        {
             "command": "npm test",
             "name": "Initialization Checks",
             "request": "launch",

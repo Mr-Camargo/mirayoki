@@ -19,16 +19,16 @@ console.log(`Started a deploy at ${date}`);
 // Once you start running Mirayoki, this timestamp will be displayed on the console.
 
 (async () => {
-    for (file of functions) {
-        require(`./functions/${file}`)(client);
-    }
-    client.handleEvents(eventFiles, "./src/events");
-    client.handleCommands(commandFolders, "./src/commands");
-    client.dbLogin();
-    // This will login Mirayoki to the MongoDB
-    client.login(process.env.SECRET_TOKEN);
-    // This finally logs in Mirayoki into Discord's servers.
-    module.exports = function () {
-        return 'Passed checks'
-    }
+	for (file of functions) {
+		require(`./functions/${file}`)(client);
+	}
+	client.handleEvents(eventFiles, './src/events');
+	client.handleCommands(commandFolders, './src/commands');
+	client.dbLogin();
+	// This will login Mirayoki to the MongoDB
+	client.login(process.env.SECRET_TOKEN);
+	// This finally logs in Mirayoki into Discord's servers.
+	module.exports = function () {
+		return 'Passed checks';
+	};
 })();
