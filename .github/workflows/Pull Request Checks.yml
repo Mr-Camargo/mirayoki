@@ -1,4 +1,4 @@
-name: PR Check
+name: PR Checks
 
 on:
   pull_request:
@@ -7,30 +7,37 @@ on:
 jobs:
   Build:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [16.x]
         
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Checkout ${{ github.repository }}
+      uses: actions/checkout@v2
+    - name: Setup Node.js v16
       uses: actions/setup-node@v2
       with:
-        node-version: ${{ matrix.node-version }}
+        node-version: 16.x
         cache: 'npm'
     - name: Reinstall packages
       run: npm ci
-    - name: Initialize Mirayoki
-      run: npm test
+    - name: Initialize bot
+      run: npm run test
       env:
         SECRET_TOKEN: ${{ secrets.SECRET_TOKEN }}
         MONGO_SRV: ${{ secrets.MONGO_SRV }}
-        VERSION: Pre-Deploy CI Build
+        VERSION: Pull Request Checks
         BOT_ID: ${{ secrets.BOT_ID }}
         ACTIVITY_TYPE: PLAYING
-        ACTIVITY: with CI builds
+        ACTIVITY: with PR builds
         TESTING_SERVER_ID: ${{ secrets.TESTING_SERVER_ID }}
+
+  Eslint:
+    runs-on: ubuntu-latest
+          
+    steps:
+      - name: Checkout ${{ github.repository }}
+        uses: actions/checkout@v2
+      - name: Run eslint checks
+        run: npm run lint
+      
   Analyze:
     runs-on: ubuntu-latest
     permissions:
@@ -40,17 +47,15 @@ jobs:
 
     strategy:
       fail-fast: false
-      matrix:
-        language: [ 'javascript' ]
 
     steps:
-    - name: Checkout repository
+    - name: Checkout ${{ github.repository }}
       uses: actions/checkout@v2
 
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v1
       with:
-        languages: ${{ matrix.language }}
+        languages: 'javascript'
 
     - name: Autobuild
       uses: github/codeql-action/autobuild@v1

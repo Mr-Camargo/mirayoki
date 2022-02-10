@@ -1,33 +1,23 @@
-name: Pre-deploy (Core)
+name: Pre-deploy
 
 on:
   push:
     branches: [ main ]
-    paths:
-    - 'models/**'
-    - 'node_modules/**'
-    - 'src/**'
-    - 'test/**'
 
 jobs:
   Build:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [16.x]
         
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Checkout ${{ github.repository }}
+      uses: actions/checkout@v2
+    - name: Setup Node.js v16
       uses: actions/setup-node@v2
       with:
-        node-version: ${{ matrix.node-version }}
+        node-version: 16.x
         cache: 'npm'
     - name: Reinstall packages
       run: npm ci
-    - name: Run eslint
-      run: npm run lint
     - name: Initialize Mirayoki
       run: npm run test
       env:
@@ -38,6 +28,16 @@ jobs:
         ACTIVITY_TYPE: PLAYING
         ACTIVITY: with CI builds
         TESTING_SERVER_ID: ${{ secrets.TESTING_SERVER_ID }}
+
+  Eslint:
+    runs-on: ubuntu-latest
+          
+    steps:
+      - name: Checkout ${{ github.repository }}
+        uses: actions/checkout@v2
+      - name: Run eslint checks
+        run: npm run lint
+      
   Analyze:
     runs-on: ubuntu-latest
     permissions:
@@ -47,17 +47,15 @@ jobs:
 
     strategy:
       fail-fast: false
-      matrix:
-        language: [ 'javascript' ]
 
     steps:
-    - name: Checkout repository
+    - name: Checkout ${{ github.repository }}
       uses: actions/checkout@v2
 
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v1
       with:
-        languages: ${{ matrix.language }}
+        languages: 'javascript'
 
     - name: Autobuild
       uses: github/codeql-action/autobuild@v1
@@ -66,10 +64,24 @@ jobs:
       uses: github/codeql-action/analyze@v1
 
   Tweet:
-      needs: [Build, Analyze]
+      needs: [Build, Analyze, Eslint]
       runs-on: ubuntu-latest
+      if: github.repository == 'Slashy-Studio/mirayoki'
       steps:
-      - uses: lazy-actions/tweet-action@main
+      - name: Checkout ${{ github.repository }}
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Check if the user experience has been modified
+        id: changed-files-specific
+        uses: tj-actions/changed-files@v14.5
+        with:
+          files: |
+            src/**
+          since_last_remote_commit: "true"
+      - name: Send tweet
+        if: steps.changed-files-specific.outputs.any_changed == 'true'
+        uses: lazy-actions/tweet-action@main
         with:
           data: |
                 {
