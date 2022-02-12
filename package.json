@@ -10,7 +10,7 @@
     "lintFix": "eslint src/** --fix --ext .js,.json --format mo"
   },
   "engines": {
-    "node": ">=16.9"
+    "node": "16.14.0"
   },
   "author": "Sebastián Camargo <camargo@tutamail.com> (https://github.com/Mr-Camargo)",
   "bugs": "https://github.com/Slashy-Studio/mirayoki/issues",

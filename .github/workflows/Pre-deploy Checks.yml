@@ -100,13 +100,13 @@ jobs:
          EOF    
       - name: Log in into Heroku
         run: heroku login
-      - name: Set version to latest commit
+      - name: Set version to the latest commit of ${{ github.repository }}
         run: |
          GIT_COMMIT=${{ github.sha }}
          heroku config:set COMMIT=${GIT_COMMIT::7} -a ${{ secrets.HEROKU_APP_NAME }}
-      - name: Add remote to Heroku
+      - name: Add ${{ github.repository }} as a remote for Heroku
         run: heroku git:remote -a ${{ secrets.HEROKU_APP_NAME }}   
-      - name: Push to Heroku
+      - name: Push ${{ github.repository }} to Heroku
         run: git push heroku HEAD:main -f
 
   Tweet:
