@@ -48,6 +48,10 @@ jobs:
           files: |
             src/**
             test/**
+            node_modules/**
+            package.json
+            package-lock.json
+            Procfile
           since_last_remote_commit: "true"
       - name: Indicate that the user experience has changed
         id: changed-files
