@@ -37,7 +37,7 @@ module.exports = {
 			.setColor('#55C2FF')
 			.setTitle('You threw a die...')
 			.setDescription(`**${diceResult}.**`)
-			.setFooter({ text: `Threw a dice with ${numberFaces} faces.`});
+			.setFooter({ text: `Threw a dice with ${numberFaces} faces.` });
 
 		return await interaction.reply({ embeds: [finalDice] });
 		// Returns a success message with the result

@@ -27,7 +27,7 @@ module.exports = (client) => {
 		(async () => {
 			try {
 				console.log(`Started updating application commands at ${date}`);
-				module.exports = function () {
+				module.exports = function() {
 					return 'Passed checks';
 				};
 				try {
@@ -38,7 +38,7 @@ module.exports = (client) => {
 				} catch (err) {
 					console.error(`Application commands were not updated in testing server: ${err}`);
 				}
-				/* This will update the application commands for 
+				/* This will update the application commands for
                 the development server, making them available instantly. */
 
 				await rest.put(
@@ -46,7 +46,7 @@ module.exports = (client) => {
 					{ body: client.commandArray },
 				);
 				/* This will update the application commands for all servers,
-                which may take up to one hour to be available on all of them. */             
+                which may take up to one hour to be available on all of them. */
 
 				console.log(`Updated application commands at ${date}`);
 			} catch (err) {

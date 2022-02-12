@@ -5,7 +5,7 @@ module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('color')
 		.setDescription('Choose your favorite color'),
-        
+
 	async execute(interaction, client) {
 		const row = new MessageActionRow()
 			.addComponents(
@@ -49,6 +49,6 @@ module.exports = {
 					])
 			);
 
-		await interaction.reply({ content: 'What is your fav color?', components: [row]});
+		await interaction.reply({ content: 'What is your fav color?', components: [row] });
 	}
 };

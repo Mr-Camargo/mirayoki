@@ -18,8 +18,8 @@ module.exports = {
 			.setColor('#55C2FF')
 			.setTitle('Pong!')
 			.setDescription(`Latency is ${sent.createdTimestamp - interaction.createdTimestamp}ms`);
-			
-		interaction.editReply({ embeds: [ping]});
+
+		interaction.editReply({ embeds: [ping] });
 		/* Returns an informative message with the ping, which is calculated
 		with the time the Bot took to read and reply to the message. */
 	},

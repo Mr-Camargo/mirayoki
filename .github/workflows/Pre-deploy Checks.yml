@@ -31,12 +31,28 @@ jobs:
 
   Eslint:
     runs-on: ubuntu-latest
+    outputs:
+      changed-files: ${{ steps.changed-files.outputs.changedfiles }}
           
     steps:
       - name: Checkout ${{ github.repository }}
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 
       - name: Run eslint checks
         run: npm run lint
+      - name: Check if the user experience has been modified
+        id: changed-files-specific
+        uses: tj-actions/changed-files@v14.5
+        with:
+          files: |
+            src/**
+            test/**
+          since_last_remote_commit: "true"
+      - name: Indicate that the user experience has changed
+        id: changed-files
+        if: steps.changed-files-specific.outputs.any_changed == 'true'
+        run: echo "::set-output name=changedfiles::true"
       
   Analyze:
     runs-on: ubuntu-latest
@@ -63,24 +79,42 @@ jobs:
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
 
-  Tweet:
-      needs: [Build, Analyze, Eslint]
-      runs-on: ubuntu-latest
-      if: github.repository == 'Slashy-Studio/mirayoki'
-      steps:
+  Deploy:
+    needs: [Build, Analyze, Eslint]
+    if: needs.Eslint.outputs.changed-files == 'true' && github.repository == 'Slashy-Studio/mirayoki'
+    runs-on: ubuntu-latest
+    steps:
       - name: Checkout ${{ github.repository }}
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - name: Check if the user experience has been modified
-        id: changed-files-specific
-        uses: tj-actions/changed-files@v14.5
-        with:
-          files: |
-            src/**
-          since_last_remote_commit: "true"
+      - name: Add credentials to Heroku
+        run: |
+         cat >~/.netrc <<EOF
+         machine api.heroku.com
+          login ${{ secrets.HEROKU_EMAIL }}
+          password ${{ secrets.HEROKU_API_KEY }}
+         machine git.heroku.com
+          login ${{ secrets.HEROKU_EMAIL }}
+          password ${{ secrets.HEROKU_API_KEY }}
+         EOF    
+      - name: Log in into Heroku
+        run: heroku login
+      - name: Set version to latest commit
+        run: |
+         GIT_COMMIT=${{ github.sha }}
+         heroku config:set COMMIT=${GIT_COMMIT::7} -a ${{ secrets.HEROKU_APP_NAME }}
+      - name: Add remote to Heroku
+        run: heroku git:remote -a ${{ secrets.HEROKU_APP_NAME }}   
+      - name: Push to Heroku
+        run: git push heroku HEAD:main -f
+
+  Tweet:
+      needs: [Build, Analyze, Eslint, Deploy]
+      runs-on: ubuntu-latest
+      if: needs.Eslint.outputs.changed-files == 'true' && github.repository == 'Slashy-Studio/mirayoki'
+      steps:
       - name: Send tweet
-        if: steps.changed-files-specific.outputs.any_changed == 'true'
         uses: lazy-actions/tweet-action@main
         with:
           data: |

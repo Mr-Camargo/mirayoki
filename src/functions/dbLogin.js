@@ -4,9 +4,9 @@ const mongoEventFiles = fs.readdirSync('./src/mongoEvents').filter(file => file.
 
 module.exports = (client) => {
 	client.dbLogin = async () => {
-		module.exports = function () {
+		module.exports = function() {
 			return 'Passed checks';
-		}; 
+		};
 		for (file of mongoEventFiles) {
 			const event = require(`../mongoEvents/${file}`);
 			if (event.once) {

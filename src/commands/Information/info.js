@@ -75,10 +75,10 @@ module.exports = {
 				.setTitle(`This is **${interaction.guild.name}**.`)
 				.setThumbnail(`${interaction.guild.iconURL({ dynamic: true })}`)
 				.addFields(
-					{ name: 'Server Name', value: `${interaction.guild.name}`},
-					{ name: 'Server ID', value: `${interaction.guild.id}`},
-					{ name: 'Created at:', value: `${interaction.guild.createdAt}`},
-					{ name: 'Owned by:', value: `<@!${interaction.guild.ownerId}>`},
+					{ name: 'Server Name', value: `${interaction.guild.name}` },
+					{ name: 'Server ID', value: `${interaction.guild.id}` },
+					{ name: 'Created at:', value: `${interaction.guild.createdAt}` },
+					{ name: 'Owned by:', value: `<@!${interaction.guild.ownerId}>` },
 				)
 				.setFooter({ text: 'This server is pretty cool!' });
 

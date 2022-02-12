@@ -30,7 +30,7 @@ module.exports = {
 			.setTitle('Access denied')
 			.setDescription('You don\'t have the **Manage Messages** permission to run this command.');
 
-		let cleared = new MessageEmbed()
+		const cleared = new MessageEmbed()
 
 			.setColor('#55C2FF')
 			.setTitle(`${quantity} messages cleared successfully!`);

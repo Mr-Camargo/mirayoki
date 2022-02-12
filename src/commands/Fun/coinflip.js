@@ -27,7 +27,7 @@ module.exports = {
 			.setTitle('You flipped a coin...')
 			.setDescription(`**${coin}.**`);
 
-		return interaction.reply({ embeds: [flippedCoin]});
+		return interaction.reply({ embeds: [flippedCoin] });
 		// Returns a success message with the result
 	}
 };

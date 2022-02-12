@@ -1,8 +1,8 @@
 module.exports = (client) => {
 	client.handleEvents = async (eventFiles, path) => {
-		module.exports = function () {
+		module.exports = function() {
 			return 'Passed checks';
-		};  
+		};
 		for (const file of eventFiles) {
 			const event = require(`../events/${file}`);
 			if (event.once) {

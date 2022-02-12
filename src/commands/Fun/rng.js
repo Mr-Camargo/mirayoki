@@ -32,7 +32,7 @@ module.exports = {
 			// If there is only one option chosen
 
 			minNumber = 1;
-			/* As there is no option to define the minimum number, 
+			/* As there is no option to define the minimum number,
             the Bot will generate by default a random number using 1
             as a minimum number */
 
@@ -55,7 +55,7 @@ module.exports = {
 		} else {
 			// If the checks above have passed ...
 
-			const randomNumber = Math.floor(Math.random() * (maxNumber - minNumber + 1) ) + minNumber;
+			const randomNumber = Math.floor(Math.random() * (maxNumber - minNumber + 1)) + minNumber;
 			// Generate a random number using the specified set
 
 			const finalRng = new MessageEmbed()

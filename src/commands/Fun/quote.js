@@ -10,7 +10,7 @@ module.exports = {
 
 	async execute(interaction, client) {
 
-		let quote = interaction.options.getString('message');
+		const quote = interaction.options.getString('message');
 		/* This will get all the content on the 'message' string */
 
 		let user;
@@ -110,7 +110,7 @@ module.exports = {
 					// ... and returns a success message.
 				}).catch((err) => {
 					throw err;
-					/* In case something goes internally wrong, an error 
+					/* In case something goes internally wrong, an error
                    will be logged into the console for developers to see and solve. */
 				});
 			}
