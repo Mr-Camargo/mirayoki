@@ -1,5 +1,6 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MessageEmbed } = require('discord.js');
+const trim = (str, max) => ((str.length > max) ? `${str.slice(0, max - 3)}...` : str);
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('quote')
@@ -87,13 +88,22 @@ module.exports = {
 		const sentQuote = new MessageEmbed()
 			.setColor('#55C2FF')
 			.setTitle('Quote sent')
-			.setDescription(`You just quoted *"${quote}"*, and will be preserved, for life, in the <#${channel.id}> channel.`)
+			.setDescription(`You just quoted *"${trim(quote, 917)}"*, and will be preserved, for life, in the <#${channel.id}> channel.`)
 			.setFooter({ text: `Sent on ${month} ${day}, ${year}` });
+
+		const longQuote = new MessageEmbed()
+			.setColor('#FF5733')
+			.setTitle('Error')
+			.setDescription('That is a very long quote.')
+			.addFields(
+				{ name: 'Try again?', value: 'Maybe you want to make your quote smaller. If so, here it is so you don\'t have to write it all over again.' },
+				{ name: 'Your quote', value: trim(quote, 1024) }
+			);
 
 		const finalQuote = new MessageEmbed()
 			.setColor('#FFC300')
 			.setAuthor({ name: user.tag, iconURL: user.displayAvatarURL() })
-			.setDescription(`*${quote}*`)
+			.setDescription(`*${trim(quote, 1022)}*`)
 			.setFooter({ text: `${month} ${day}, ${year}` });
 
 		if (channelOption.isText()) {
@@ -103,6 +113,9 @@ module.exports = {
 				return interaction.reply({ embeds: [dontQuoteMe], ephemeral: true });
 				// ... returns an error message.
 			} else {
+				if (quote.length >= 1022) {
+					return interaction.reply({ embeds: [longQuote], ephemeral: true });
+				}
 				// However, if the user provided a valid quote...
 				channel.send({ embeds: [finalQuote] }).then(() => {
 					// ... it is sent to the 'quotes' channel ...

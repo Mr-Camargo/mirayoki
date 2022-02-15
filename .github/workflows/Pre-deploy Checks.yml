@@ -32,8 +32,8 @@ jobs:
   Eslint:
     runs-on: ubuntu-latest
     outputs:
-      changed-files: ${{ steps.changed-files.outputs.changedfiles }}
-          
+      commitSHA: ${{ steps.commit-information.outputs.commitSHA }}
+      changed-files: ${{ steps.changed-files.outputs.changedfiles }} 
     steps:
       - name: Checkout ${{ github.repository }}
         uses: actions/checkout@v2
@@ -41,6 +41,12 @@ jobs:
           fetch-depth: 0 
       - name: Run eslint checks
         run: npm run lint
+      - name: Get latest commit SHA for ${{ github.repository }}
+        id: commit-information
+        run: |
+         GIT_COMMIT=${{ github.sha }}
+         MODIFIED_COMMIT=${GIT_COMMIT::7}
+         echo "::set-output name=commitSHA::${MODIFIED_COMMIT}"
       - name: Check if the user experience has been modified
         id: changed-files-specific
         uses: tj-actions/changed-files@v14.5
@@ -65,9 +71,6 @@ jobs:
       contents: read
       security-events: write
 
-    strategy:
-      fail-fast: false
-
     steps:
     - name: Checkout ${{ github.repository }}
       uses: actions/checkout@v2
@@ -87,6 +90,8 @@ jobs:
     needs: [Build, Analyze, Eslint]
     if: needs.Eslint.outputs.changed-files == 'true' && github.repository == 'Slashy-Studio/mirayoki'
     runs-on: ubuntu-latest
+    env:
+     HEROKU_APP_NAME: mirayoki
     steps:
       - name: Checkout ${{ github.repository }}
         uses: actions/checkout@v2
@@ -105,25 +110,27 @@ jobs:
       - name: Log in into Heroku
         run: heroku login
       - name: Set version to the latest commit of ${{ github.repository }}
-        run: |
-         GIT_COMMIT=${{ github.sha }}
-         heroku config:set COMMIT=${GIT_COMMIT::7} -a ${{ secrets.HEROKU_APP_NAME }}
+        run: heroku config:set COMMIT=${{ env.commitSHA }} -a ${{ env.HEROKU_APP_NAME }}
+        env:
+         commitSHA: ${{ needs.Eslint.outputs.commitSHA }}
       - name: Add ${{ github.repository }} as a remote for Heroku
-        run: heroku git:remote -a ${{ secrets.HEROKU_APP_NAME }}   
+        run: heroku git:remote -a ${{ env.HEROKU_APP_NAME }}  
       - name: Push ${{ github.repository }} to Heroku
         run: git push heroku HEAD:main -f
 
   Tweet:
       needs: [Build, Analyze, Eslint, Deploy]
-      runs-on: ubuntu-latest
       if: needs.Eslint.outputs.changed-files == 'true' && github.repository == 'Slashy-Studio/mirayoki'
+      runs-on: ubuntu-latest
+      env:
+        commitSHA: ${{ needs.Eslint.outputs.commitSHA }}
       steps:
       - name: Send tweet
         uses: lazy-actions/tweet-action@main
         with:
           data: |
                 {
-                  "commit": "${{ github.sha }}",
+                  "commit": "${{ env.commitSHA }}",
                   "url": "https://github.com/${{ github.repository }}/commit/${{ github.sha }}"
                 }
           template: |

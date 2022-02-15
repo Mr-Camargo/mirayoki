@@ -17,7 +17,7 @@ To bring the power of Mirayoki to your server, [invite it](https://discord.com/a
 
 To start contributing to Mirayoki, you do not need to write a single line of code.
 
-To learn more, and to create a new Pull Request or Issue, check out our [contributing guidelines](CONTRIBUTING.md).
+Before creating an issue or opening a pull request, make sure to read the [contribution guidelines](CONTRIBUTING.md).
 
 ## License
 

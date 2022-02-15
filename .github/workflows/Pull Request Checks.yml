@@ -45,9 +45,6 @@ jobs:
       contents: read
       security-events: write
 
-    strategy:
-      fail-fast: false
-
     steps:
     - name: Checkout ${{ github.repository }}
       uses: actions/checkout@v2
