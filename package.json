@@ -6,8 +6,8 @@
   "scripts": {
     "test": "mocha",
     "start": "node src/Mirayoki.js",
-    "lint": "eslint src/** --ext .js,.json --format mo",
-    "lintFix": "eslint src/** --fix --ext .js,.json --format mo"
+    "lint": "eslint . --ext .js,.json --format mo",
+    "lintFix": "eslint . --fix --ext .js,.json --format mo"
   },
   "engines": {
     "node": "16.14.0"

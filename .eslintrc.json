@@ -5,7 +5,10 @@
     },
     "ignorePatterns": [
         "src/Mirayoki.js",
-        "node_modules/**"
+        "node_modules/**",
+        "package.json",
+        "package-lock.json",
+        ".eslintrc.json"
     ],
     "extends": "eslint:recommended",
     "parserOptions": {

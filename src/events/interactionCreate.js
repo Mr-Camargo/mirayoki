@@ -16,7 +16,19 @@ module.exports = {
 			if (!command) return;
 
 			try {
-				await command.execute(interaction, client);
+				if (interaction.guild == null) {
+					// If the user wants to use commands in a Direct Message ...
+					const noDMCommands = new MessageEmbed()
+
+						.setColor('#FF5733')
+						.setTitle('Error')
+						.setDescription('Mirayoki can\'t work on **Direct Messages** *yet*.');
+
+					await interaction.reply({ embeds: [noDMCommands], ephemeral: true });
+					// ... An error message will appear.
+				} else {
+					await command.execute(interaction, client);
+				}
 			} catch (error) {
 				console.error(error);
 
