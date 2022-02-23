@@ -8,6 +8,8 @@ require('dotenv').config();
 
 const fs = require('fs');
 
+const color = require('cli-color');
+
 const functions = fs.readdirSync('./src/functions').filter(file => file.endsWith('.js'));
 const eventFiles = fs.readdirSync('./src/events').filter(file => file.endsWith('.js'));
 const commandFolders = fs.readdirSync('./src/commands');
@@ -15,7 +17,7 @@ const commandFolders = fs.readdirSync('./src/commands');
 
 const date = new Date();
 
-console.log(`Started a deploy at ${date}`);
+console.log(color.green('DEPLOY'), 'Started a deploy', color.blackBright(`at ${date}`));
 // Once you start running Mirayoki, this timestamp will be displayed on the console.
 
 (async () => {

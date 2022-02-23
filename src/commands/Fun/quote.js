@@ -29,52 +29,52 @@ module.exports = {
 
 		const [month, day, year] = [calculateMonth(), date.getDate(), date.getFullYear()];
 		/* This will give the current day, month, and year
-        so it can then be displayed on the quote embed*/
+		so it can then be displayed on the quote embed*/
 
 		function calculateMonth() {
 			let realMonth;
 			switch (date.getMonth()) {
-			case 0:
-				realMonth = 'January';
-				break;
-			case 1:
-				realMonth = 'February';
-				break;
-			case 2:
-				realMonth = 'March';
-				break;
-			case 3:
-				realMonth = 'April';
-				break;
-			case 4:
-				realMonth = 'May';
-				break;
-			case 5:
-				realMonth = 'June';
-				break;
-			case 6:
-				realMonth = 'July';
-				break;
-			case 7:
-				realMonth = 'August';
-				break;
-			case 8:
-				realMonth = 'September';
-				break;
-			case 9:
-				realMonth = 'October';
-				break;
-			case 10:
-				realMonth = 'November';
-				break;
-			case 11:
-				realMonth = 'December';
-				break;
+				case 0:
+					realMonth = 'January';
+					break;
+				case 1:
+					realMonth = 'February';
+					break;
+				case 2:
+					realMonth = 'March';
+					break;
+				case 3:
+					realMonth = 'April';
+					break;
+				case 4:
+					realMonth = 'May';
+					break;
+				case 5:
+					realMonth = 'June';
+					break;
+				case 6:
+					realMonth = 'July';
+					break;
+				case 7:
+					realMonth = 'August';
+					break;
+				case 8:
+					realMonth = 'September';
+					break;
+				case 9:
+					realMonth = 'October';
+					break;
+				case 10:
+					realMonth = 'November';
+					break;
+				case 11:
+					realMonth = 'December';
+					break;
 			}
 			return realMonth;
 		}
 		/* This function adds a number to the month array because arrays start at 0,
-        so it would be werid for January to be Month 0, and December to be Month 11 */
+		so it would be werid for January to be Month 0, and December to be Month 11 */
 
 		const channelOption = interaction.options.getChannel('channel');
 		const channel = client.channels.cache.get(channelOption.id);
@@ -88,7 +88,7 @@ module.exports = {
 		const sentQuote = new MessageEmbed()
 			.setColor('#55C2FF')
 			.setTitle('Quote sent')
-			.setDescription(`You just quoted *"${trim(quote, 917)}"*, and will be preserved, for life, in the <#${channel.id}> channel.`)
+			.setDescription(`You just quoted *"${trim(quote, 917)}"*, and will be preserved, for life, in the ${channelOption} channel.`)
 			.setFooter({ text: `Sent on ${month} ${day}, ${year}` });
 
 		const longQuote = new MessageEmbed()
@@ -110,21 +110,21 @@ module.exports = {
 			// If the channel the used specified is a text one ...
 			if (user.id === process.env.BOT_ID) {
 				// If the author of the quote is Mirayoki ...
-				return interaction.reply({ embeds: [dontQuoteMe], ephemeral: true });
+				return await interaction.reply({ embeds: [dontQuoteMe], ephemeral: true });
 				// ... returns an error message.
 			} else {
 				if (quote.length >= 1022) {
-					return interaction.reply({ embeds: [longQuote], ephemeral: true });
+					return await interaction.reply({ embeds: [longQuote], ephemeral: true });
 				}
 				// However, if the user provided a valid quote...
 				channel.send({ embeds: [finalQuote] }).then(() => {
 					// ... it is sent to the 'quotes' channel ...
 					return interaction.reply({ embeds: [sentQuote] });
 					// ... and returns a success message.
-				}).catch((err) => {
-					throw err;
+				}).catch((error) => {
+					throw error;
 					/* In case something goes internally wrong, an error
-                   will be logged into the console for developers to see and solve. */
+				   will be logged into the console for developers to see and solve. */
 				});
 			}
 		} else if (channelOption.isVoice()) {
@@ -132,16 +132,16 @@ module.exports = {
 			const thatsAVoiceChannel = new MessageEmbed()
 				.setColor('#FF5733')
 				.setTitle('Error')
-				.setDescription(`Looks like <#${channel.id}> is a voice channel.`);
-			return interaction.reply({ embeds: [thatsAVoiceChannel], ephemeral: true });
+				.setDescription(`Looks like ${channelOption} is a voice channel.`);
+			return await interaction.reply({ embeds: [thatsAVoiceChannel], ephemeral: true });
 			// ... returns an error message.
-		} else if (!channelOption.isText() && !channelOption.isVoice()) {
+		} else {
 			// If the channel the user mentioned is not a text channel neither a voice one ...
 			const invalidChannel = new MessageEmbed()
 				.setColor('#FF5733')
 				.setTitle('Error')
 				.setDescription('Looks like the channel you mentioned is not a text channel.');
-			return interaction.reply({ embeds: [invalidChannel], ephemeral: true });
+			return await interaction.reply({ embeds: [invalidChannel], ephemeral: true });
 			// ... returns an error message.
 		}
 	}

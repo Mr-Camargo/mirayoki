@@ -1,6 +1,7 @@
 const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
 const fs = require('fs');
+const color = require('cli-color');
 const date = new Date();
 
 const clientId = process.env.BOT_ID;
@@ -26,7 +27,7 @@ module.exports = (client) => {
 
 		(async () => {
 			try {
-				console.log(`Started updating application commands at ${date}`);
+				console.log(color.blue('API'), 'Started updating application commands', color.blackBright(`at ${date}`));
 				module.exports = function() {
 					return 'Passed checks';
 				};
@@ -35,8 +36,8 @@ module.exports = (client) => {
 						Routes.applicationGuildCommands(clientId, guildId),
 						{ body: client.commandArray },
 					);
-				} catch (err) {
-					console.error(`Application commands were not updated in testing server: ${err}`);
+				} catch (error) {
+					console.error(color.red('ERROR'), color.blackBright(`at ${date}`) `Application commands were not updated in testing server: ${error}`);
 				}
 				/* This will update the application commands for
                 the development server, making them available instantly. */
@@ -48,9 +49,9 @@ module.exports = (client) => {
 				/* This will update the application commands for all servers,
                 which may take up to one hour to be available on all of them. */
 
-				console.log(`Updated application commands at ${date}`);
-			} catch (err) {
-				console.error(err);
+				console.log(color.blue('API'), 'Updated application commands', color.blackBright(`at ${date}`));
+			} catch (error) {
+				console.error(color.red('ERROR'), color.blackBright(`at ${date}`), `Application commands were not updated: ${error}`);
 			}
 		})();
 
