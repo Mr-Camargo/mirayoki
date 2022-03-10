@@ -106,7 +106,7 @@ module.exports = {
 
 						return await interaction.reply({ embeds: [cantTimeoutAdmin], ephemeral: true });
 					} else {
-						member.timeout(msDuration, `Requested by ${interaction.user}`);
+						member.timeout(msDuration, `Requested by ${interaction.user.tag}`);
 						const timeoutApplied = new MessageEmbed()
 							.setColor('#55C2FF')
 							.setTitle(':clock3: Timeout Applied')
@@ -123,7 +123,7 @@ module.exports = {
 								{ name: 'Reason', value: `${reason}` },
 							);
 						}
-						client.users.cache.get(member.id).send({ embeds: [timeoutAppliedDM] });
+						await client.users.cache.get(member.id).send({ embeds: [timeoutAppliedDM] });
 						return await interaction.reply({ embeds: [timeoutApplied] });
 					}
 				} catch (error) {
@@ -153,7 +153,7 @@ module.exports = {
 
 						return await interaction.reply({ embeds: [cantUntimeoutSuperior], ephemeral: true });
 					} else {
-						member.timeout(null, `Requested by ${interaction.user}`);
+						member.timeout(null, `Requested by ${interaction.user.tag}`);
 						const untimeoutApplied = new MessageEmbed()
 							.setColor('#55C2FF')
 							.setTitle(':clock3: Timeout Removed')

@@ -8,9 +8,9 @@ module.exports = {
 		.setDescription('Tidy up your channel by deleting messages.')
 		.addIntegerOption(option => option.setName('quantity').setDescription('The amount of messages (Up to 100)').setRequired(true)),
 
-	async execute(interaction, client) {
+	async execute(interaction) {
 
-		let quantity = interaction.options.getInteger('quantity');
+		const quantity = interaction.options.getInteger('quantity');
 
 		const manyMessages = new MessageEmbed()
 
@@ -42,13 +42,11 @@ module.exports = {
 					return await interaction.reply({ embeds: [noClear], ephemeral: true });
 				} else if (parseInt(quantity) === 1) {
 					cleared.setTitle(`${quantity} message cleared successfully!`);
-				} else if (parseInt(quantity) === 100) {
-					quantity = 99;
 				} else if (parseInt(quantity) > 100) {
 					return await interaction.reply({ embeds: [manyMessages], ephemeral: true });
 				}
 
-				interaction.channel.bulkDelete(parseInt(quantity) + 1, true);
+				interaction.channel.bulkDelete(parseInt(quantity), true);
 				await interaction.reply({ embeds: [cleared] });
 				await wait(2000);
 				return await interaction.deleteReply();
