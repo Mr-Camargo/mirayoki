@@ -4,11 +4,17 @@
         {
             "type": "pwa-node",
             "request": "launch",
-            "name": "Deploy Mirayoki as Notaro",
+            "name": "Test Deploy",
             "skipFiles": [
                 "<node_internals>/**"
             ],
             "program": "${workspaceFolder}/src/Mirayoki.js"
+        },
+        {
+            "command": "npm run deploy",
+            "name": "Hardened Deploy",
+            "request": "launch",
+            "type": "node-terminal"
         },
         {
             "command": "npm run lint",
