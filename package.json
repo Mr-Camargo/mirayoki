@@ -8,10 +8,11 @@
     "start": "node src/Mirayoki.js",
     "lint": "eslint . --ext .js,.json --format mo",
     "lintFix": "eslint . --fix --ext .js,.json --format mo",
-    "deploy": "pm2-runtime start ecosystem.config.js" 
+    "deploy": "pm2-runtime start ecosystem.config.js -i max" 
   },
   "engines": {
-    "node": "16.14.0"
+    "node": "16.14.2",
+    "npm": "8.7.0"
   },
   "author": "Sebastián Camargo <camargo@tutamail.com> (https://github.com/Mr-Camargo)",
   "bugs": "https://github.com/Slashy-Studio/mirayoki/issues",
@@ -20,9 +21,9 @@
   "license": "Mozilla Public License Version 2.0",
   "dependencies": {
     "@discordjs/builders": "^0.11.0",
-    "@discordjs/rest": "^0.2.0-canary.0",
+    "@discordjs/rest": "^0.3.0",
     "cli-color": "^2.0.1",
-    "discord-api-types": "^0.29.0",
+    "discord-api-types": "^0.31.1",
     "discord.js": "^13.6.0",
     "dotenv": "^8.2.0",
     "fs": "0.0.1-security",

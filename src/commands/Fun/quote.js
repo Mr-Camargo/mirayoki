@@ -25,57 +25,6 @@ module.exports = {
 			user = interaction.user;
 		}
 
-		const date = new Date();
-
-		const [month, day, year] = [calculateMonth(), date.getDate(), date.getFullYear()];
-		/* This will give the current day, month, and year
-		so it can then be displayed on the quote embed*/
-
-		function calculateMonth() {
-			let realMonth;
-			switch (date.getMonth()) {
-				case 0:
-					realMonth = 'January';
-					break;
-				case 1:
-					realMonth = 'February';
-					break;
-				case 2:
-					realMonth = 'March';
-					break;
-				case 3:
-					realMonth = 'April';
-					break;
-				case 4:
-					realMonth = 'May';
-					break;
-				case 5:
-					realMonth = 'June';
-					break;
-				case 6:
-					realMonth = 'July';
-					break;
-				case 7:
-					realMonth = 'August';
-					break;
-				case 8:
-					realMonth = 'September';
-					break;
-				case 9:
-					realMonth = 'October';
-					break;
-				case 10:
-					realMonth = 'November';
-					break;
-				case 11:
-					realMonth = 'December';
-					break;
-			}
-			return realMonth;
-		}
-		/* This function adds a number to the month array because arrays start at 0,
-		so it would be werid for January to be Month 0, and December to be Month 11 */
-
 		const channelOption = interaction.options.getChannel('channel');
 		const channel = client.channels.cache.get(channelOption.id);
 		// These variables will hold the channel that was chosen on the option and its ID
@@ -88,8 +37,10 @@ module.exports = {
 		const sentQuote = new MessageEmbed()
 			.setColor('#55C2FF')
 			.setTitle('Quote sent')
-			.setDescription(`You just quoted *"${trim(quote, 917)}"*, and will be preserved, for life, in the ${channelOption} channel.`)
-			.setFooter({ text: `Sent on ${month} ${day}, ${year}` });
+			.setDescription(`You have succesfully sent a quote to the ${channelOption} channel. It will be preserved for life there.`)
+			.addFields(
+				{ name: 'Your quote:', value: trim(quote, 1024) }
+			);
 
 		const longQuote = new MessageEmbed()
 			.setColor('#FF5733')
@@ -104,7 +55,7 @@ module.exports = {
 			.setColor('#FFC300')
 			.setAuthor({ name: user.tag, iconURL: user.displayAvatarURL() })
 			.setDescription(`*${trim(quote, 1022)}*`)
-			.setFooter({ text: `${month} ${day}, ${year}` });
+			.setFooter({ text: `From #${interaction.channel.name}` });
 
 		if (channelOption.isText()) {
 			// If the channel the used specified is a text one ...
@@ -115,6 +66,12 @@ module.exports = {
 			} else {
 				if (quote.length >= 1022) {
 					return await interaction.reply({ embeds: [longQuote], ephemeral: true });
+				} else if (user.id !== interaction.user.id) {
+					sentQuote.addFields(
+						{ name: 'Author:', value: `${user}` }
+					);
+					finalQuote.setFooter({ text: `From #${interaction.channel.name} - Quoted by ${interaction.user.tag}` });
+					// This conditional will make the user who provided the quote visible if they are authoring someone else.
 				}
 				// However, if the user provided a valid quote...
 				channel.send({ embeds: [finalQuote] }).then(() => {
