@@ -21,7 +21,7 @@ If you think it is just a bug and **does not** put anyone in danger, you should 
 
 Please have discretion when reporting a security vulnerability, as other people may read it and may try to exploit it for their own benefit.
 
-It is highly recommended to [send an email to Sebastián Camargo](mailto:camargo@tutamail.com). If possible, please [encrypt it using PGP](https://mr-camargo.github.io/Mr-Camargo/contact/pgp-key.html).
+It is highly recommended to [send an email to Sebastián Camargo](mailto:sebas@slash-studio.com). If possible, please [encrypt it using PGP](https://keys.openpgp.org/search?q=sebas%40slash-studio.com).
 
 In your report please include:
 - How the vulnerability can be exploited
