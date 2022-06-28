@@ -11,8 +11,8 @@
     "deploy": "pm2-runtime start ecosystem.config.js -i max" 
   },
   "engines": {
-    "node": "16.15.0",
-    "npm": "8.10.0"
+    "node": "16.15.1",
+    "npm": "8.13.1"
   },
   "author": "Sebastián Camargo <sebas@slash-studio.com> (https://github.com/Mr-Camargo)",
   "bugs": "https://github.com/Slashy-Studio/mirayoki/issues",
@@ -24,7 +24,7 @@
     "@discordjs/rest": "^0.3.0",
     "cli-color": "^2.0.1",
     "discord-api-types": "^0.31.1",
-    "discord.js": "^13.6.0",
+    "discord.js": "^13.8.1",
     "dotenv": "^8.2.0",
     "fs": "0.0.1-security",
     "mongoose": "^6.1.7",
