@@ -138,7 +138,7 @@ jobs:
             
             The latest commit to Mirayoki (<%- commit %>) is being rolled out to all users right now. 🛠
             
-            👀 Check out what's new: <%- url %>'
+            👀 Check out what's new: <%- url %>
           oauth_consumer_key: ${{ secrets.TWITTER_CONSUMER_KEY }}
           oauth_consumer_secret: ${{ secrets.TWITTER_CONSUMER_KEY_SECRET }}
           oauth_token: ${{ secrets.TWITTER_USER_TOKEN }}
