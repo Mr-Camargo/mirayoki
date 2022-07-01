@@ -1,18 +1,44 @@
 const color = require('cli-color');
+const array = require('./statusArray.js');
 
 module.exports = {
 	name: 'ready',
 	once: true,
 	async execute(client) {
 		console.log(color.green('DEPLOY'), 'Mirayoki has been deployed succesfully', color.blackBright(`at ${Date()}`));
-
-		try {
-			client.user.setActivity(process.env.ACTIVITY, { type: process.env.ACTIVITY_TYPE });
-			// This will set the RP for the bot
-			console.log(color.green('DEPLOY'), `RP deployed successfully as ${process.env.ACTIVITY_TYPE} (${process.env.ACTIVITY})`, color.blackBright(`at ${Date()}`));
-			// And log it into the console
-		} catch (error) {
-			console.error(color.red('ERROR'), `There was an error during the deployment: ${error}`);
+		async function pickFirstStatus() {
+			try {
+				const option = Math.floor(Math.random() * array.status.length);
+				await client.user.setPresence({
+					activities: [{
+						name: array.status[option].name,
+						type: array.status[option].type,
+					},
+					],
+					status: 'online',
+				});
+				console.log(color.cyanBright('PRESENCE'), `Deployed successfully as ${array.status[option].type} (${array.status[option].name})`, color.blackBright(`at ${Date()}`));
+			} catch (error) {
+				console.log(color.red('ERROR'), `Failed to deploy RP: ${error}`, color.blackBright(`at ${Date()}`));
+			}
 		}
-	},
+		async function pickNextStatus() {
+			try {
+				const option = Math.floor(Math.random() * array.status.length);
+				await client.user.setPresence({
+					activities: [{
+						name: array.status[option].name,
+						type: array.status[option].type,
+					},
+					],
+					status: 'online',
+				});
+				console.log(color.cyanBright('PRESENCE'), `Updated successfully as ${array.status[option].type} (${array.status[option].name})`, color.blackBright(`at ${Date()}`));
+			} catch (error) {
+				console.log(color.red('ERROR'), `Failed to update RP: ${error}`, color.blackBright(`at ${Date()}`));
+			}
+		}
+		pickFirstStatus();
+		setInterval(pickNextStatus, 3600000);
+	}
 };
