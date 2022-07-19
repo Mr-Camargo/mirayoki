@@ -1,5 +1,6 @@
 const color = require('cli-color');
 const array = require('./statusArray.js');
+const axios = require('axios');
 
 module.exports = {
 	name: 'ready',
@@ -38,7 +39,16 @@ module.exports = {
 				console.log(color.red('ERROR'), `Failed to update RP: ${error}`, color.blackBright(`at ${Date()}`));
 			}
 		}
+		async function heartbeat() {
+			try {
+				axios.get(process.env.UPTIME_HEARTBEAT);
+			} catch (error) {
+				console.log(color.red('ERROR'), `Failed to heartbeat: ${error}`, color.blackBright(`at ${Date()}`));
+			}
+		}
 		pickFirstStatus();
+		heartbeat();
+		setInterval(heartbeat, 60000);
 		setInterval(pickNextStatus, 3600000);
 	}
 };
