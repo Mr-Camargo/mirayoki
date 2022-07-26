@@ -15,7 +15,7 @@ module.exports = {
 			/* If there are no arguments for a desired dice size,
              a standard six-faced will be rolled */
 		} else if (numberFaces > 120 || numberFaces < 3 || numberFaces === 0) {
-			/* If the user wants to roll a die with more than 120 faces,
+			/* If the user wants to roll a dice with more than 120 faces,
             or a dice with less than 3 faces*/
 
 			const invalidDice = new MessageEmbed()
@@ -35,7 +35,7 @@ module.exports = {
 		const finalDice = new MessageEmbed()
 
 			.setColor('#55C2FF')
-			.setTitle('You threw a die...')
+			.setTitle('You threw a dice...')
 			.setDescription(`**${diceResult}.**`)
 			.setFooter({ text: `Threw a dice with ${numberFaces} faces.` });
 
