@@ -1,5 +1,4 @@
-const { SlashCommandBuilder } = require('@discordjs/builders');
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder, SlashCommandBuilder } = require('discord.js');
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -15,74 +14,85 @@ module.exports = {
 				.setName('server')
 				.setDescription('Information about this server')),
 
-	async execute(interaction, client) {
-		if (interaction.options.getSubcommand() === 'user') {
+	async execute(interaction) {
+		try {
+			if (interaction.options.getSubcommand() === 'user') {
 
-			let user = interaction.user;
+				let user = interaction.user;
 
-			const requestedUser = interaction.options.getUser('who');
+				const requestedUser = interaction.options.getUser('who');
 
-			if (requestedUser && requestedUser !== user) {
-				user = requestedUser;
+				if (requestedUser && requestedUser !== user) {
+					user = requestedUser;
 
-				if (user.id === process.env.BOT_ID) {
-					const me = new MessageEmbed()
+					if (user.id === process.env.BOT_ID) {
+						const me = new EmbedBuilder()
+							.setColor('#55C2FF')
+							.setTitle('This is **me**.')
+							.setThumbnail(`${user.displayAvatarURL({ dynamic: true })}`)
+							.addFields(
+								{ name: 'Username', value: `${user.tag}` },
+								{ name: 'Bot ID', value: process.env.BOT_ID },
+								{ name: 'I was created:', value: 'An afternoon of July 4, 2021, at 02:33:35 UTC' }
+							)
+							.setFooter({ text: 'Thank you for your interest of knowing me' });
+
+						return await interaction.reply({ embeds: [me] });
+					} else {
+						const them = new EmbedBuilder()
+							.setColor('#55C2FF')
+							.setTitle(`This is **${user.username}**.`)
+							.setThumbnail(`${user.displayAvatarURL({ dynamic: true })}`)
+							.addFields(
+								{ name: 'Username', value: `${user.tag}` },
+								{ name: 'User ID', value: `${user.id}` },
+								{ name: 'Joined Discord:', value: `${user.createdAt}` },
+							)
+							.setFooter({ text: 'Both of you are beautiful!' });
+
+						return await interaction.reply({ embeds: [them] });
+					}
+
+				} else if (!requestedUser || requestedUser === user) {
+
+					const you = new EmbedBuilder()
 						.setColor('#55C2FF')
-						.setTitle('This is **me**.')
-						.setThumbnail(`${user.displayAvatarURL({ dynamic: true })}`)
-						.addFields(
-							{ name: 'Username', value: `${user.tag}` },
-							{ name: 'Bot ID', value: process.env.BOT_ID },
-							{ name: 'I was created:', value: 'An afternoon of July 4, 2021, at 02:33:35 UTC' }
-						)
-						.setFooter({ text: 'Thank you for your interest of knowing me' });
-
-					return await interaction.reply({ embeds: [me] });
-				} else {
-					const them = new MessageEmbed()
-						.setColor('#55C2FF')
-						.setTitle(`This is **${user.username}**.`)
+						.setTitle('This is you.')
+						.setDescription(`And you are **${user.username}**.`)
 						.setThumbnail(`${user.displayAvatarURL({ dynamic: true })}`)
 						.addFields(
 							{ name: 'Username', value: `${user.tag}` },
 							{ name: 'User ID', value: `${user.id}` },
 							{ name: 'Joined Discord:', value: `${user.createdAt}` },
 						)
-						.setFooter({ text: 'Both of you are beautiful!' });
+						.setFooter({ text: 'You are beautiful!' });
 
-					return await interaction.reply({ embeds: [them] });
+					return await interaction.reply({ embeds: [you] });
 				}
-
-			} else if (!requestedUser || requestedUser === user) {
-
-				const you = new MessageEmbed()
+			} else if (interaction.options.getSubcommand() === 'server') {
+				const serverInfo = new EmbedBuilder()
 					.setColor('#55C2FF')
-					.setTitle('This is you.')
-					.setDescription(`And you are **${user.username}**.`)
-					.setThumbnail(`${user.displayAvatarURL({ dynamic: true })}`)
+					.setTitle(`This is **${interaction.guild.name}**.`)
+					.setThumbnail(`${interaction.guild.iconURL({ dynamic: true })}`)
 					.addFields(
-						{ name: 'Username', value: `${user.tag}` },
-						{ name: 'User ID', value: `${user.id}` },
-						{ name: 'Joined Discord:', value: `${user.createdAt}` },
+						{ name: 'Server Name', value: `${interaction.guild.name}` },
+						{ name: 'Server ID', value: `${interaction.guild.id}` },
+						{ name: 'Created at:', value: `${interaction.guild.createdAt}` },
+						{ name: 'Owned by:', value: `<@!${interaction.guild.ownerId}>` },
 					)
-					.setFooter({ text: 'You are beautiful!' });
+					.setFooter({ text: 'This server is pretty cool!' });
 
-				return await interaction.reply({ embeds: [you] });
+				return await interaction.reply({ embeds: [serverInfo] });
 			}
-		} else if (interaction.options.getSubcommand() === 'server') {
-			const serverInfo = new MessageEmbed()
-				.setColor('#55C2FF')
-				.setTitle(`This is **${interaction.guild.name}**.`)
-				.setThumbnail(`${interaction.guild.iconURL({ dynamic: true })}`)
-				.addFields(
-					{ name: 'Server Name', value: `${interaction.guild.name}` },
-					{ name: 'Server ID', value: `${interaction.guild.id}` },
-					{ name: 'Created at:', value: `${interaction.guild.createdAt}` },
-					{ name: 'Owned by:', value: `<@!${interaction.guild.ownerId}>` },
-				)
-				.setFooter({ text: 'This server is pretty cool!' });
+		} catch (error) {
+			const unknownError = new EmbedBuilder()
+				.setColor('#FF5733')
+				.setTitle('Unknown Error')
+				.setDescription(`${error}`)
+				.setFooter({ text: 'If the error persists, please contact support using /support' });
 
-			return await interaction.reply({ embeds: [serverInfo] });
+			return await interaction.reply({ embeds: [unknownError] });
 		}
+
 	}
 };

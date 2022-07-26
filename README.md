@@ -4,14 +4,21 @@ Mirayoki is an open-source Discord bot that will make your server work like neve
 
 ## Functions
 
-- Built-in moderation features (Kick, Timeout, Ban)
+- Built-in moderation features (Kick, Timeout, and Ban)
+- Message flow control (Lock, unlock, and slowmode)
 - Fun commands (RNG, Coinflip, Dice, Quotes)
 - Message clearing
-- Multi-language support
+- Many APIs to use
 
 ## Invite
 
-To bring the power of Mirayoki to your server, [invite it](https://discord.com/api/oauth2/authorize?client_id=795480018469781505&permissions=8&scope=applications.commands%20bot).
+To bring the power of Mirayoki to your server, [invite it](https://mirayoki.com/invite).
+
+## Develop
+
+In order to build on top of Mirayoki, just clone this repository. All libraries and required packages are already included.
+
+You may run `npm update` to update packages to their latest versions.
 
 ## Contribute
 
@@ -21,4 +28,4 @@ Before creating an issue or opening a pull request, make sure to read the [contr
 
 ## License
 
-Mirayoki is released under the [Mozilla Public License Version 2.0](https://choosealicense.com/licenses/mpl-2.0/).
+Mirayoki is released under the [GNU GPLv3](https://choosealicense.com/licenses/gpl-3.0/).

@@ -1,5 +1,4 @@
-const { SlashCommandBuilder } = require('@discordjs/builders');
-const { MessageEmbed, Permissions } = require('discord.js');
+const { EmbedBuilder, PermissionsBitField, ChannelType, SlashCommandBuilder } = require('discord.js');
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -14,56 +13,56 @@ module.exports = {
 			const hide = interaction.options.getBoolean('hide');
 			let channelPermissions = null;
 
-			if (!channel.isThread()) {
-				channelPermissions = channel.guild.roles.everyone.permissionsIn(channel);
+			if (channel.type !== ChannelType.GuildPublicThread || channel.type !== ChannelType.GuildPrivateThread || channel.type !== ChannelType.GuildNewsThread) {
+				channelPermissions = channel.permissionsFor(interaction.guild.id);
 			}
 
-			const locked = new MessageEmbed()
+			const locked = new EmbedBuilder()
 				.setColor('#55C2FF')
 				.setTitle('🔒 Locked channel')
-				.setDescription(`${channel} has been locked succesfully.`);
+				.setDescription(`${channel} has been locked successfully.`);
 
-			const lockedAlready = new MessageEmbed()
+			const lockedAlready = new EmbedBuilder()
 				.setColor('#FF5733')
 				.setTitle('Error')
 				.setDescription('Looks like the channel you mentioned is already locked.');
 
-			if (interaction.member.permissions.has([Permissions.FLAGS.MANAGE_CHANNELS]) && interaction.guild.available) {
-				if (interaction.guild.me.permissions.has([Permissions.FLAGS.MANAGE_MESSAGES, Permissions.FLAGS.CONNECT, Permissions.FLAGS.MANAGE_CHANNELS])) {
-					if (channel.isThread()) {
-						const cantLockAThread = new MessageEmbed()
+			if (interaction.member.permissions.has([PermissionsBitField.Flags.ManageChannels]) && interaction.guild.available) {
+				if (interaction.guild.members.me.permissions.has([PermissionsBitField.Flags.ManageMessages, PermissionsBitField.Flags.Connect, PermissionsBitField.Flags.ManageChannels])) {
+					if (channel.type === ChannelType.GuildPublicThread || channel.type === ChannelType.GuildPrivateThread || channel.type === ChannelType.GuildNewsThread) {
+						const cantLockAThread = new EmbedBuilder()
 							.setColor('#FF5733')
 							.setTitle('Error')
 							.setDescription(`You cannot lock a thread individually. You may lock ${channel.parent} to lock ${channel}.`);
 						return await interaction.reply({ embeds: [cantLockAThread], ephemeral: true });
-					} else if (channel.isText() && !channel.isVoice()) {
-						if (channelPermissions.has([Permissions.FLAGS.SEND_MESSAGES, Permissions.FLAGS.VIEW_CHANNEL])) {
-							channel.permissionOverwrites.edit(channel.guild.roles.everyone, { SEND_MESSAGES: false, CREATE_PUBLIC_THREADS: false, CREATE_PRIVATE_THREADS: false, SEND_MESSAGES_IN_THREADS: false });
+					} else if (channel.type === ChannelType.GuildText && channel.type !== ChannelType.GuildVoice) {
+						if (channelPermissions.has([PermissionsBitField.Flags.SendMessages, PermissionsBitField.Flags.ViewChannel])) {
+							channel.permissionOverwrites.edit(channel.guild.roles.everyone, { SendMessages: false, CreatePublicThreads: false, CreatePrivateThreads: false, SendMessagesInThreads: false });
 							if (hide) {
-								channel.permissionOverwrites.edit(channel.guild.roles.everyone, { SEND_MESSAGES: false, CREATE_PUBLIC_THREADS: false, CREATE_PRIVATE_THREADS: false, SEND_MESSAGES_IN_THREADS: false, VIEW_CHANNEL: false });
-								locked.setDescription(`${channel} has been locked succesfully and it is now hidden to members.`);
+								channel.permissionOverwrites.edit(channel.guild.roles.everyone, { SendMessages: false, CreatePublicThreads: false, CreatePrivateThreads: false, SendMessagesInThreads: false, ViewChannel: false });
+								locked.setDescription(`${channel} has been locked successfully and it is now hidden to members.`);
 							}
-							channel.permissionOverwrites.edit(interaction.member, { SEND_MESSAGES: true, VIEW_CHANNEL: true });
+							channel.permissionOverwrites.edit(interaction.member, { SendMessages: true, ViewChannel: true });
 							return await interaction.reply({ embeds: [locked] });
-						} else if (hide && !channelPermissions.has([Permissions.FLAGS.SEND_MESSAGES])) {
-							channel.permissionOverwrites.edit(channel.guild.roles.everyone, { VIEW_CHANNEL: false });
+						} else if (hide && !channelPermissions.has([PermissionsBitField.Flags.SendMessages])) {
+							channel.permissionOverwrites.edit(channel.guild.roles.everyone, { ViewChannel: false });
 							locked.setTitle('🔒 Hid channel');
 							locked.setDescription(`${channel} was locked already but it is now hidden to members.`);
 							return await interaction.reply({ embeds: [locked] });
 						} else {
 							return await interaction.reply({ embeds: [lockedAlready], ephemeral: true });
 						}
-					} else if (channel.isVoice()) {
-						if (channelPermissions.has([Permissions.FLAGS.CONNECT, Permissions.FLAGS.VIEW_CHANNEL])) {
-							channel.permissionOverwrites.edit(channel.guild.roles.everyone, { CONNECT: false, SEND_MESSAGES: false });
+					} else if (channel.type === ChannelType.GuildVoice) {
+						if (channelPermissions.has([PermissionsBitField.Flags.Connect, PermissionsBitField.Flags.ViewChannel])) {
+							channel.permissionOverwrites.edit(channel.guild.roles.everyone, { Connect: false, SendMessages: false });
 							if (hide) {
-								channel.permissionOverwrites.edit(channel.guild.roles.everyone, { CONNECT: false, SEND_MESSAGES: false, VIEW_CHANNEL: false });
-								locked.setDescription(`${channel} has been locked succesfully and it is now hidden to members.`);
+								channel.permissionOverwrites.edit(channel.guild.roles.everyone, { Connect: false, SendMessages: false, ViewChannel: false });
+								locked.setDescription(`${channel} has been locked successfully and it is now hidden to members.`);
 							}
-							channel.permissionOverwrites.edit(interaction.member, { CONNECT: true, SEND_MESSAGES: true, VIEW_CHANNEL: true });
+							channel.permissionOverwrites.edit(interaction.member, { Connect: true, SendMessages: true, ViewChannel: true });
 							return await interaction.reply({ embeds: [locked] });
-						} else if (channelPermissions.has([Permissions.FLAGS.VIEW_CHANNEL]) && hide) {
-							channel.permissionOverwrites.edit(channel.guild.roles.everyone, { VIEW_CHANNEL: false });
+						} else if (channelPermissions.has([PermissionsBitField.Flags.ViewChannel]) && hide) {
+							channel.permissionOverwrites.edit(channel.guild.roles.everyone, { ViewChannel: false });
 							locked.setTitle('🔒 Hid channel');
 							locked.setDescription(`${channel} was locked already but it is now hidden to members.`);
 							return await interaction.reply({ embeds: [locked] });
@@ -71,15 +70,17 @@ module.exports = {
 							return await interaction.reply({ embeds: [lockedAlready], ephemeral: true });
 						}
 					} else {
-						const invalidChannel = new MessageEmbed()
+						const invalidChannel = new EmbedBuilder()
 							.setColor('#FF5733')
 							.setTitle('Error')
-							.setDescription('Looks like the channel you mentioned is not an lockable channel, or an unknown error has occured.');
+							.setDescription('Looks like the channel you mentioned is not an lockable channel, or an unknown error has occurred.');
 
+						console.log(`${channel}.`);
+						console.log(`${channel.type}.`);
 						return await interaction.reply({ embeds: [invalidChannel], ephemeral: true });
 					}
 				} else {
-					const noBotPerms = new MessageEmbed()
+					const noBotPerms = new EmbedBuilder()
 
 						.setColor('#FF5733')
 						.setTitle('Access denied')
@@ -88,7 +89,7 @@ module.exports = {
 					return await interaction.reply({ embeds: [noBotPerms], ephemeral: true });
 				}
 			} else {
-				const noPerms = new MessageEmbed()
+				const noPerms = new EmbedBuilder()
 
 					.setColor('#FF5733')
 					.setTitle('Access denied')
@@ -97,12 +98,12 @@ module.exports = {
 				return await interaction.reply({ embeds: [noPerms], ephemeral: true });
 			}
 		} catch (error) {
-			const unknownError = new MessageEmbed()
+			const unknownError = new EmbedBuilder()
 
 				.setColor('#FF5733')
 				.setTitle('Unknown Error')
 				.setDescription(`${error}`)
-				.setFooter({ text: 'If the error presists, contact support using /support' });
+				.setFooter({ text: 'If the error persists, please contact support using /support' });
 
 			return await interaction.reply({ embeds: [unknownError], ephemeral: true });
 		}

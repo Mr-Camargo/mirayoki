@@ -1,4 +1,5 @@
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
+const color = require('cli-color');
 
 const date = new Date();
 
@@ -56,7 +57,7 @@ module.exports = {
 	async execute(guild, client) {
 		const channel = guild.systemChannel;
 
-		const welcomeEmbed = new MessageEmbed()
+		const welcomeEmbed = new EmbedBuilder()
 
 			.setColor('#EF6565')
 			.setTitle('👋🏼 Hey there!')
@@ -67,7 +68,7 @@ module.exports = {
 			)
 			.setFooter({ text: `Let's go have some fun! ■ ${month} ${day}, ${year}` });
 
-		const welcomeEmbedDM = new MessageEmbed()
+		const welcomeEmbedDM = new EmbedBuilder()
 
 			.setColor('#EF6565')
 			.setTitle(`For the owner of *${guild.name}*`)
@@ -83,14 +84,16 @@ module.exports = {
 		try {
 			if (channel) {
 				// If there is a System Updates Channel in the guild, Mirayoki will send an arrival message.
-				channel.send({ embeds: [welcomeEmbed] });
+				return await channel.send({ embeds: [welcomeEmbed] });
 			} else {
 				// If there isn't, Mirayoki will try to contact the owner of the guild.
-				client.users.cache.get(guild.ownerId).send({ embeds: [welcomeEmbedDM] });
+				// If not possible, then it will do nothing.
+				// eslint-disable-next-line no-empty-function
+				return await client.users.cache.get(guild.ownerId).send({ embeds: [welcomeEmbedDM] }).catch(error => {});
 			}
 		} catch (error) {
 			// If there is an error while trying to do so, it will be logged.
-			console.error(`An error has occured when trying to send an arrival message: ${error}`);
+			return console.log(color.red('ERROR'), `An error has ocurred while sending an arrival message: ${error}`, color.blackBright(`at ${Date()}`));
 		}
 	}
 };

@@ -1,7 +1,7 @@
 {
   "name": "mirayoki",
   "version": "0.0.0",
-  "description": "World's most efficient and powerful Discord bot.",
+  "description": "Your bot for fun, management, moderation, and more!",
   "main": "src/Mirayoki.js",
   "scripts": {
     "test": "mocha",
@@ -12,31 +12,29 @@
   },
   "engines": {
     "node": "16.16.0",
-    "npm": "8.14.0"
+    "npm": "8.15.1"
   },
   "author": "Sebastián Camargo <sebas@slash-studio.com> (https://github.com/Mr-Camargo)",
   "bugs": "https://github.com/Slashy-Studio/mirayoki/issues",
-  "homepage": "https://github.com/Slashy-Studio/mirayoki",
+  "homepage": "https://mirayoki.com",
   "repository": "https://github.com/Slashy-Studio/mirayoki",
   "license": "Mozilla Public License Version 2.0",
   "dependencies": {
-    "@discordjs/builders": "^1.0.0",
-    "@discordjs/rest": "^1.0.0",
+    "discord.js": "^14.1.2",
+    "@discordjs/rest": "^1.0.1",
+    "discord-api-types": "^0.37.0",
     "axios": "^0.27.2",
     "cli-color": "^2.0.3",
-    "discord-api-types": "^0.36.2",
-    "discord.js": "13.9.0",
     "dotenv": "^16.0.1",
     "fs": "0.0.1-security",
-    "mongoose": "^6.4.5",
+    "mongoose": "^6.5.0",
     "ms": "^2.1.3",
-    "node-fetch": "^3.2.9",
     "pm2": "^5.2.0"
   },
   "devDependencies": {
     "chai": "^4.3.6",
     "eslint": "^8.20.0",
     "eslint-formatter-mo": "^1.1.1",
-    "mocha": "^6.2.3"
+    "mocha": "^10.0.0"
   }
 }

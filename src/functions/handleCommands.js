@@ -1,5 +1,5 @@
 const { REST } = require('@discordjs/rest');
-const { Routes } = require('discord-api-types/v9');
+const { Routes } = require('discord-api-types/v10');
 const fs = require('fs');
 const color = require('cli-color');
 const date = new Date();
@@ -22,7 +22,7 @@ module.exports = (client) => {
 			}
 		}
 
-		const rest = new REST({ version: '9' }).setToken(process.env.SECRET_TOKEN);
+		const rest = new REST({ version: '10' }).setToken(process.env.SECRET_TOKEN);
 		// This will be Discord's API that will be used to register application commands
 
 		(async () => {
@@ -37,7 +37,7 @@ module.exports = (client) => {
 						{ body: client.commandArray },
 					);
 				} catch (error) {
-					console.error(color.red('ERROR'), color.blackBright(`at ${date}`) `Application commands were not updated in testing server: ${error}`);
+					console.log(color.red('ERROR'), color.blackBright(`at ${date}`) `Application commands were not updated in testing server: ${error}`);
 				}
 				/* This will update the application commands for
                 the development server, making them available instantly. */
@@ -51,7 +51,7 @@ module.exports = (client) => {
 
 				console.log(color.blue('API'), 'Updated application commands', color.blackBright(`at ${date}`));
 			} catch (error) {
-				console.error(color.red('ERROR'), color.blackBright(`at ${date}`), `Application commands were not updated: ${error}`);
+				console.log(color.red('ERROR'), color.blackBright(`at ${date}`), `Application commands were not updated: ${error}`);
 			}
 		})();
 

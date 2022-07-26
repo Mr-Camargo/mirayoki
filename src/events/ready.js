@@ -1,12 +1,12 @@
 const color = require('cli-color');
-const array = require('./statusArray.js');
+const array = require('../sets/statusArray.js');
 const axios = require('axios');
 
 module.exports = {
 	name: 'ready',
 	once: true,
 	async execute(client) {
-		console.log(color.green('DEPLOY'), 'Mirayoki has been deployed succesfully', color.blackBright(`at ${Date()}`));
+		console.log(color.green('DEPLOY'), 'Mirayoki has been deployed successfully', color.blackBright(`at ${Date()}`));
 		async function pickFirstStatus() {
 			try {
 				const option = Math.floor(Math.random() * array.status.length);
@@ -18,7 +18,7 @@ module.exports = {
 					],
 					status: 'online',
 				});
-				console.log(color.cyanBright('PRESENCE'), `Deployed successfully as ${array.status[option].type} (${array.status[option].name})`, color.blackBright(`at ${Date()}`));
+				console.log(color.cyanBright('PRESENCE'), `Deployed successfully as ${array.status[option].logName}`, color.blackBright(`at ${Date()}`));
 			} catch (error) {
 				console.log(color.red('ERROR'), `Failed to deploy RP: ${error}`, color.blackBright(`at ${Date()}`));
 			}
@@ -34,7 +34,7 @@ module.exports = {
 					],
 					status: 'online',
 				});
-				console.log(color.cyanBright('PRESENCE'), `Updated successfully as ${array.status[option].type} (${array.status[option].name})`, color.blackBright(`at ${Date()}`));
+				console.log(color.cyanBright('PRESENCE'), `Updated successfully as ${array.status[option].logName}`, color.blackBright(`at ${Date()}`));
 			} catch (error) {
 				console.log(color.red('ERROR'), `Failed to update RP: ${error}`, color.blackBright(`at ${Date()}`));
 			}
