@@ -36,27 +36,37 @@ module.exports = {
 
 
 			if (interaction.member.permissions.has([PermissionsBitField.Flags.ManageMessages])) {
-				try {
-					if (parseInt(quantity) <= 0) {
-						return await interaction.reply({ embeds: [noClear], ephemeral: true });
-					} else if (parseInt(quantity) === 1) {
-						cleared.setTitle(`${quantity} message cleared successfully!`);
-					} else if (parseInt(quantity) > 100) {
-						return await interaction.reply({ embeds: [manyMessages], ephemeral: true });
+				if (interaction.guild.members.me.permissions.has([PermissionsBitField.Flags.ManageMessages])) {
+					try {
+						if (parseInt(quantity) <= 0) {
+							return await interaction.reply({ embeds: [noClear], ephemeral: true });
+						} else if (parseInt(quantity) === 1) {
+							cleared.setTitle(`${quantity} message cleared successfully!`);
+						} else if (parseInt(quantity) > 100) {
+							return await interaction.reply({ embeds: [manyMessages], ephemeral: true });
+						}
+
+						interaction.channel.bulkDelete(parseInt(quantity), true);
+						await interaction.reply({ embeds: [cleared] });
+						await wait(4000);
+						return await interaction.deleteReply();
+					} catch (error) {
+						const unknownError = new EmbedBuilder()
+							.setColor('#FF5733')
+							.setTitle('Unknown Error')
+							.setDescription(`${error}`)
+							.setFooter({ text: 'If the error persists, please contact support using /support' });
+
+						return await interaction.reply({ embeds: [unknownError] });
 					}
-
-					interaction.channel.bulkDelete(parseInt(quantity), true);
-					await interaction.reply({ embeds: [cleared] });
-					await wait(4000);
-					return await interaction.deleteReply();
-				} catch (error) {
-					const unknownError = new EmbedBuilder()
+				} else {
+					const noBotPerms = new EmbedBuilder()
 						.setColor('#FF5733')
-						.setTitle('Unknown Error')
-						.setDescription(`${error}`)
-						.setFooter({ text: 'If the error persists, please contact support using /support' });
+						.setTitle('Error')
+						.setDescription('I don\'t have the **Manage Messages** permission to run this command.')
+						.setFooter({ text: 'Make sure to add it by modifying my exclusive role!' });
 
-					return await interaction.reply({ embeds: [unknownError] });
+					return await interaction.reply({ embeds: [noBotPerms], ephemeral: true });
 				}
 			} else {
 				return await interaction.reply({ embeds: [noPerms], ephemeral: true });
