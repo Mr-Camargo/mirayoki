@@ -42,6 +42,11 @@ exports.status = [
 		logName: 'Watching the rain',
 	},
 	{
+		type: ActivityType.Listening,
+		name: 'the rain',
+		logName: 'Listening to the rain',
+	},
+	{
 		type: ActivityType.Watching,
 		name: 'the dirty dishes',
 		logName: 'Watching the dirty dishes',
@@ -65,6 +70,11 @@ exports.status = [
 		type: ActivityType.Listening,
 		name: 'Imagine Dragons',
 		logName: 'Listening to Imagine Dragons',
+	},
+	{
+		type: ActivityType.Listening,
+		name: 'Joy Crookes',
+		logName: 'Listening to Joy Crookes',
 	},
 	{
 		type: ActivityType.Listening,
@@ -173,6 +183,11 @@ exports.status = [
 	},
 	{
 		type: ActivityType.Watching,
+		name: 'the sunset',
+		logName: 'Watching the sunset',
+	},
+	{
+		type: ActivityType.Watching,
 		name: 'the stars',
 		logName: 'Watching the stars',
 	},
@@ -180,6 +195,11 @@ exports.status = [
 		type: ActivityType.Watching,
 		name: 'study notes',
 		logName: 'Watching study notes',
+	},
+	{
+		type: ActivityType.Watching,
+		name: 'biology videos',
+		logName: 'Watching biology videos',
 	},
 	{
 		type: ActivityType.Watching,
@@ -220,6 +240,11 @@ exports.status = [
 		type: ActivityType.Watching,
 		name: 'a good movie',
 		logName: 'Watching a good movie',
+	},
+	{
+		type: ActivityType.Listening,
+		name: 'a good song',
+		logName: 'Listening to a good song',
 	},
 	{
 		type: ActivityType.Watching,
