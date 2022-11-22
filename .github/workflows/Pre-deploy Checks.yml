@@ -46,7 +46,7 @@ jobs:
         run: |
          GIT_COMMIT=${{ github.sha }}
          MODIFIED_COMMIT=${GIT_COMMIT::7}
-         run: echo "commitSHA=${MODIFIED_COMMIT}" >> $GITHUB_OUTPUT
+         echo "commitSHA=${MODIFIED_COMMIT}" >> $GITHUB_OUTPUT
       - name: Check if the user experience has been modified
         id: changed-files-specific
         uses: tj-actions/changed-files@v34.4.4
