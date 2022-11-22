@@ -13,5 +13,9 @@ exports.pingMessages = [
 	'Connecting...',
 	'Daydreaming...',
 	'Waiting for a response...',
-	'Gotta go fast!'
+	'Gotta go fast!',
+	'Pong?',
+	'Crossing fingers...',
+	'Waiting for a reply...',
+	'Walking 3 parallel universes to school...'
 ];
