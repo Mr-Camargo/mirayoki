@@ -46,10 +46,10 @@ jobs:
         run: |
          GIT_COMMIT=${{ github.sha }}
          MODIFIED_COMMIT=${GIT_COMMIT::7}
-         echo "::set-output name=commitSHA::${MODIFIED_COMMIT}"
+         run: echo "commitSHA=${MODIFIED_COMMIT}" >> $GITHUB_OUTPUT
       - name: Check if the user experience has been modified
         id: changed-files-specific
-        uses: tj-actions/changed-files@v14.5
+        uses: tj-actions/changed-files@v34.4.4
         with:
           files: |
             src/**
@@ -57,7 +57,7 @@ jobs:
       - name: Indicate that the user experience has changed
         id: changed-files
         if: steps.changed-files-specific.outputs.any_changed == 'true'
-        run: echo "::set-output name=changedfiles::true"
+        run: echo "changedfiles=true" >> $GITHUB_OUTPUT
       
   Analyze:
     runs-on: ubuntu-latest
