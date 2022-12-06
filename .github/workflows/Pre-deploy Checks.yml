@@ -11,7 +11,7 @@ jobs:
     steps:
     - name: Checkout ${{ github.repository }}
       uses: actions/checkout@v3
-    - name: Setup Node.js v16
+    - name: Setup Node.js v18
       uses: actions/setup-node@v3.5.1
       with:
         node-version: 18.x
@@ -33,8 +33,8 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       commitSHA: ${{ steps.commit-information.outputs.commitSHA }}
-      changed-experience: ${{ steps.changed-files.outputs.changedExperience }}
-      changed-deps: ${{ steps.changed-files.outputs.changedDeps }} 
+      changedExperience: ${{ steps.changed-files.outputs.changedExperience }}
+      changedDeps: ${{ steps.changed-files.outputs.changedDeps }} 
     steps:
       - name: Checkout ${{ github.repository }}
         uses: actions/checkout@v3
@@ -97,7 +97,7 @@ jobs:
 
   Deploy:
     needs: [Build, Analyze, Eslint]
-    if: needs.Eslint.outputs.changed-deps == 'true' || needs.Eslint.outputs.changed-experience == 'true' && github.repository == 'Slashy-Studio/mirayoki'
+    if: needs.Eslint.outputs.changedDeps == 'true' || needs.Eslint.outputs.changedExperience == 'true' && github.repository == 'Slashy-Studio/mirayoki'
     runs-on: ubuntu-latest
     env:
      HEROKU_APP_NAME: mirayoki
@@ -129,7 +129,7 @@ jobs:
 
   Tweet:
       needs: [Build, Analyze, Eslint, Deploy]
-      if: needs.Eslint.outputs.changed-experience == 'true' && github.repository == 'Slashy-Studio/mirayoki'
+      if: needs.Eslint.outputs.changedExperience == 'true' && github.repository == 'Slashy-Studio/mirayoki'
       runs-on: ubuntu-latest
       env:
         commitSHA: ${{ needs.Eslint.outputs.commitSHA }}
