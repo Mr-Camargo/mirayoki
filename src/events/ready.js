@@ -40,6 +40,7 @@ module.exports = {
 			}
 		}
 		async function heartbeat() {
+			if (!process.env.UPTIME_HEARTBEAT) return console.log(color.yellow('WARN'), 'Failed to heartbeat: No heartbeat URL provided', color.blackBright(`at ${Date()}`));
 			try {
 				axios.get(process.env.UPTIME_HEARTBEAT);
 			} catch (error) {
@@ -48,7 +49,7 @@ module.exports = {
 		}
 		pickFirstStatus();
 		heartbeat();
-		setInterval(heartbeat, 60000);
+		if (process.env.UPTIME_HEARTBEAT) setInterval(heartbeat, 60000);
 		setInterval(pickNextStatus, 3600000);
 	}
 };
