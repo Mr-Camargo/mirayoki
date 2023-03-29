@@ -97,7 +97,7 @@ jobs:
 
   Deploy:
     needs: [Build, Analyze, Eslint]
-    if: needs.Eslint.outputs.changedDeps == 'true' || needs.Eslint.outputs.changedExperience == 'true' && github.repository == 'Slashy-Studio/mirayoki'
+    if: needs.Eslint.outputs.changedDeps == 'true' || needs.Eslint.outputs.changedExperience == 'true' && github.repository == 'mirei-org/mirayoki'
     runs-on: ubuntu-latest
     env:
      HEROKU_APP_NAME: mirayoki
@@ -129,7 +129,7 @@ jobs:
 
   Tweet:
       needs: [Build, Analyze, Eslint, Deploy]
-      if: needs.Eslint.outputs.changedExperience == 'true' && github.repository == 'Slashy-Studio/mirayoki'
+      if: needs.Eslint.outputs.changedExperience == 'true' && github.repository == 'mirei-org/mirayoki'
       runs-on: ubuntu-latest
       env:
         commitSHA: ${{ needs.Eslint.outputs.commitSHA }}

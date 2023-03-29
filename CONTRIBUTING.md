@@ -71,4 +71,4 @@ An issue is not only used by problems but can also be used for feature requests 
 
 Creating one lets us see your idea/problem and let us fix it, so you do not have to write a single line of code.
 
-To start, [create a new issue](https://github.com/Slashy-Studio/mirayoki/issues/new/choose), and follow the instructions to use an issue template.
+To start, [create a new issue](https://github.com/mirei-org/mirayoki/issues/new/choose), and follow the instructions to use an issue template.

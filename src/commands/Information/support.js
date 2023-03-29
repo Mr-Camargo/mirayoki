@@ -28,7 +28,7 @@ module.exports = {
 					{ name: 'Server ID', value: `${interaction.guild.id} (${interaction.guild.name})` },
 					{ name: 'User ID', value: `${interaction.user.id} (${interaction.user.tag})` },
 				)
-				.setFooter({ text: 'Mirayoki is an open source project of Slash Studio.' });
+				.setFooter({ text: 'Mirayoki is an open source project of Mirei.' });
 
 			return await interaction.reply({ embeds: [support] });
 		} catch (error) {

@@ -13,7 +13,7 @@ Make yourself these questions:
 
 If you said yes to any of these questions, chances are that **it is** a security vulnerability.
 
-If you think it is just a bug and **does not** put anyone in danger, you should then [create a new issue](https://github.com/Slashy-Studio/mirayoki/issues/new/choose).
+If you think it is just a bug and **does not** put anyone in danger, you should then [create a new issue](https://github.com/mirei-org/mirayoki/issues/new/choose).
 
 ## How to report
 
@@ -21,7 +21,7 @@ If you think it is just a bug and **does not** put anyone in danger, you should 
 
 Please have discretion when reporting a security vulnerability, as other people may read it and may try to exploit it for their own benefit.
 
-It is highly recommended to [send an email to Sebastián Camargo](mailto:sebas@slash-studio.com). If possible, please [encrypt it using PGP](https://keys.openpgp.org/search?q=sebas%40slash-studio.com).
+It is highly recommended to [send an email to Sebastián Camargo](mailto:scamargo@mirei.org). If possible, please [encrypt it using PGP](https://keys.openpgp.org/search?q=scamargo%40mirei.org).
 
 In your report please include:
 - How the vulnerability can be exploited

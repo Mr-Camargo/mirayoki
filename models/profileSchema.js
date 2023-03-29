@@ -8,11 +8,11 @@ const profileSchema = new mongoose.Schema({
 	userID: { type: String, require: true, unique: true },
 	// We need the User ID in order to identify users
 	clearanceLvl: { type: String, require: true },
-	/* The Clearance Level is given to Slash Staff members
+	/* The Clearance Level is given to Mirei Staff members
     in order to access administrative features within Mirayoki. */
 	staffUnit: { type: String, require: true },
 	/* The Staff Unit is given to Staff members so
-    it's easier to identify their role in Slash. */
+    it's easier to identify their role in Mirei. */
 	gitHubClearance: { type: String, require: true },
 	/* Github Clearance represents the control a user has
     under the GitHub Repository of Mirayoki. */

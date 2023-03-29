@@ -12,7 +12,7 @@ Thank you again!
 
 <!--
 - If there's an existing issue for your change, please link to it to get more information about your fix/contribution.
-- If there isn't an existing issue, please open one first to make it more likely that this PR will be accepted, but it is not required: https://github.com/Slashy-Studio/mirayoki/issues/new/choose.
+- If there isn't an existing issue, please open one first to make it more likely that this PR will be accepted, but it is not required: https://github.com/mirei-org/mirayoki/issues/new/choose.
 -->
 
 ## What's being changed:

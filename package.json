@@ -14,10 +14,10 @@
     "node": "18.12.1",
     "npm": "9.1.2"
   },
-  "author": "Sebastián Camargo <sebas@slash-studio.com> (https://github.com/Mr-Camargo)",
-  "bugs": "https://github.com/Slashy-Studio/mirayoki/issues",
+  "author": "Sebastián Camargo <scamargo@mirei.org> (https://github.com/Mr-Camargo)",
+  "bugs": "https://github.com/mirei-org/mirayoki/issues",
   "homepage": "https://mirayoki.com",
-  "repository": "https://github.com/Slashy-Studio/mirayoki",
+  "repository": "https://github.com/mirei-org/mirayoki",
   "license": "Mozilla Public License Version 2.0",
   "dependencies": {
     "discord.js": "^14.7.1",
