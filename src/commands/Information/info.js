@@ -31,7 +31,7 @@ module.exports = {
 							.setTitle('This is **me**.')
 							.setThumbnail(`${user.displayAvatarURL({ dynamic: true })}`)
 							.addFields(
-								{ name: 'Username', value: `${user.tag}` },
+								{ name: 'Bot Name', value: `${user.username}` },
 								{ name: 'Bot ID', value: process.env.BOT_ID },
 								{ name: 'I was created:', value: 'An afternoon of July 4, 2021, at 02:33:35 UTC' }
 							)
@@ -44,7 +44,7 @@ module.exports = {
 							.setTitle(`This is **${user.username}**.`)
 							.setThumbnail(`${user.displayAvatarURL({ dynamic: true })}`)
 							.addFields(
-								{ name: 'Username', value: `${user.tag}` },
+								{ name: 'Username', value: `${user.username}` },
 								{ name: 'User ID', value: `${user.id}` },
 								{ name: 'Joined Discord:', value: `${user.createdAt}` },
 							)
@@ -58,10 +58,9 @@ module.exports = {
 					const you = new EmbedBuilder()
 						.setColor('#55C2FF')
 						.setTitle('This is you.')
-						.setDescription(`And you are **${user.username}**.`)
 						.setThumbnail(`${user.displayAvatarURL({ dynamic: true })}`)
 						.addFields(
-							{ name: 'Username', value: `${user.tag}` },
+							{ name: 'Username', value: `${user.username}` },
 							{ name: 'User ID', value: `${user.id}` },
 							{ name: 'Joined Discord:', value: `${user.createdAt}` },
 						)

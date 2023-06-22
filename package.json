@@ -11,8 +11,8 @@
     "deploy": "pm2-runtime start ecosystem.config.js -i max"
   },
   "engines": {
-    "node": "lts",
-    "npm": "9.7.1"
+    "node": ">=18.12.0",
+    "npm": ">=8.0.0"
   },
   "author": "Sebastián Camargo <scamargo@mirei.org> (https://github.com/Mr-Camargo)",
   "bugs": "https://github.com/mirei-org/mirayoki/issues",
