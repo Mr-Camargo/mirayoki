@@ -23,7 +23,7 @@ module.exports = {
 					{ name: 'Version', value: `${interaction.guild.name} is running **${process.env.OS_VERSION} (${process.env.COMMIT})**` },
 					{ name: 'Cluster Uptime', value: `${days}d ${hours}h ${minutes}m ${seconds}s` },
 					{ name: 'Server ID', value: `${interaction.guild.id} (${interaction.guild.name})` },
-					{ name: 'User ID', value: `${interaction.user.id} (${interaction.user.tag})` },
+					{ name: 'User ID', value: `${interaction.user.id} (${interaction.user.username})` },
 				)
 				.setFooter({ text: 'Mirayoki is an open source project of Mirei.' });
 

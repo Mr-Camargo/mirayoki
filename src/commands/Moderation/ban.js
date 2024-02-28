@@ -76,7 +76,7 @@ module.exports = {
 							}
 							await interaction.reply({ embeds: [banned] });
 							await client.users.cache.get(member.id).send({ embeds: [bannedDM] }).catch(() => {interaction.followUp({ embeds: [couldntBeContacted] });});
-							return member.ban({ reason: `Requested by ${interaction.user.tag}` });
+							return member.ban({ reason: `Requested by ${interaction.user.username}` });
 						}
 					} catch (error) {
 						const unknownError = new EmbedBuilder()

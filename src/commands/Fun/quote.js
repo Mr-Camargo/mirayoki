@@ -52,7 +52,7 @@ module.exports = {
 
 			const finalQuote = new EmbedBuilder()
 				.setColor('#FFC300')
-				.setAuthor({ name: user.tag, iconURL: user.displayAvatarURL() })
+				.setAuthor({ name: user.username, iconURL: user.displayAvatarURL() })
 				.setDescription(`*${trim(quote, 1022)}*`)
 				.setFooter({ text: `From #${interaction.channel.name}` });
 
@@ -69,7 +69,7 @@ module.exports = {
 						sentQuote.addFields(
 							{ name: 'Author:', value: `${user}` }
 						);
-						finalQuote.setFooter({ text: `From #${interaction.channel.name} - Quoted by ${interaction.user.tag}` });
+						finalQuote.setFooter({ text: `From #${interaction.channel.name} - Quoted by ${interaction.user.username}` });
 						// This conditional will make the user who provided the quote visible if they are authoring someone else.
 					}
 					// However, if the user provided a valid quote...

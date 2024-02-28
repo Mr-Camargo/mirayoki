@@ -1,31 +1,10 @@
-# Mirayoki.
+# Sunsetting Mirayoki
+During the COVID pandemic, Mirayoki served to me an incredible learning experience in the field of serverless app building and the entire management of a digital product. I even branded it behind a bigger startup, being Mirei.
 
-Mirayoki is an open-source Discord bot that will make your server work like never before.
+However, as time passed by, it is no longer a route I would like to pursue, for now. Thus, Mirayoki will be finalizing its service by March 1st, 2024.
 
-## Functions
+I will proceed to continue with other passion projects of mine, such as @Institute-Alterna.
 
-- Built-in moderation features (Kick, Timeout, and Ban)
-- Message flow control (Lock, unlock, and slowmode)
-- Fun commands (RNG, Coinflip, Dice, Quotes)
-- Message clearing
-- Many APIs to use
+This archive serves as the proof of the work I did, with all the downs and ups I experienced as I built it. Who knows? Maybe I pick it up later.
 
-## Invite
-
-To bring the power of Mirayoki to your server, [invite it](https://mirayoki.com/invite).
-
-## Develop
-
-In order to build on top of Mirayoki, just clone this repository. All libraries and required packages are already included.
-
-You may run `npm update` to update packages to their latest versions.
-
-## Contribute
-
-To start contributing to Mirayoki, you do not need to write a single line of code.
-
-Before creating an issue or opening a pull request, make sure to read the [contribution guidelines](CONTRIBUTING.md).
-
-## License
-
-Mirayoki is released under the [GNU GPLv3](https://choosealicense.com/licenses/gpl-3.0/).
+\- Sebastián (@Mr-Camargo)

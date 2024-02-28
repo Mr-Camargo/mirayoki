@@ -77,7 +77,7 @@ module.exports = {
 							}
 							await interaction.reply({ embeds: [kicked] });
 							await client.users.cache.get(member.id).send({ embeds: [kickedDM] }).catch(() => {interaction.followUp({ embeds: [couldntBeContacted] });});
-							return member.kick(`Requested by ${interaction.user.tag}`);
+							return member.kick(`Requested by ${interaction.user.username}`);
 						}
 					} catch (error) {
 						const unknownError = new EmbedBuilder()

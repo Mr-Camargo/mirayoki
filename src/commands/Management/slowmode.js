@@ -61,7 +61,7 @@ module.exports = {
 							if (channel.rateLimitPerUser === 0) {
 								return await interaction.reply({ embeds: [noSlowmodeToRemove], ephemeral: true });
 							} else {
-								channel.setRateLimitPerUser(chosenTime, `Requested by ${interaction.user.tag}`);
+								channel.setRateLimitPerUser(chosenTime, `Requested by ${interaction.user.username}`);
 								return await interaction.reply({ embeds: [removedSlowmode] });
 							}
 						} else if (chosenTime < 0 || chosenTime > 21600) {
@@ -73,7 +73,7 @@ module.exports = {
 								if (chosenTime >= 60) {
 									newSlowmode.setFooter({ text: `Specifically ${chosenTime} seconds` });
 								}
-								channel.setRateLimitPerUser(chosenTime, `Requested by ${interaction.user.tag}`);
+								channel.setRateLimitPerUser(chosenTime, `Requested by ${interaction.user.username}`);
 								return await interaction.reply({ embeds: [newSlowmode] });
 							}
 						}

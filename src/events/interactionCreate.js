@@ -46,7 +46,7 @@ module.exports = {
 						{ name: 'Cluster Uptime', value: `${days}d ${hours}h ${minutes}m ${seconds}s` },
 						{ name: 'Actual Time', value: `${Date()}` },
 						{ name: 'Server ID', value: `${interaction.guild.id} (${interaction.guild.name})` },
-						{ name: 'User ID', value: `${interaction.user.id} (${interaction.user.tag})` },
+						{ name: 'User ID', value: `${interaction.user.id} (${interaction.user.username})` },
 						{ name: 'Support Server', value: '**Currently Unavailable.**\nFeel free to go to https://mirayoki.com/help for more assistance options.' },
 					);
 

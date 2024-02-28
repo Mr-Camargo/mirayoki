@@ -112,7 +112,7 @@ module.exports = {
 
 								return await interaction.reply({ embeds: [cantTimeoutAdmin], ephemeral: true });
 							} else {
-								member.timeout(msDuration, `Requested by ${interaction.user.tag}`);
+								member.timeout(msDuration, `Requested by ${interaction.user.username}`);
 								const timeoutApplied = new EmbedBuilder()
 									.setColor('#55C2FF')
 									.setTitle(':clock3: Timeout Applied')
@@ -165,7 +165,7 @@ module.exports = {
 
 								return await interaction.reply({ embeds: [cantUntimeoutSuperior], ephemeral: true });
 							} else {
-								member.timeout(null, `Requested by ${interaction.user.tag}`);
+								member.timeout(null, `Requested by ${interaction.user.username}`);
 								const untimeoutApplied = new EmbedBuilder()
 									.setColor('#55C2FF')
 									.setTitle(':clock3: Timeout Removed')
